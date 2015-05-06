@@ -42,9 +42,9 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Associations
 `has_and_belongs_to_many :classes`
-`has_and_belongs_to_many :events`
 `has_many :contacts`
 `has_many :attendances`
+`has_many :events, through: :attendances`
 
 ### Class
   - id
@@ -77,7 +77,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 #### Associations
 `belongs_to :class`
 `has_many :attendances`
-`has_and_belongs_to_many :students`
+`has_many :students, through: :attendances`
 
 ### Classes_Students
   - id
@@ -89,7 +89,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Associations
 
-### Events_Students
+### Attendance
   - id
   - event_id
   - student_id
@@ -99,6 +99,8 @@ Cloud based client management software that allows you to schedule sessions, tra
 `rails g model events_students event:references student:references attendance_type:integer --force-plural`
 
 #### Associations
+`belongs_to :student`
+`belongs_to :event`
 
 ## Models V2
 
@@ -120,13 +122,8 @@ Cloud based client management software that allows you to schedule sessions, tra
 #### Associations
 `belongs_to :student`
 
-## Pages
-### Homepage
-### Signup Page - Employee
-### Sign In
-### Employee Index - shows list of classes (maybe calendar)
-### Add Class
-### Show Class
+## ER-Diagram
+![ER-Diagram](https://raw.githubusercontent.com/ncronquist/schedulacity/master/app/assets/imgages/ERDiagram.jpg)
 
 # Archive Information
 ## Tag Line Ideas
