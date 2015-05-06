@@ -123,7 +123,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 `belongs_to :student`
 
 ## ER-Diagram
-![ER-Diagram](https://raw.githubusercontent.com/ncronquist/schedulacity/master/app/assets/imgages/ERDiagram.jpg)
+![ER-Diagram](https://raw.githubusercontent.com/ncronquist/schedulacity/master/app/assets/images/ERDiagram.jpg)
 
 # Archive Information
 ## Tag Line Ideas
