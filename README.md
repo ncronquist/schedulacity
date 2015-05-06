@@ -8,7 +8,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 ## Models V1
 
-### Employees
+### User
   - id
   - name
   - email
@@ -19,12 +19,12 @@ Cloud based client management software that allows you to schedule sessions, tra
   - provider_hash
 
 #### Migration
-`rails g model employee name email password_digest phone_number provider provider_id provider_hash`
+`rails g model user name email password_digest phone_number provider provider_id provider_hash`
 
 #### Associations
 `has_many :classes`
 
-### Students
+### Student
   - id
   - name
   - note
@@ -38,29 +38,28 @@ Cloud based client management software that allows you to schedule sessions, tra
   - notifications
 
 #### Migration
-`rails g model name note:text dob:date email phone_number street_address city state zip notifications:boolean`
+`rails g model student name note:text dob:date email phone_number street_address city state zip notifications:boolean`
 
 #### Associations
 `has_and_belongs_to_many :classes`
 `has_many :contacts`
 `has_many :attendances`
 
-
-### Classes
+### Class
   - id
   - name
   - description
-  - employee_id
+  - user_id
 
 #### Migration
-`rails g model class name description:text employee:references`
+`rails g model class name description:text user:references`
 
 #### Associations
 `has_and_belongs_to_many :students`
-`belongs_to :employee`
-`has_many :sessions`
+`belongs_to :user`
+`has_many :events`
 
-### Session
+### Event
   - id
   - start (datetime)
   - end (datetime)
@@ -72,7 +71,7 @@ Cloud based client management software that allows you to schedule sessions, tra
   - class_id
 
 #### Migration
-`rails g model session start:datetime end:datetime street_address city state zipclass:references`
+`rails g model event start:datetime end:datetime street_address city state zip class:references`
 
 #### Associations
 `belongs_to :class`
@@ -90,15 +89,15 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 ### Attendence
   - id
-  - session_id
+  - event_id
   - student_id
   - attendance_type
 
 #### Migration
-`rails g model attendance session:references student:references attendance_type:integer`
+`rails g model attendance event:references student:references attendance_type:integer`
 
 #### Associations
-`belongs_to :session`
+`belongs_to :event`
 `belongs_to :user`
 
 ## Models V2
