@@ -8,17 +8,14 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 ## Models
 
-### Organization
-  - id
-  - name
-  - address
-  - email
-
 ### Employees
   - id
   - name
   - email
   - phone_number
+
+#### Migration
+`rails g model employee name email phone_number`
 
 ### Students
   - id
@@ -27,17 +24,29 @@ Cloud based client management software that allows you to schedule sessions, tra
   - dob
   - email
   - phone_number
-  - address
+  - street_address
+  - city
+  - state
+  - zip
   - notifications
+
+#### Migration
+`rails g model name notes:text dob:date email phone_number street_address city state zip notifications:boolean`
 
 ### Contacts
   - id
   - name
   - email
   - phone_number
-  - address
+  - street_address
+  - city
+  - state
+  - zip
   - relation
   - student_id
+
+#### Migration
+`rails g model contact name email phone_number street_address city state zip relation student:references`
 
 ### Classes
   - id
@@ -45,22 +54,38 @@ Cloud based client management software that allows you to schedule sessions, tra
   - description
   - employee_id
 
+#### Migration
+`rails g model class name description:text employee:references`
+
 ### Session
   - id
   - start (datetime)
   - end (datetime)
-  - location
+  - street_address
+  - city
+  - state
+  - zip
+  - class_id
+
+#### Migration
+`rails g model session start:datetime end:datetime street_address city state zip class:references`
 
 ### Classes_Students
   - id
   - class_id
   - student_id
 
+#### Migration
+`rails g model classes_students class:references student:references --force-plural`
+
 ### Attendence
   - date
   - class_id
   - student_id
   - type
+
+#### Migration
+`rails g model attendance attendance_date:date class:references student:references attendance_type:integer`
 
 ## Pages
 ### Homepage
