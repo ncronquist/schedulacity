@@ -12,10 +12,17 @@ Cloud based client management software that allows you to schedule sessions, tra
   - id
   - name
   - email
+  - password_digest
   - phone_number
+  - provider
+  - provider_id
+  - provider_hash
 
 #### Migration
-`rails g model employee name email phone_number`
+`rails g model employee name email password_digest phone_number provider provider_id provider_hash`
+
+#### Associations
+has_many :classes
 
 ### Students
   - id
@@ -33,6 +40,9 @@ Cloud based client management software that allows you to schedule sessions, tra
 #### Migration
 `rails g model name notes:text dob:date email phone_number street_address city state zip notifications:boolean`
 
+#### Associations
+`has_and_belongs_to_many :classes`
+
 ### Contacts
   - id
   - name
@@ -48,6 +58,8 @@ Cloud based client management software that allows you to schedule sessions, tra
 #### Migration
 `rails g model contact name email phone_number street_address city state zip relation student:references`
 
+#### Associations
+
 ### Classes
   - id
   - name
@@ -56,6 +68,9 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Migration
 `rails g model class name description:text employee:references`
+
+#### Associations
+`has_and_belongs_to_many :students`
 
 ### Session
   - id
@@ -70,6 +85,8 @@ Cloud based client management software that allows you to schedule sessions, tra
 #### Migration
 `rails g model session start:datetime end:datetime street_address city state zip class:references`
 
+#### Associations
+
 ### Classes_Students
   - id
   - class_id
@@ -77,6 +94,8 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Migration
 `rails g model classes_students class:references student:references --force-plural`
+
+#### Associations
 
 ### Attendence
   - date
@@ -86,6 +105,8 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Migration
 `rails g model attendance attendance_date:date class:references student:references attendance_type:integer`
+
+#### Associations
 
 ## Pages
 ### Homepage
