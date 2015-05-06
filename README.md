@@ -22,7 +22,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 `rails g model user name email password_digest phone_number provider provider_id provider_hash`
 
 #### Associations
-`has_many :classes`
+`has_many :classgroups`
 
 ### Student
   - id
@@ -38,22 +38,22 @@ Cloud based client management software that allows you to schedule sessions, tra
   - notifications
 
 #### Migration
-`rails g model student name note:text dob:date email phone_number street_address city state zip notifications:boolean`
+`rails g model student name note:text dob:date email phone_number street city state zip notifications:boolean`
 
 #### Associations
-`has_and_belongs_to_many :classes`
+`has_and_belongs_to_many :classgroups`
 `has_many :contacts`
 `has_many :attendances`
 `has_many :events, through: :attendances`
 
-### Class
+### Classgroup
   - id
   - name
   - description
   - user_id
 
 #### Migration
-`rails g model class name description:text user:references`
+`rails g model classgroup name description:text user:references`
 
 #### Associations
 `has_and_belongs_to_many :students`
@@ -69,23 +69,23 @@ Cloud based client management software that allows you to schedule sessions, tra
   - state
   - zip
   - note
-  - class_id
+  - classgroup_id
 
 #### Migration
-`rails g model event start:datetime end:datetime street_address city state zip class:references`
+`rails g model event start:datetime end:datetime street_address city state zip classgroup:references`
 
 #### Associations
-`belongs_to :class`
+`belongs_to :classgroup`
 `has_many :attendances`
 `has_many :students, through: :attendances`
 
-### Classes_Students
+### Classgroups_Students
   - id
-  - class_id
+  - classgroup_id
   - student_id
 
 #### Migration
-`rails g model classes_students class:references student:references --force-plural`
+`rails g model classgroups_students classgroup:references student:references --force-plural`
 
 #### Associations
 
@@ -96,7 +96,7 @@ Cloud based client management software that allows you to schedule sessions, tra
   - attendance_type
 
 #### Migration
-`rails g model events_students event:references student:references attendance_type:integer --force-plural`
+`rails g model attendance event:references student:references attendance_type:integer --force-plural`
 
 #### Associations
 `belongs_to :student`
