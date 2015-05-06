@@ -42,6 +42,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Associations
 `has_and_belongs_to_many :classes`
+`has_and_belongs_to_many :events`
 `has_many :contacts`
 `has_many :attendances`
 
@@ -76,6 +77,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 #### Associations
 `belongs_to :class`
 `has_many :attendances`
+`has_and_belongs_to_many :students`
 
 ### Classes_Students
   - id
@@ -87,18 +89,16 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Associations
 
-### Attendence
+### Events_Students
   - id
   - event_id
   - student_id
   - attendance_type
 
 #### Migration
-`rails g model attendance event:references student:references attendance_type:integer`
+`rails g model events_students event:references student:references attendance_type:integer --force-plural`
 
 #### Associations
-`belongs_to :event`
-`belongs_to :user`
 
 ## Models V2
 
