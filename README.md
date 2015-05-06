@@ -6,7 +6,7 @@ Schedulacity
 Manage. Track. Schedule.
 Cloud based client management software that allows you to schedule sessions, track attendance, and handle communication.
 
-## Models
+## Models V1
 
 ### Employees
   - id
@@ -22,12 +22,12 @@ Cloud based client management software that allows you to schedule sessions, tra
 `rails g model employee name email password_digest phone_number provider provider_id provider_hash`
 
 #### Associations
-has_many :classes
+`has_many :classes`
 
 ### Students
   - id
   - name
-  - notes
+  - note
   - dob
   - email
   - phone_number
@@ -38,10 +38,12 @@ has_many :classes
   - notifications
 
 #### Migration
-`rails g model name notes:text dob:date email phone_number street_address city state zip notifications:boolean`
+`rails g model name note:text dob:date email phone_number street_address city state zip notifications:boolean`
 
 #### Associations
 `has_and_belongs_to_many :classes`
+`has_many :contacts`
+`has_many :attendances`
 
 ### Contacts
   - id
@@ -59,6 +61,7 @@ has_many :classes
 `rails g model contact name email phone_number street_address city state zip relation student:references`
 
 #### Associations
+`belongs_to :student`
 
 ### Classes
   - id
@@ -71,6 +74,8 @@ has_many :classes
 
 #### Associations
 `has_and_belongs_to_many :students`
+`belongs_to :employee`
+`has_many :sessions`
 
 ### Session
   - id
@@ -80,12 +85,15 @@ has_many :classes
   - city
   - state
   - zip
+  - note
   - class_id
 
 #### Migration
-`rails g model session start:datetime end:datetime street_address city state zip class:references`
+`rails g model session start:datetime end:datetime street_address city state zipclass:references`
 
 #### Associations
+`belongs_to :class`
+`has_many :attendances`
 
 ### Classes_Students
   - id
@@ -98,15 +106,17 @@ has_many :classes
 #### Associations
 
 ### Attendence
-  - date
-  - class_id
+  - id
+  - session_id
   - student_id
-  - type
+  - attendance_type
 
 #### Migration
-`rails g model attendance attendance_date:date class:references student:references attendance_type:integer`
+`rails g model attendance session:references student:references attendance_type:integer`
 
 #### Associations
+`belongs_to :session`
+`belongs_to :user`
 
 ## Pages
 ### Homepage
