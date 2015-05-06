@@ -45,23 +45,6 @@ Cloud based client management software that allows you to schedule sessions, tra
 `has_many :contacts`
 `has_many :attendances`
 
-### Contacts
-  - id
-  - name
-  - email
-  - phone_number
-  - street_address
-  - city
-  - state
-  - zip
-  - relation
-  - student_id
-
-#### Migration
-`rails g model contact name email phone_number street_address city state zip relation student:references`
-
-#### Associations
-`belongs_to :student`
 
 ### Classes
   - id
@@ -118,6 +101,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 `belongs_to :session`
 `belongs_to :user`
 
+## Models V2
 ## Pages
 ### Homepage
 ### Signup Page - Employee
@@ -125,6 +109,23 @@ Cloud based client management software that allows you to schedule sessions, tra
 ### Employee Index - shows list of classes (maybe calendar)
 ### Add Class
 ### Show Class
+### Contacts
+  - id
+  - name
+  - email
+  - phone_number
+  - street_address
+  - city
+  - state
+  - zip
+  - relation
+  - student_id
+
+#### Migration
+`rails g model contact name email phone_number street_address city state zip relation student:references`
+
+#### Associations
+`belongs_to :student`
 
 # Archive Information
 ## Tag Line Ideas
