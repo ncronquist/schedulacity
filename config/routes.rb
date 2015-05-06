@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'site#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -12,7 +12,17 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    get 'signup' => 'users#new'
+    post 'signup' => 'users#create'
+
+    get 'login' => 'sessions#new'
+    post 'login' => 'sessions#create'
+
+    resources :user
+    resources :classgroup
+    resources :event
+    resources :student
+    resources :attendance
 
   # Example resource route with options:
   #   resources :products do
