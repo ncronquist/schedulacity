@@ -102,13 +102,7 @@ Cloud based client management software that allows you to schedule sessions, tra
 `belongs_to :user`
 
 ## Models V2
-## Pages
-### Homepage
-### Signup Page - Employee
-### Sign In
-### Employee Index - shows list of classes (maybe calendar)
-### Add Class
-### Show Class
+
 ### Contacts
   - id
   - name
@@ -126,6 +120,14 @@ Cloud based client management software that allows you to schedule sessions, tra
 
 #### Associations
 `belongs_to :student`
+
+## Pages
+### Homepage
+### Signup Page - Employee
+### Sign In
+### Employee Index - shows list of classes (maybe calendar)
+### Add Class
+### Show Class
 
 # Archive Information
 ## Tag Line Ideas
