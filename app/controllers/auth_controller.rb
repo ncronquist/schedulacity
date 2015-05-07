@@ -4,18 +4,26 @@ class AuthController < ApplicationController
     provider_user = request.env['omniauth.auth']
     render json: provider_user
 
-    #find create a user
-    # user = User.find_or_create_by(provider_id: provider_user['uid'], provider: params[:provider]) do |u|
-    #   u.provider_hash = provider_user['credentials']['token']
-    #   u.name = provider_user['info']['name']
-    #   u.email = provider_user['info']['email']
-    # end
+    ### NOTES
+      #find create a user
+      # user = User.find_or_create_by(provider_id: provider_user['uid'], provider: params[:provider]) do |u|
+      #   u.provider_hash = provider_user['credentials']['token']
+      #   u.name = provider_user['info']['name']
+      #   u.email = provider_user['info']['email']
+      # end
 
-    # #create user session
-    # session[:user_id] = user.id
+      # #create user session
+      # session[:user_id] = user.id
 
-    # #send them home
-    # redirect_to root_path
+      # #send them home
+      # redirect_to root_path
+
+    # Add Google credentials to user
+    # @current_user.provider = params[:provider]
+    # @current_user.provider_id = provider_user['uid']
+    # @current_user.provider_hash = provider_user['credentials']['token']
+    # @current_user.save
+
   end
 
   def logout
