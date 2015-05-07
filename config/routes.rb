@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     post 'classgroups/:id/students' => 'classgroups#students_create'
     patch 'classgroups/:id/students' => 'classgroups#students_update'
 
+    get 'auth/logout' => 'auth#logout'
+    get 'auth/failure' => 'auth#failure'
+    get 'auth/:provider/callback' => 'auth#callback'
+
     resources :users
     resources :classgroups
     resources :events
