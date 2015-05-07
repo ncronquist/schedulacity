@@ -18,11 +18,11 @@ Rails.application.routes.draw do
     get 'login' => 'sessions#new'
     post 'login' => 'sessions#create'
 
-    resources :user
-    resources :classgroup
-    resources :event
-    resources :student
-    resources :attendance
+    resources :users
+    resources :classgroups
+    resources :events
+    resources :students
+    resources :attendances
 
   # Example resource route with options:
   #   resources :products do
