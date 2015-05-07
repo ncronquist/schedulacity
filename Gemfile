@@ -30,6 +30,10 @@ gem 'bootstrap_form'
 
 gem 'pry-rails'
 
+group :assets do
+    gem 'bootstrap-sass'
+end
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
