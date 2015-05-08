@@ -1,0 +1,22 @@
+<div class='row'>
+  <div class='col-xs-10 col-xs-offset-6 col-sm-6 col-sm-offset-3'>
+    <h1>Student Profile</h1>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
+    <ul class="list-group">
+      <li class="list-group-item"><b>Name</b>: <%= @student.name %></li>
+      <li class="list-group-item"><b>Classes</b>: <ul><% @student_classes.each do |session| %> <li><%= link_to session.name, classgroup_path(session.id) %></li> <% end %></ul></li>
+      <li class="list-group-item"><b>Notes</b>: <%= @student.note %></li>
+      <li class="list-group-item"><b>Email</b>: <%= @student.email %></li>
+      <li class="list-group-item"><b>Birthday</b>: <%= @student.dob %></li>
+      <li class="list-group-item"><b>Phone</b>: <%= @student.phone_number %></li>
+      <li class="list-group-item"><b>Street</b>: <%= @student.street %></li>
+      <li class="list-group-item"><b>City</b>: <%= @student.city %></li>
+      <li class="list-group-item"><b>State</b>: <%= @student.state %></li>
+      <li class="list-group-item"><b>Zip</b>: <%= @student.zip %></li>
+    </ul>
+    <%= link_to 'Edit Student', edit_student_path(@student.id), :class => 'btn btn-primary' %>
+  </div>
+</div>
