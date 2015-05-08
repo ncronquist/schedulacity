@@ -34,6 +34,10 @@ group :assets do
     gem 'bootstrap-sass'
 end
 
+# Add oath for google
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
