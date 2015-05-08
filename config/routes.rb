@@ -30,7 +30,9 @@ Rails.application.routes.draw do
 
     resources :users
     resources :classgroups
-    resources :events
+    resources :events do
+      get :get_events, on: :collection
+    end
     resources :students
     resources :attendances
 
