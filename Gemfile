@@ -34,6 +34,14 @@ group :assets do
     gem 'bootstrap-sass'
 end
 
+# Add oath for google
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+# Pretty date picker
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '4.7.14'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
