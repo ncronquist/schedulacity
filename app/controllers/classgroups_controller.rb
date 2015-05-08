@@ -40,7 +40,7 @@ class ClassgroupsController < ApplicationController
 
   end
 
-  ### Custom Routes ###
+  ### Custom Routes  ###
 
   def students_add
     @class = Classgroup.find_by_id(params[:id])

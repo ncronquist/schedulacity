@@ -11,3 +11,13 @@
 
 // });
 
+$(function(){
+  // console.log('page loaded');
+  $('#calendar').fullCalendar({
+    // console.log('fullCalendar functions'),
+    height: 600,
+    events: "/events/get_events"
+  })
+  // console.log('after function')
+})
+
