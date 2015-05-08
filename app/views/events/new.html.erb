@@ -4,93 +4,136 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+    <%= bootstrap_form_for :event, url: events_path do |f| %>
 
-<%= bootstrap_form_for :event, url: events_path do |f| %>
+      <%= f.select(:classgroup_id, Classgroup.all.collect {|c| [ c.name, c.id ] }, { include_blank: true }) %>
+      <input type="hidden" name="UTC" id="UTC" value="0">
 
-  <%= f.select(:classgroup_id, Classgroup.all.collect {|c| [ c.name, c.id ] }, { include_blank: true }) %>
+      <div class="form-group">
+        <label>Start</label>
+        <div class='input-group date' id='event_start'>
+          <input type='text' name="event[start]" class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <label>Start</label>
-    <div class='input-group date' id='event_start'>
-      <input type='text' name="event[start]" class="form-control" />
-      <span class="input-group-addon">
-        <span class="glyphicon glyphicon-calendar"></span>
-      </span>
-    </div>
+      <div class="form-group">
+        <label>End</label>
+        <div class='input-group date' id='event_end'>
+          <input type='text' name="event[end]" class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" id="repeat" name="repeat[repeat]" value="true"> Repeat
+          </label>
+        </div>
+      </div>
+
+      <div id="repeat_info" style="display: none;">
+
+        <div class="form-group">
+          <label>Repeats</label>
+          <select class="form-control" name="repeat[freqtype]">
+            <option>Weekly</option>
+            <!-- <option>2</option> -->
+            <!-- <option>3</option> -->
+            <!-- <option>4</option> -->
+            <!-- <option>5</option> -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Repeats Every</label>
+          <select class="form-control" name="repeat[freq]">
+            <% (1..30).each do |n| %>
+              <option><%=n%> weeks</option>
+            <% end %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="repeat[days][sun]" id="cb-sun" value="Sunday"> S
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="repeat[days][mon]" id="cb-mon" value="Monday"> M
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="repeat[days][tue]" id="cb-tue" value="Tuesday"> T
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="repeat[days][wed]" id="cb-wed" value="Wednesday"> W
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="repeat[days][thu]" id="cb-thu" value="Thursday"> T
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="repeat[days][fri]" id="cb-fri" value="Friday"> F
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="repeat[days][sat]" id="cb-sat" value="Saturday"> S
+          </label>
+        </div>
+
+        <label>Ends:</label>
+        <div class="form-group">
+          <div class="radio">
+            <label>
+              <input type="radio" name="repeat[until]" id="options_times" value="repeat_times" checked>
+              After <input type="text" name="repeat[until_times]" id="repeat_times"> occurances
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="repeat[until]" id="options_end" value="repeat_end">
+              On <input type='text' name="repeat[until_end]" id="repeat_end" disabled>
+            </label>
+          </div>
+        </div>
+
+      </div> <!-- End repeat_info -->
+
+      <div class="text-center">
+        <%= f.submit %>
+      </div>
+
+    <% end %>
   </div>
-
-  <div class="form-group">
-    <label>End</label>
-    <div class='input-group date' id='event_end'>
-      <input type='text' name="event[end]" class="form-control" />
-      <span class="input-group-addon">
-        <span class="glyphicon glyphicon-calendar"></span>
-      </span>
-    </div>
-  </div>
-
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="repeat" name="repeat" value="true"> Repeat
-    </label>
-  </div>
-
-  <div id="repeat_info" style="display: none;">
-    <div class="form-group">
-      <label>Repeats</label>
-      <select class="form-control" name="select_repeats">
-        <option>Weekly</option>
-        <!-- <option>2</option> -->
-        <!-- <option>3</option> -->
-        <!-- <option>4</option> -->
-        <!-- <option>5</option> -->
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Repeats Every</label>
-      <select class="form-control" name="select_repeats_every">
-        <% (1..30).each do |n| %>
-          <option><%=n%> weeks</option>
-        <% end %>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="checkbox-inline">
-        <input type="checkbox" id="cb-sun" value="Sunday"> S
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="cb-mon" value="Monday"> M
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="cb-tue" value="Tuesday"> T
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="cb-wed" value="Wednesday"> W
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="cb-thu" value="Thursday"> T
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="cb-fri" value="Friday"> F
-      </label>
-      <label class="checkbox-inline">
-        <input type="checkbox" id="cb-sat" value="Saturday"> S
-      </label>
-    </div>
-  </div>
-
-  <div class="text-center">
-    <%= f.submit %>
-  </div>
-
-<% end %>
+</div>
 
 <script type="text/javascript">
     $(function () {
 
-      $('#event_start').datetimepicker();
-      $('#event_end').datetimepicker();
+      // Set the UTC offset
+      $('#UTC').val(moment().format("Z"))
 
+      // Initiate datetimepicker for event start
+      $('#event_start').datetimepicker({
+        sideBySide: true
+      });
+
+      // Initiate datetimepicker for event end
+      $('#event_end').datetimepicker({
+        sideBySide: true
+      });
+
+      // Initiate datepicker for repeat end
+      $('#repeat_end').datetimepicker({
+        format: 'MM/DD/YYYY'
+      });
+
+      // If the event_start date changes; set the minimum date to that date
+      // for the event end date
       $("#event_start").on("dp.change", function (e) {
         $('#event_end').data("DateTimePicker").minDate(e.date);
       });
@@ -110,5 +153,17 @@
           $('#repeat_info').hide();
         }
       })
+
+      // Enable disable repeat_times and repeat_end
+      $('#options_times').click(function() {
+        $('#repeat_times').prop('disabled',false)
+        $('#repeat_end').prop('disabled',true)
+      })
+
+      $('#options_end').click(function() {
+        $('#repeat_times').prop('disabled',true)
+        $('#repeat_end').prop('disabled',false)
+      })
+
     });
 </script>
