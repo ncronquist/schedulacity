@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+    <h1>New Event</h1>
+  </div>
+</div>
+
+
+<%= bootstrap_form_for :event, url: events_path do |f| %>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+      <%= f.select(:classgroup_id, Classgroup.all.collect {|c| [ c.name, c.id ] }, { include_blank: true }) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-4">
+      <div class="form-group">
+        <label>Start</label>
+        <div class='input-group date' id='event_start'>
+          <input type='text' name="event[start]" class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-0">
+      <div class="form-group">
+        <label>End</label>
+        <div class='input-group date' id='event_end'>
+          <input type='text' name="event[end]" class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="repeat" name="repeat" value="true"> Repeat
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="repeat_info" style="display: none;">
+    <div class="form-group">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+        <label>Repeats</label>
+        <select class="form-control" name="select_repeats">
+          <option>Weekly</option>
+          <!-- <option>2</option> -->
+          <!-- <option>3</option> -->
+          <!-- <option>4</option> -->
+          <!-- <option>5</option> -->
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+        <label>Repeats Every</label>
+        <select class="form-control" name="select_repeats_every">
+          <% (1..30).each do |n| %>
+            <option><%=n%> weeks</option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 text-center">
+        <label class="checkbox-inline">
+          <input type="checkbox" id="cb-sun" value="Sunday"> S
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="cb-mon" value="Monday"> M
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="cb-tue" value="Tuesday"> T
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="cb-wed" value="Wednesday"> W
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="cb-thu" value="Thursday"> T
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="cb-fri" value="Friday"> F
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="cb-sat" value="Saturday"> S
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+    $(function () {
+
+      $('#event_start').datetimepicker();
+      $('#event_end').datetimepicker();
+
+      $("#event_start").on("dp.change", function (e) {
+        $('#event_end').data("DateTimePicker").minDate(e.date);
+      });
+      // $("#event_end").on("dp.change", function (e) {
+      //   $('#event_start').data("DateTimePicker").maxDate(e.date);
+      // });
+
+
+      // Show/hide repeat event fields
+      $('#repeat').click(function() {
+        console.log($(this));
+        console.log($(this).prop('checked'));
+
+        if ($(this).prop('checked') === true) {
+          $('#repeat_info').show();
+        } else {
+          $('#repeat_info').hide();
+        }
+      })
+    });
+</script>
