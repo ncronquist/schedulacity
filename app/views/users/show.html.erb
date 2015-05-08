@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="text-center">Account Information</h1>
+
+
+  <br>
+  <br>
+
+  <div class="col-md-10 col-md-offset-1 col-xs-10" id="showtext">
+    <p><strong>User Name: </strong> <%= @user.name %></p>
+    <p><strong>Email: </strong> <%= @user.email %></p>
+    <p><strong>Phone Number: </strong> <% if(@user.phone_number.blank? ) %> None Listed <% else %> <%= @user.phone_number %> <% end %> </p>
+
+  </div>
+
+
+  <div class="text-center" id="edituserinfo"><%= button_to 'Edit Informaton', edit_user_path, method: :get, :class => "btn btn-primary" %></div>
+
+
+</div>

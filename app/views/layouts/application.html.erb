@@ -13,8 +13,96 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+
+
+
+<!-- Login Modal -->
+
+<div id="loginmodal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3 class="">Login</h3>
+
+            </div>
+            <div class="modal-body">
+
+   <%= bootstrap_form_for :user, url: login_path  do |f| %>
+     <%= f.text_field :email, hide_label: true, placeholder: "Enter Your Email", icon: "user", class: "input-lg" %>
+     <%= f.password_field :password, hide_label: true, placeholder: "Enter Your Password", icon: "lock", class: "input-lg"%>
+     <%= f.submit "Login", class: "btn btn-primary btn-lg btn-block" %>
+   <% end %>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signupmodal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3 class="">Sign Up</h3>
+            </div>
+            <div class="modal-body">
+
+              <%= bootstrap_form_for :user, url: users_path do |f| %>
+              <%= f.text_field :name, hide_label: true, placeholder: "Enter Your Name", icon: "tag", class: "input-lg" %>
+              <%= f.text_field :email, hide_label: true, placeholder: "Enter Your Email", icon: "user", class: "input-lg" %>
+              <%= f.password_field :password, hide_label: true, placeholder: "Enter Your Password", icon: "lock", class: "input-lg" %>
+              <%= f.submit "Signup", class: "btn btn-primary btn-lg btn-block" %>
+              <% end %>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-header">
+    <a class="navbar-brand" href="#">
+      <img src="" class="pull-left" id="navbarimage"> Schedulacity
+    </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <% if @current_user %>
+        <li class="active"><%= link_to 'Calendar', events_path %> </li>
+        <li class="active"><%= link_to 'Students', students_path %> </li>
+        <li class="active"><%= link_to 'Class', classgroups_path %> </li>
+        <li class="active"><%= link_to 'Account', users_path %> </li>
+        <li class="active"><%= link_to 'Logout', logout_path %></li>
+        <% else %>
+          <li><a href="#" id="openLogin" class="loginnav" data-toggle="modal" data-target="#loginmodal">Login</a></li>
+          <li><a href="#" id="openSignup" class="signupnav" data-toggle="modal" data-target="#signupmodal">Signup</a></li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 </head>
 <body>
+<%= render "layouts/flash" %>
 
 <%= yield %>
 
