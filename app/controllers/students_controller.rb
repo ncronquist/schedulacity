@@ -1,5 +1,7 @@
 class StudentsController < ApplicationController
 
+before_action :is_authenticated?
+
   def index
     @students = Student.all
     # render :json => @students_classes

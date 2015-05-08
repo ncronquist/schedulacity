@@ -1,19 +1,9 @@
 class EventsController < ApplicationController
-  ### METHOD TO DISPLAY CALENDAR EVENTS ###
-  respond_to :json
-  def get_events
-    puts 'method fired'
-    @events = Event.all
-    events = []
-    @events.each do |event|
-      events << {:id => event.id, :start => event.start, :end => event.end }
-    end
-    render :text => events.to_json
+
+  before_action :is_authenticated?
+
+  def index
   end
-
-  # def index
-
-  # end
 
   def show
   end
@@ -41,5 +31,16 @@ class EventsController < ApplicationController
   def destroy
   end
 
+  ### METHOD TO DISPLAY CALENDAR EVENTS ###
+  respond_to :json
+  def get_events
+    puts 'method fired'
+    @events = Event.all
+    events = []
+    @events.each do |event|
+      events << {:id => event.id, :start => event.start, :end => event.end }
+    end
+    render :text => events.to_json
+  end
 
 end
