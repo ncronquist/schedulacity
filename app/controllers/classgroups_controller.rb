@@ -1,5 +1,7 @@
 class ClassgroupsController < ApplicationController
 
+  before_action :is_authenticated?
+
   def index
     @classes = Classgroup.all
   end
@@ -32,7 +34,7 @@ class ClassgroupsController < ApplicationController
     if @class.update(classgroup_params)
       redirect_to classgroups_path
     else
-      render 'edit'
+    render 'edit'
     end
   end
 

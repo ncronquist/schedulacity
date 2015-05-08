@@ -87,7 +87,7 @@
         <li class="active"><%= link_to 'Calendar', events_path %> </li>
         <li class="active"><%= link_to 'Students', students_path %> </li>
         <li class="active"><%= link_to 'Class', classgroups_path %> </li>
-        <li class="active"><%= link_to 'Account', users_path %> </li>
+        <li class="active"><%= link_to 'Account', user_path(@current_user) %> </li>
         <li class="active"><%= link_to 'Logout', logout_path %></li>
         <% else %>
           <li><a href="#" id="openLogin" class="loginnav" data-toggle="modal" data-target="#loginmodal">Login</a></li>
