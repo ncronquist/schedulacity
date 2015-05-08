@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     delete 'logout' => 'sessions#destroy'
     get 'logout' => 'sessions#destroy'
 
+    get 'classgroups/:id/students' => 'classgroups#students_add'
+    post 'classgroups/:id/students' => 'classgroups#students_create'
+    patch 'classgroups/:id/students' => 'classgroups#students_update'
+
     resources :users
     resources :classgroups
     resources :events
