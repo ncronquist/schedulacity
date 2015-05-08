@@ -9,6 +9,7 @@
     <%= bootstrap_form_for :event, url: events_path do |f| %>
 
       <%= f.select(:classgroup_id, Classgroup.all.collect {|c| [ c.name, c.id ] }, { include_blank: true }) %>
+      <input type="hidden" name="UTC" id="UTC" value="0">
 
       <div class="form-group">
         <label>Start</label>
@@ -113,16 +114,26 @@
 <script type="text/javascript">
     $(function () {
 
+      // Set the UTC offset
+      $('#UTC').val(moment().format("Z"))
+
+      // Initiate datetimepicker for event start
       $('#event_start').datetimepicker({
         sideBySide: true
       });
+
+      // Initiate datetimepicker for event end
       $('#event_end').datetimepicker({
         sideBySide: true
       });
+
+      // Initiate datepicker for repeat end
       $('#repeat_end').datetimepicker({
         format: 'MM/DD/YYYY'
       });
 
+      // If the event_start date changes; set the minimum date to that date
+      // for the event end date
       $("#event_start").on("dp.change", function (e) {
         $('#event_end').data("DateTimePicker").minDate(e.date);
       });
