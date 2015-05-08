@@ -1,5 +1,7 @@
 class AuthController < ApplicationController
 
+  before_action :is_authenticated?
+
   def callback
     provider_user = request.env['omniauth.auth']
     render json: provider_user
