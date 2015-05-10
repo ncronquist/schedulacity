@@ -18,8 +18,13 @@ class AuthController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
-    redirect_to root_path
+    @current_user.provider = nil
+    @current_user.provider_id = nil
+    @current_user.provider_hash = nil
+    @current_user.save
+
+    flash[:info] = "Schedulacity is no longer connected with your Google account"
+    redirect_to events_path
   end
 
   def failure
