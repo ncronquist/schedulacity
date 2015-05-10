@@ -43,9 +43,9 @@
 
         <div class="form-group">
           <label>Repeats</label>
-          <select class="form-control" name="repeat[freqtype]">
-            <option>Weekly</option>
-            <!-- <option>2</option> -->
+          <select class="form-control" name="repeat[reoccurrence_type]">
+            <option value="week">Weekly</option>
+            <!-- <option value="day">Daily</option> -->
             <!-- <option>3</option> -->
             <!-- <option>4</option> -->
             <!-- <option>5</option> -->
@@ -54,34 +54,34 @@
 
         <div class="form-group">
           <label>Repeats Every</label>
-          <select class="form-control" name="repeat[freq]">
+          <select class="form-control" name="repeat[reoccurrence_period]">
             <% (1..30).each do |n| %>
-              <option><%=n%> weeks</option>
+              <option value="<%=n%>"><%=n%> weeks</option>
             <% end %>
           </select>
         </div>
 
         <div class="form-group">
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][sun]" id="cb-sun" value="Sunday"> S
+            <input type="checkbox" name="repeat[days][sun]" id="cb-sun" value="0"> S
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][mon]" id="cb-mon" value="Monday"> M
+            <input type="checkbox" name="repeat[days][mon]" id="cb-mon" value="1"> M
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][tue]" id="cb-tue" value="Tuesday"> T
+            <input type="checkbox" name="repeat[days][tue]" id="cb-tue" value="2"> T
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][wed]" id="cb-wed" value="Wednesday"> W
+            <input type="checkbox" name="repeat[days][wed]" id="cb-wed" value="3"> W
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][thu]" id="cb-thu" value="Thursday"> T
+            <input type="checkbox" name="repeat[days][thu]" id="cb-thu" value="4"> T
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][fri]" id="cb-fri" value="Friday"> F
+            <input type="checkbox" name="repeat[days][fri]" id="cb-fri" value="5"> F
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][sat]" id="cb-sat" value="Saturday"> S
+            <input type="checkbox" name="repeat[days][sat]" id="cb-sat" value="6"> S
           </label>
         </div>
 
