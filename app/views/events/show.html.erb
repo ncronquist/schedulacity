@@ -1,0 +1,63 @@
+<div class="container">
+
+  <div class='row'>
+    <div class='col-sm-6'>
+      <h1><b>Event Information for Class: </b><%= @class.name %></h1>
+    </div>
+    <div class='col-sm-6'>
+      <%= link_to 'Calendar', '/events', :class => 'btn btn-success pull-right' %>
+      <%= link_to 'Edit Event', edit_event_path(@class.id), :class => 'btn btn-primary pull-right' %>
+      <%= link_to 'Remove', event_path(params[:id]), :class => 'btn btn-danger pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-xs-6'>
+      <ul class="list-group">
+        <% @events.each do |eventlist| %>
+        <li class="list-group-item"><b>Start Time: </b><%= eventlist.start.strftime("%A %b %e %Y %m %M %p") %></li>
+        <li class="list-group-item"><b>End Time: </b><%= eventlist.end.strftime("%A %b %e %Y %m %M %p") %></li>
+        <li class="list-group-item"><b>Street Address: </b><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></li>
+        <li class="list-group-item"><b>City: </b><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(eventlist.state.blank?) %> None Entered <% else %> <%= eventlist.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(eventlist.zip.blank?) %> None Entered <% else %> <%= eventlist.zip %> <% end %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class='row'>
+    <div class='col-sm-12'>
+      <h2 class="text-center">Students</h2>
+
+
+
+
+<div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <th>&nbsp</th>
+          <th>Present</th>
+          <th>Tardy</th>
+          <th>Absent</th>
+        </thead>
+
+        <% @students.each do |student| %>
+        <tbody>
+          <div class="checkbox">
+            <td style="white-space:normal;"><%= link_to student.name, student_path(student.id) %></td>
+            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"></label></td>
+            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"></label></td>
+            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"></label></td>
+          </div>
+
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+

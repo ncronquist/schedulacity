@@ -9,6 +9,13 @@ class EventsController < ApplicationController
   end
 
   def show
+    @class = Classgroup.find(params[:id])
+    @events = Event.where(classgroup_id: @class.id)
+    @students = @class.students
+
+    # @attendances = Attendance.new
+    # @attendnces = Attendance.type
+    # render :json => @attendances
   end
 
   def new
@@ -234,11 +241,10 @@ class EventsController < ApplicationController
   ### METHOD TO DISPLAY CALENDAR EVENTS ###
   respond_to :json
   def get_events
-    puts 'method fired'
     @events = Event.all
     events = []
     @events.each do |event|
-      events << {:id => event.id, :start => event.start, :end => event.end }
+      events << {:id => event.id, :title => Classgroup.find(event.classgroup_id).name, :start => event.start, :end => event.end, :url => "http://localhost:3000/classgroups/#{event.classgroup_id}"}
     end
     render :text => events.to_json
   end
