@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class='col-xs-10 col-xs-offset-6 col-sm-6 col-sm-offset-3'>
+  <div class='col-sm-6 col-sm-offset-3'>
     <h1>Student Profile</h1>
   </div>
 </div>
@@ -18,5 +18,6 @@
       <li class="list-group-item"><b>Zip</b>: <%= @student.zip %></li>
     </ul>
     <%= link_to 'Edit Student', edit_student_path(@student.id), :class => 'btn btn-primary' %>
+    <%= link_to 'Remove Student', student_path(@student.id), :class => 'btn btn-danger', method: :delete, data: {confirm: "Are you sure you want to remove #{@student.name} from the database?"} %>
   </div>
 </div>

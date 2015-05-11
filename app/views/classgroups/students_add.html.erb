@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class='col-xs-10 col-xs-offset-6 col-sm-6 col-sm-offset-3'>
+  <div class='col-sm-6 col-sm-offset-3'>
     <h1>Add Student to <%= @class.name %>:</h1>
   </div>
 </div>
@@ -7,23 +7,24 @@
   <div class='col-sm-3 col-sm-offset-3'>
     <h2>Create New Student</h2>
     <%= bootstrap_form_for @student, :url => "/classgroups/#{params['id']}/students" do |f| %>
-      <%= f.text_field :name, placeholder: 'Name' %>
-      <%= f.text_area :note, placeholder: 'Notes' %>
-      <%= f.text_field :email, placeholder: "Email" %>
-      <%= f.text_field :dob, label: 'Birthday', placeholder: 'Birthday' %>
-      <%= f.text_field :phone_number, placeholder: "Phone Number" %>
-      <%= f.text_field :street, placeholder: "Address" %>
-      <%= f.text_field :city, placeholder: "City" %>
-      <%= f.text_field :state, placeholder: "State" %>
-      <%= f.text_field :zip, placeholder: "Zip" %>
+      <%= f.text_field :name, :hide_label => true, placeholder: 'Name' %>
+      <%= f.text_area :note, :hide_label => true, placeholder: 'Notes' %>
+      <%= f.text_field :email, :hide_label => true, placeholder: "Email" %>
+      <%= f.text_field :dob, :hide_label => true, placeholder: 'Birthday' %>
+      <%= f.text_field :phone_number, :hide_label => true, placeholder: "Phone Number" %>
+      <%= f.text_field :street, :hide_label => true, placeholder: "Address" %>
+      <%= f.text_field :city, :hide_label => true, placeholder: "City" %>
+      <%= f.text_field :state, :hide_label => true, placeholder: "State" %>
+      <%= f.text_field :zip, :hide_label => true, placeholder: "Zip" %>
       <%= f.hidden_field :notifications, :value => true %>
+      <%= f.hidden_field :user_id, :value => @current_user.id %>
       <%= f.submit 'Submit', :class => 'btn btn-primary' %>
     <% end %>
   </div>
   <div class='col-sm-3'>
     <h2>Existing Students</h2>
     <%= bootstrap_form_for @class, :url => "/classgroups/#{params['id']}/students" do |f| %>
-      <%= f.collection_check_boxes :student_ids, Student.all, :id, :name %>
+      <%= f.collection_check_boxes :student_ids, @all_students, :id, :name %>
       <%= f.submit 'Submit', :class => 'btn btn-primary' %>
     <% end %>
   </div>

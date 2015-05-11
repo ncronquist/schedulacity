@@ -3,21 +3,25 @@ class StudentsController < ApplicationController
 before_action :is_authenticated?
 
   def index
-    @students = Student.all
-    # render :json => @students_classes
+    @current_user = current_user
+    @students = Student.where(user_id: @current_user.id)
+    # render :json => @students
   end
 
   def new
     @student = Student.new
+    @current_user = current_user
   end
 
   def create
-    # render :json => params
-    @student = Student.find_or_create_by(email: student_params[:email]) || Student.create(student_params)
-    if @student.save
-      redirect_to students_path
+    # render :json => student_params
+    # @student = Student.where(email:student_params['email'], user_id: student_params['user_id']).first_or_create(student_params)
+    if Student.where(email:student_params['email'], user_id: student_params['user_id']).count > 0
+      flash[:danger] = 'Student email already exists'
+      redirect_to new_student_path
     else
-      render 'new'
+      Student.create(student_params)
+      redirect_to students_path
     end
   end
 
@@ -43,13 +47,15 @@ before_action :is_authenticated?
   end
 
   def destroy
-
+    @student = Student.find(params[:id])
+    @student.destroy
+    redirect_to students_path
   end
 
   private
 
   def student_params
-    params.require(:student).permit(:name,:note,:dob,:email,:phone_number,:street,:city,:state,:zip,:notifications)
+    params.require(:student).permit(:name,:note,:dob,:email,:phone_number,:street,:city,:state,:zip,:notifications,:user_id)
   end
 
 
