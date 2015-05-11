@@ -47,7 +47,9 @@ class ClassgroupsController < ApplicationController
   end
 
   def destroy
-
+    @class = Classgroup.find(params[:id])
+    @class.destroy
+    redirect_to classgroups
   end
 
   ### Custom Routes  ###
@@ -56,16 +58,19 @@ class ClassgroupsController < ApplicationController
     @class = Classgroup.find_by_id(params[:id])
     @enrolled_students = @class.students
     @student = Student.new
-    @all_students = Student.all
+    @current_user = current_user
+    @all_students = Student.where(user_id: @current_user.id)
     # render :json => @enrolled_students
   end
 
   def students_create
     @class = Classgroup.find(params[:id])
-    # @student = Student.create(student_params)
-    @class_student = @class.students.create(student_params)
-    if @class_student.save
-      redirect_to classgroup_path(params[:id])
+    if Student.where(email:student_params['email'],user_id:student_params['user_id']).count == 0
+      @class_student = @class.students.create(student_params)
+      redirect_to "/classgroups/#{params[:id]}/students"
+    else
+      redirect_to "/classgroups/#{params[:id]}/students"
+      flash[:danger] = 'Student email already exists'
     end
   end
 
@@ -87,7 +92,7 @@ class ClassgroupsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:name,:note,:dob,:email,:phone_number,:street,:city,:state,:zip,:notifications)
+    params.require(:student).permit(:name,:note,:dob,:email,:phone_number,:street,:city,:state,:zip,:notifications,:user_id)
   end
 
 end
