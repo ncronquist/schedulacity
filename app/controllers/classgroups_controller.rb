@@ -8,6 +8,7 @@ class ClassgroupsController < ApplicationController
 
   def new
     @class = Classgroup.new
+    @current_user = current_user
   end
 
   def create
@@ -23,6 +24,13 @@ class ClassgroupsController < ApplicationController
   def show
     @class = Classgroup.find(params[:id])
     @students = @class.students
+
+    @current_user = current_user
+    @events = Event.where(classgroup_id: @class.id)
+    # @event = @events.first.id
+    # render :json => @event
+
+
   end
 
   def edit
