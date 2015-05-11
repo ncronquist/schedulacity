@@ -6,7 +6,11 @@
 <%= link_to "Add Event", new_event_path %>
 
 <div class="datetest">
+<% if (@event.present?) %>
   <%= @event['start'] %>
+<% else %>
+
+<% end %>
 </div>
 
 <div class='row'>
