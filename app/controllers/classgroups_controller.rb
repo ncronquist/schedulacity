@@ -3,7 +3,9 @@ class ClassgroupsController < ApplicationController
   before_action :is_authenticated?
 
   def index
-    @classes = Classgroup.all
+    @current_user = current_user
+    @classes = @current_user.classgroups
+    # render :json => @classes
   end
 
   def new
