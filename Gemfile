@@ -41,6 +41,11 @@ gem 'omniauth-google-oauth2'
 # Add Google Calendar API
 gem 'google-api-client'
 
+# Add repeating events
+gem 'ice_cube'
+gem 'recurring_select'
+
+
 # Pretty date picker
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '4.7.14'

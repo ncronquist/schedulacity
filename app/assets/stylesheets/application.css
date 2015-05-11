@@ -14,4 +14,6 @@
  *= require_self
  *= require bootstrap-datetimepicker
  *= require fullcalendar
+ *= require recurring_select
+ *= require jquery-mobile-rs
  */

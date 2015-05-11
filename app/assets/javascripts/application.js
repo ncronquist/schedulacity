@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require moment
 //= require fullcalendar
 
 //= require_tree .
 //= require bootstrap-datetimepicker
+//= require recurring_select
+//= require jquery-mobile-rs

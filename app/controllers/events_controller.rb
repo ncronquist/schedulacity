@@ -51,16 +51,25 @@ class EventsController < ApplicationController
                             state,
                             zip)
 
+      ###########################################################
+      # TESTING
+      ###########################################################
+
+      # schedule = IceCube::Schedule.new(start = Time.now, :end_time => start + 3600) do |s|
+      #   s.add_recurrence_rule(Rule.daily.count(3))
+      # end
+      rule = IceCube::Rule.daily.until(Date.today + 5)
+      ###########################################################
+      # TESTING
+      ###########################################################
+
       event = {
         :summary => classgroup.name,
         :description => classgroup.description,
         :location => street + ', ' + city + ' ' + state + ' ' + zip,
-        :start => {
-          :dateTime => start_dtm
-        },
-        :end => {
-          :dateTime => end_dtm
-        }
+        :start => { :dateTime => start_dtm },
+        :end => { :dateTime => end_dtm },
+        :recurrence => ['RRULE:' + rule.to_ical]
       }
 
       client = Google::APIClient.new(:application_name => 'Schedulacity',
