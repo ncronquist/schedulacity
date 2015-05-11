@@ -244,10 +244,13 @@ class EventsController < ApplicationController
   ### METHOD TO DISPLAY CALENDAR EVENTS ###
   respond_to :json
   def get_events
-    @events = Event.all
+    @current_user = current_user
     events = []
-    @events.each do |event|
-      events << {:id => event.id, :title => Classgroup.find(event.classgroup_id).name, :start => event.start, :end => event.end, :url => "http://localhost:3000/classgroups/#{event.classgroup_id}"}
+    @current_user.classgroups.each do |c|
+      c.events.each do |event|
+        events << {:id => event.id, :title => Classgroup.find(event.classgroup_id).name, :start => event.start, :end => event.end, :url => "http://localhost:3000/classgroups/#{event.classgroup_id}"}
+
+      end
     end
     render :text => events.to_json
   end

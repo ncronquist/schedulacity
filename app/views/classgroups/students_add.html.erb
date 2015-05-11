@@ -24,7 +24,7 @@
   <div class='col-sm-3'>
     <h2>Existing Students</h2>
     <%= bootstrap_form_for @class, :url => "/classgroups/#{params['id']}/students" do |f| %>
-      <%= f.collection_check_boxes :student_ids, @all_students, :id, :name %>
+      <%= f.collection_check_boxes :student_ids, @all_students, :id, :name, :hide_label => true %>
       <%= f.submit 'Submit', :class => 'btn btn-primary' %>
     <% end %>
   </div>
