@@ -1,3 +1,5 @@
+require 'google/api_client'
+
 class EventsController < ApplicationController
 
   before_action :is_authenticated?
@@ -15,11 +17,11 @@ class EventsController < ApplicationController
   end
 
   def create
-  #   render :json => params
+    # render :json => params
 
     def create_event(start_dtm,
                     end_dtm,
-                    classgroup_id,
+                    classgroup,
                     street,
                     city,
                     state,
@@ -36,30 +38,44 @@ class EventsController < ApplicationController
       event.save
 
       # Associate event to classgroup
-      classgroup = Classgroup.find(classgroup_id)
+      # classgroup = Classgroup.find(classgroup_id)
       classgroup.events << event
 
-      # Check if user has linked their google account and if so create
-      # the event with google too
-      if @current_user.provider
-        create_google_event(start_dtm,
-                            end_dtm,
-                            classgroup_id,
-                            street,
-                            city,
-                            state,
-                            zip)
-      end
     end
 
     def create_google_event(start_dtm,
                             end_dtm,
-                            classgroup_id,
+                            classgroup,
                             street,
                             city,
                             state,
                             zip)
 
+      event = {
+        :summary => classgroup.name,
+        :description => classgroup.description,
+        :location => street + ', ' + city + ' ' + state + ' ' + zip,
+        :start => {
+          :dateTime => start_dtm
+        },
+        :end => {
+          :dateTime => end_dtm
+        }
+      }
+
+      client = Google::APIClient.new(:application_name => 'Schedulacity',
+                                    :application_version => '1.0')
+      client.authorization.access_token = @current_user.provider_hash
+      service = client.discovered_api('calendar', 'v3')
+      result = client.execute(
+        :api_method => service.events.insert,
+        :parameters => {
+          :calendarId => 'primary',
+          },
+        :body => JSON.dump(event),
+        :headers => {'Content-Type' => 'application/json'})
+
+      puts result.to_s
 
     end
 
@@ -75,10 +91,29 @@ class EventsController < ApplicationController
     zip = params[:event][:zip]
     repeat = params[:event][:repeat][:repeat]
 
+    classgroup = Classgroup.find(classgroup_id)
+
     if !repeat
       # Not a repeating event
       # Add single instance of the event
-      create_event(start_dtm, end_dtm, classgroup_id)
+      # create_event(start_dtm, end_dtm, classgroup_id)
+      create_event(start_dtm,
+                  end_dtm,
+                  classgroup,
+                  street,
+                  city,
+                  state,
+                  zip)
+      if @current_user.provider
+        puts "Call create google event method"
+        create_google_event(start_dtm,
+                            end_dtm,
+                            classgroup,
+                            street,
+                            city,
+                            state,
+                            zip)
+      end
     else
       # Repeating event
       # Add multiple instances of the event
@@ -127,11 +162,23 @@ class EventsController < ApplicationController
 
           create_event(event_start,
                       event_end,
-                      classgroup_id,
+                      classgroup,
                       street,
                       city,
                       state,
                       zip)
+
+          # Check if user has linked their google account and if so create
+          # the event with google too
+          if @current_user.provider
+            create_google_event(event_start,
+                                event_end,
+                                classgroup,
+                                street,
+                                city,
+                                state,
+                                zip)
+          end
 
           # Update the number of events created
           events_created += 1
