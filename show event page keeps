@@ -47,9 +47,9 @@
           <tr>
           <div class="checkbox">
             <td style="white-space:normal;"><%= link_to student.name, student_path(student.id) %></td>
-            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio1" value="1"></label></td>
-            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio2" value="2"></label></td>
-            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio3" value="3"></label></td>
+            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name=<% student.id %> id="inlineRadio1" value="1"></label></td>
+            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name=<% student.id %> id="inlineRadio2" value="2"></label></td>
+            <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name=<% student.id %> id="inlineRadio3" value="3"></label></td>
           </div>
         <% end %>
         </tr>

@@ -32,9 +32,10 @@ Rails.application.routes.draw do
     resources :classgroups
     resources :events do
       get :get_events, on: :collection
+      resources :attendances
     end
     resources :students
-    resources :attendances
+    # resources :attendances
 
   # Example resource route with options:
   #   resources :products do

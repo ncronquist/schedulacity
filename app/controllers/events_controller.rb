@@ -9,12 +9,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    @class = Classgroup.find(params[:id])
-    @events = Event.where(classgroup_id: @class.id)
+    # @class = Classgroup.find(params[:id])
+    @event = Event.find(params[:id])
+    # @events = Event.where(classgroup_id: @class.id)
+    @class = Classgroup.find(@event.classgroup_id)
     @students = @class.students
 
     # @attendances = Attendance.new
-    # @attendnces = Attendance.type
+    # @attendnces = Attendance.attendance_type
+    # @attendane = Attendance.save
     # render :json => @attendances
   end
 
