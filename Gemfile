@@ -38,6 +38,9 @@ end
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+# Add Google Calendar API
+gem 'google-api-client'
+
 # Pretty date picker
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '4.7.14'

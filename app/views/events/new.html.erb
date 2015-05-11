@@ -8,33 +8,57 @@
   <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
     <%= bootstrap_form_for :event, url: events_path do |f| %>
 
-      <%= f.select(:classgroup_id, Classgroup.all.collect {|c| [ c.name, c.id ] }, { include_blank: true }) %>
-      <input type="hidden" name="UTC" id="UTC" value="0">
-
+      <%# f.select :classgroup_id, Classgroup.all.collect {|c| [ c.name, c.id ] }, { include_blank: true }, label: { text: "Class" } %>
+      <label>Class</label>
       <div class="form-group">
-        <label>Start</label>
-        <div class='input-group date' id='event_start'>
-          <input type='text' name="event[start]" class="form-control" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
+        <select name="event[classgroup_id]" class="form-control">
+          <% Classgroup.all.each do |c| %>
+            <option value="<%=c.id%>"><%=c.name%></option>
+          <% end %>
+        </select>
+      </div>
+      <input type="hidden" name="UTC" id="UTC" value="0">
+      <label>Address</label>
+      <div class="form-group">
+        <input type="text" name="event[street]" placeholder="Street Address" class="form-control">
+      </div>
+      <div class="form-group">
+        <div class="form-inline">
+          <div class="form-group">
+            <input type="text" name="event[city]" placeholder="City", class="form-control">
+            <input type="text" name="event[state]" placeholder="State", class="form-control">
+            <input type="text" name="event[zip]" placeholder="Zip", class="form-control">
+          </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>End</label>
-        <div class='input-group date' id='event_end'>
-          <input type='text' name="event[end]" class="form-control" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
+      <label>When</label>
+      <div class="form-inline">
+        <div class="form-group">
+          <!-- <label>Start</label> -->
+          <div class='input-group date' id='event_start'>
+            <input type='text' name="event[start]" class="form-control" placeholder="Start"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group pull-right">
+          <!-- <label>End</label> -->
+          <div class='input-group date' id='event_end'>
+            <input type='text' name="event[end]" class="form-control" placeholder="End"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
         </div>
       </div>
 
       <div class="form-group">
         <div class="checkbox">
           <label>
-            <input type="checkbox" id="repeat" name="repeat[repeat]" value="true"> Repeat
+            <input type="checkbox" id="repeat" name="event[repeat][repeat]" value="true"> Repeat
           </label>
         </div>
       </div>
@@ -43,9 +67,9 @@
 
         <div class="form-group">
           <label>Repeats</label>
-          <select class="form-control" name="repeat[freqtype]">
-            <option>Weekly</option>
-            <!-- <option>2</option> -->
+          <select class="form-control" name="event[repeat][reoccurrence_type]">
+            <option value="week">Weekly</option>
+            <!-- <option value="day">Daily</option> -->
             <!-- <option>3</option> -->
             <!-- <option>4</option> -->
             <!-- <option>5</option> -->
@@ -54,51 +78,61 @@
 
         <div class="form-group">
           <label>Repeats Every</label>
-          <select class="form-control" name="repeat[freq]">
+          <select class="form-control" name="event[repeat][reoccurrence_period]">
             <% (1..30).each do |n| %>
-              <option><%=n%> weeks</option>
+              <option value="<%=n%>"><%=n%> weeks</option>
             <% end %>
           </select>
         </div>
 
         <div class="form-group">
+          <label>Repeat On: </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][sun]" id="cb-sun" value="Sunday"> S
+            <input type="checkbox" name="event[repeat][days][sun]" id="cb-sun" value="0"> S
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][mon]" id="cb-mon" value="Monday"> M
+            <input type="checkbox" name="event[repeat][days][mon]" id="cb-mon" value="1"> M
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][tue]" id="cb-tue" value="Tuesday"> T
+            <input type="checkbox" name="event[repeat][days][tue]" id="cb-tue" value="2"> T
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][wed]" id="cb-wed" value="Wednesday"> W
+            <input type="checkbox" name="event[repeat][days][wed]" id="cb-wed" value="3"> W
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][thu]" id="cb-thu" value="Thursday"> T
+            <input type="checkbox" name="event[repeat][days][thu]" id="cb-thu" value="4"> T
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][fri]" id="cb-fri" value="Friday"> F
+            <input type="checkbox" name="event[repeat][days][fri]" id="cb-fri" value="5"> F
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="repeat[days][sat]" id="cb-sat" value="Saturday"> S
+            <input type="checkbox" name="event[repeat][days][sat]" id="cb-sat" value="6"> S
           </label>
         </div>
 
-        <label>Ends:</label>
         <div class="form-group">
-          <div class="radio">
-            <label>
-              <input type="radio" name="repeat[until]" id="options_times" value="repeat_times" checked>
-              After <input type="text" name="repeat[until_times]" id="repeat_times"> occurances
-            </label>
+          <div class="form-group">
+          <div class="form-inline">
+            <label>Ends:</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="event[repeat][end_mode]" id="options_occurrences" value="occurrences" checked>
+                After <input type="text" name="event[repeat][occurrences]" id="occurrences"> occurances
+              </label>
+            </div>
           </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="repeat[until]" id="options_end" value="repeat_end">
-              On <input type='text' name="repeat[until_end]" id="repeat_end" disabled>
-            </label>
+        </div>
+        <div class="form-group">
+          <div class="form-inline">
+            <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="event[repeat][end_mode]" id="options_end_date" value="end_date">
+                On <input type='text' name="event[repeat][end_date]" id="end_date" disabled>
+              </label>
+            </div>
           </div>
+        </div>
         </div>
 
       </div> <!-- End repeat_info -->
@@ -128,7 +162,7 @@
       });
 
       // Initiate datepicker for repeat end
-      $('#repeat_end').datetimepicker({
+      $('#end_date').datetimepicker({
         format: 'MM/DD/YYYY'
       });
 
@@ -155,14 +189,14 @@
       })
 
       // Enable disable repeat_times and repeat_end
-      $('#options_times').click(function() {
-        $('#repeat_times').prop('disabled',false)
-        $('#repeat_end').prop('disabled',true)
+      $('#options_occurrences').click(function() {
+        $('#occurrences').prop('disabled',false)
+        $('#end_date').prop('disabled',true)
       })
 
-      $('#options_end').click(function() {
-        $('#repeat_times').prop('disabled',true)
-        $('#repeat_end').prop('disabled',false)
+      $('#options_end_date').click(function() {
+        $('#occurrences').prop('disabled',true)
+        $('#end_date').prop('disabled',false)
       })
 
     });
