@@ -74,8 +74,19 @@ class EventsController < ApplicationController
           },
         :body => JSON.dump(event),
         :headers => {'Content-Type' => 'application/json'})
+      if  result.kind_of? Net::HTTPFound # a.k.a. 302 redirect
+        result = client.get(result['location'])
+      end
 
-      puts result.to_s
+      # puts result.body
+
+      # # http://stackoverflow.com/questions/4708069/google-calendar-data-api-integration
+      # # Yep, just dealt with this myself. It says "Moved Temporarily" because it's a redirect,
+      # # which the oauth gem unfortunately doesn't follow automatically. You can do something like this:
+      # calendar_response = client.get "http://www.google.com/calendar/feeds/default"
+      # if calendar_response.kind_of? Net::HTTPFound # a.k.a. 302 redirect
+      #   calendar_response = client.get(calendar_response['location'])
+      # end
 
     end
 
@@ -157,7 +168,8 @@ class EventsController < ApplicationController
           next if week == 1 && day < event_start.wday
 
           # If the event_start is greater than the last event or if we have
-          # already created enough occurences, break out of the loop
+          # already created enough occurrences, break out of the loop
+          # puts "Event Start: #{event_start} \n Last Event: #{last_event + 1.day} \n Events Created: #{events_created} \n Occurrences: #{occurrences}"
           break if event_start > last_event + 1.day || events_created >= occurrences
 
           create_event(event_start,
@@ -187,6 +199,7 @@ class EventsController < ApplicationController
           if idx < days.length - 1
             days_to_change = days[idx+1] - day
             event_start += days_to_change.day
+            event_end += days_to_change.day
           end
 
         end
@@ -196,9 +209,12 @@ class EventsController < ApplicationController
 
         days_to_change = days.last - days.first
         event_start += reoccurrence_period.week
+        event_end += reoccurrence_period.week
         event_start -= days_to_change.day
+        event_end -= days_to_change.day
 
-        break if event_start > last_event || events_created > occurrences
+        # puts "Event Start: #{event_start} \n Last Event: #{last_event + 1.day} \n Events Created: #{events_created} \n Occurrences: #{occurrences}"
+        break if event_start > last_event || events_created >= occurrences
       end
     end # end if !repeat
 
