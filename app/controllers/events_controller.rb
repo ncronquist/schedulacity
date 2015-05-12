@@ -254,6 +254,12 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    # render :json => params
+    event = Event.find(params[:id])
+    classgroup = Classgroup.find(event.classgroup_id)
+    Event.destroy(params[:id])
+
+    redirect_to classgroup_path(classgroup)
   end
 
   ### METHOD TO DISPLAY CALENDAR EVENTS ###
