@@ -18,3 +18,4 @@
 
 //= require_tree .
 //= require bootstrap-datetimepicker
+//= require jquery-labelauty.js

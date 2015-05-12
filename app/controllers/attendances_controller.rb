@@ -12,6 +12,7 @@ class AttendancesController < ApplicationController
       attendance.student_id = student_id
       attendance.event_id = params[:event_id]
       attendance.save
+      flash[:success] = "Attendance successfully updated."
 
       # student.attendances << attendance
     end

@@ -11,6 +11,8 @@
 
 // });
 
+
+//fullcalendar
 $(function(){
   $('#calendar').fullCalendar({
     height: 600,
@@ -19,3 +21,16 @@ $(function(){
   })
 })
 
+
+//radio boxes label plugin
+$(document).ready(function(){
+    $(":radio").labelauty(({ label: false }));
+});
+
+
+//makes flash messages disappear after 5 seconds
+$(document).ready(function(){
+  setTimeout(function(){
+    $('#flash').remove();
+  }, 5000);
+ })
