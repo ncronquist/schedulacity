@@ -37,6 +37,7 @@ end
 # Add oath for google
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'rest-client'
 
 # Add Google Calendar API
 gem 'google-api-client'

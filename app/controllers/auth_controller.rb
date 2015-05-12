@@ -4,19 +4,19 @@ class AuthController < ApplicationController
 
   def callback
     provider_user = request.env['omniauth.auth']
-    render json: provider_user
+    # render json: provider_user
 
-    # # Add Google credentials to user
-    # @current_user.provider = params[:provider]
-    # @current_user.provider_id = provider_user['uid']
-    # @current_user.provider_hash = provider_user['credentials']['token']
-    # @current_user.refresh_hash = provider_user['credentials']['refresh_token']
-    # @current_user.hash_expires_at = Time.at(provider_user['credentials']['expires_at'])
+    # Add Google credentials to user
+    @current_user.provider = params[:provider]
+    @current_user.provider_id = provider_user['uid']
+    @current_user.provider_hash = provider_user['credentials']['token']
+    @current_user.refresh_hash = provider_user['credentials']['refresh_token']
+    @current_user.hash_expires_at = Time.at(provider_user['credentials']['expires_at'])
 
-    # @current_user.save
+    @current_user.save
 
-    # flash[:info] = "Schedulacity is now connected with your Google account"
-    # redirect_to events_path
+    flash[:info] = "Schedulacity is now connected with your Google account"
+    redirect_to events_path
 
   end
 
