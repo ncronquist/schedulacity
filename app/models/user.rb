@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def refresh_token_if_expired
-    if token_expired?
+    if self.refresh_hash && token_expired?
 
       response = RestClient.post "https://www.googleapis.com/oauth2/v3/token", :grant_type => 'refresh_token', :refresh_token => self.refresh_hash, :client_id => ENV['GOOGLE_CLIENT_ID'], :client_secret => ENV['GOOGLE_CLIENT_SECRET']
       refreshhash = JSON.parse(response.body)

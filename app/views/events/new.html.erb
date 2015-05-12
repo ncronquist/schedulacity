@@ -12,7 +12,7 @@
       <label>Class</label>
       <div class="form-group">
         <select name="event[classgroup_id]" class="form-control">
-          <% Classgroup.all.each do |c| %>
+          <% @classgroups.each do |c| %>
             <option value="<%=c.id%>"><%=c.name%></option>
           <% end %>
         </select>
