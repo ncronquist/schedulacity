@@ -2,6 +2,11 @@ class UsersController < ApplicationController
 
   before_action :is_authenticated?, except: [:create, :new]
 
+  def check_email
+    render :json => params
+    # @user = User.find_by_email(params)
+  end
+
   def new
     @user = User.new
   end

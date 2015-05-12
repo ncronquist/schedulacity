@@ -22,6 +22,12 @@
         <%# end %>
       </ul>
     </div>
+    <div class='col-xs-6'>
+      <%= bootstrap_form_for @event do |f| %>
+      <%= f.text_area :note,:hide_label => true, :placeholder => 'Event notes...' %>
+      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+      <% end %>
+    <div>
   </div>
 
 

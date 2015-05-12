@@ -29,7 +29,9 @@ Rails.application.routes.draw do
     get 'auth/:provider/callback' => 'auth#callback'
 
     resources :users
-    resources :classgroups
+    resources :classgroups do
+      resources :events, :only => [:new,:create]
+    end
     resources :events do
       get :get_events, on: :collection
       resources :attendances

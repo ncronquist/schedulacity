@@ -14,8 +14,9 @@
 //= require jquery_ujs
 //= require moment
 //= require fullcalendar
-
 //= require_tree .
 //= require bootstrap-datetimepicker
 //= require jquery-labelauty.js
 //= require local_time
+//= require jquery.validate
+//= require jquery.validate.additional-methods
