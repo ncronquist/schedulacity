@@ -14,11 +14,18 @@
           </tr>
         </thead>
         <tbody>
+          <% if @classes.count < 1 %>
+          <tr>
+            <td>No classes currently</td>
+            <td>None</td>
+          </tr>
+          <% else %>
           <% @classes.each do |group| %>
           <tr>
             <td><%= link_to group.name, classgroup_path(group.id) %></td>
             <td><%= group.description %></td>
           </tr>
+          <% end %>
           <% end %>
         </tbody>
       </table>

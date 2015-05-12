@@ -15,8 +15,8 @@
     <div class='col-xs-6'>
       <ul class="list-group">
         <%# @events.each do |eventlist| %>
-        <li class="list-group-item"><b>Start Time: </b><%= @event.start.strftime("%A %b %e %Y %m %M %p") %></li>
-        <li class="list-group-item"><b>End Time: </b><%= @event.end.strftime("%A %b %e %Y %m %M %p") %></li>
+        <li class="list-group-item"><b>Start Time: </b><%= local_time(@event.start) %></li>
+        <li class="list-group-item"><b>End Time: </b><%= local_time(@event.end) %></li>
         <li class="list-group-item"><b>Street Address: </b><% if(@event.street_address.blank?) %> None Entered <% else %> <%= @event.street_address %> <% end %></li>
         <li class="list-group-item"><b>City: </b><% if(@event.city.blank?) %> None Entered <% else %> <%= @event.city %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(@event.state.blank?) %> None Entered <% else %> <%= @event.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(@event.zip.blank?) %> None Entered <% else %> <%= @event.zip %> <% end %> </li>
         <%# end %>
