@@ -41,7 +41,8 @@ class EventsController < ApplicationController
                     street,
                     city,
                     state,
-                    zip)
+                    zip,
+                    google_event_id)
 
       # Create new event
       event = Event.new
@@ -51,11 +52,13 @@ class EventsController < ApplicationController
       event.city = city
       event.state = state
       event.zip = zip
+      event.google_event_id = google_event_id
+      event.classgroup_id = classgroup.id
       event.save
 
       # Associate event to classgroup
       # classgroup = Classgroup.find(classgroup_id)
-      classgroup.events << event
+      # classgroup.events << event
 
     end
 
@@ -95,6 +98,7 @@ class EventsController < ApplicationController
       end
 
       # puts result.body
+      result.data.id
 
       # # http://stackoverflow.com/questions/4708069/google-calendar-data-api-integration
       # # Yep, just dealt with this myself. It says "Moved Temporarily" because it's a redirect,
@@ -123,24 +127,27 @@ class EventsController < ApplicationController
     if !repeat
       # Not a repeating event
       # Add single instance of the event
-      # create_event(start_dtm, end_dtm, classgroup_id)
+
+      if @current_user.provider
+        puts "Call create google event method"
+        google_event_id = create_google_event(start_dtm,
+                                              end_dtm,
+                                              classgroup,
+                                              street,
+                                              city,
+                                              state,
+                                              zip)
+      end
+
+      google_event_id = google_event_id || ''
       create_event(start_dtm,
                   end_dtm,
                   classgroup,
                   street,
                   city,
                   state,
-                  zip)
-      if @current_user.provider
-        puts "Call create google event method"
-        create_google_event(start_dtm,
-                            end_dtm,
-                            classgroup,
-                            street,
-                            city,
-                            state,
-                            zip)
-      end
+                  zip,
+                  google_event_id)
     else
       # Repeating event
       # Add multiple instances of the event
@@ -188,25 +195,27 @@ class EventsController < ApplicationController
           # puts "Event Start: #{event_start} \n Last Event: #{last_event + 1.day} \n Events Created: #{events_created} \n Occurrences: #{occurrences}"
           break if event_start > last_event + 1.day || events_created >= occurrences
 
+          # Check if user has linked their google account and if so create
+          # the event with google too
+          if @current_user.provider
+            google_event_id = create_google_event(event_start,
+                                                  event_end,
+                                                  classgroup,
+                                                  street,
+                                                  city,
+                                                  state,
+                                                  zip)
+          end
+
+          google_event_id = google_event_id || ''
           create_event(event_start,
                       event_end,
                       classgroup,
                       street,
                       city,
                       state,
-                      zip)
-
-          # Check if user has linked their google account and if so create
-          # the event with google too
-          if @current_user.provider
-            create_google_event(event_start,
-                                event_end,
-                                classgroup,
-                                street,
-                                city,
-                                state,
-                                zip)
-          end
+                      zip,
+                      google_event_id)
 
           # Update the number of events created
           events_created += 1
