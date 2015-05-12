@@ -30,7 +30,7 @@ class ClassgroupsController < ApplicationController
     @current_user = current_user
     @events = Event.where(classgroup_id: @class.id)
     # @event = @events.first.id
-    # render :json => @event
+    # render :json => @events
 
 
   end
@@ -50,8 +50,17 @@ class ClassgroupsController < ApplicationController
 
   def destroy
     @class = Classgroup.find(params[:id])
+    @events = @class.events
+    @events.each do |event|
+      event.attendances.each do |a|
+        a.destroy
+      end
+    end
+    @events.each do |e|
+      e.destroy
+    end
     @class.destroy
-    redirect_to classgroups
+    redirect_to classgroups_path
   end
 
   ### Custom Routes  ###

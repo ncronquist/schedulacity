@@ -12,10 +12,13 @@
 // });
 
 $(function(){
+
+  //fullCalendar method
   $('#calendar').fullCalendar({
     height: 600,
     events: "/events/get_events",
     timezone: 'local'
   })
+
 })
 
