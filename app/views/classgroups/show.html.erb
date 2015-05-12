@@ -24,13 +24,17 @@
       <div class='col-sm-9'>
         <h2>Students</h2>
         <ul class="list-group">
+          <% if @students.count < 1 %>
+            <li>No students currently enrolled</li>
+          <% else %>
           <% @students.each do |student| %>
             <li class="list-group-item"><%= link_to student.name, student_path(student.id) %></li>
+          <% end %>
           <% end %>
         </ul>
       </div>
       <div class='col-sm-3'>
-        <%= link_to 'Add Student', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary pull-right' %>
+        <%= link_to 'Add/Remove Students', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary pull-right' %>
       </div>
     </div>
   </div>
@@ -50,8 +54,8 @@
 
         <% @events.each do |eventlist| %>
         <tbody>
-          <td style="white-space:normal;"><%= eventlist.start.strftime("%A %b %e %Y %m %M %p") %></td>
-          <td style="white-space:normal;"><%= eventlist.end.strftime("%A %b %e %Y %m %M %p") %></td>
+          <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
+          <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
           <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
           <td style="white-space:normal;"><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %></td>
           <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>

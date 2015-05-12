@@ -48,6 +48,7 @@ before_action :is_authenticated?
 
   def destroy
     @student = Student.find(params[:id])
+    @student.attendances.destroy
     @student.destroy
     redirect_to students_path
   end
