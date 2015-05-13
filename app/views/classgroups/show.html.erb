@@ -1,7 +1,9 @@
-<div class="container-fluid" id="classshowpage">
+<div class="container-fluid">
+<div id="classshowpage">
 
+<div class="well">
   <div class='col-sm-12' id="classshowheader">
-<div class='well'>
+
     <h1 id="classheader"><%= @class.name %>
     <%= link_to '', classgroup_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
     <%= link_to '', edit_classgroup_path(@class.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
@@ -12,26 +14,29 @@
     <br>
 <div class='container pull-left' id="classshowdescription">
   <div class="col-sm-12">
-    <ul class="list-group" id="listclassshow">
-      <li class="list-group-item"><b>Description:</b> <%= @class.description %></li>
-    </ul>
+    <div class="list-group" id="listclassshow">
+      <b>Description:</b> <%= @class.description %>
+    </div>
   </div>
 
 </div>
-  </div>
+
+</div>
 </div>
 
-<div class='container' id="classshow">
-<div class="row-eq-height">
+<div class="well" id="classshow">
 
-      <div class='col-sm-6 col-md-6'>
+
+      <div class='col-md-6 col-xs-12'>
     <div class='well' id="classshowwellstudents">
-        <h2>Students</h2>
+        <h2>Students
+          <%= link_to '', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary glyphicon glyphicon-edit pull-right' %>
+        </h2>
         <br>
         <br>
         <ul class="list-group">
           <% if @students.count < 1 %>
-            <li>No students currently enrolled</li>
+            <p class="text-center">No students currently enrolled</p>
           <% else %>
           <% @students.each do |student| %>
             <li class="list-group-item"><%= link_to student.name, student_path(student.id) %></li>
@@ -39,22 +44,20 @@
           <% end %>
         </ul>
 
-        <%= link_to 'Add/Remove Students', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary pull-right' %>
-
       </div>
 
   </div>
 
-  <div class='col-sm-6 col-md-6'>
+  <div class='col-md-6 col-xs-12'>
     <div class="well" id="classshowwellclass">
-      <h2>Class Events</h2>
-      <div class='col-md-6'>
-        <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-success glyphicon glyphicon-plus pull-right' %>
-      </div>
+      <h2>Class Events
+
+        <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %>
+</h2>
       <br>
       <br>
       <div class="table-responsive">
-        <table class="table">
+        <table class="mytable table">
           <thead>
             <th>Start Time</th>
             <th>End Time</th>
@@ -74,7 +77,7 @@
           <% end %>
           <% else %>
         </table>
-          <p>Click on the add button above to create new events for this class!</p>
+          <p class="text-center">Click on the add button above to create new events for this class!</p>
       </div>
           <% end %>
   </div>
@@ -82,3 +85,5 @@
 
 </div>
 </div>
+</div>
+

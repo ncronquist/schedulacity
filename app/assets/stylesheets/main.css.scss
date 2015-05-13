@@ -11,17 +11,19 @@ body {
     background-size: cover;
     background-repeat:no-repeat;
  /* IE10 Consumer Preview */
-background-image: -ms-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+background-image: -ms-radial-gradient(center, circle farthest-corner, #1D99CF 0%, #336799 100%);
 /* Mozilla Firefox */
-background-image: -moz-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+background-image: -moz-radial-gradient(center, circle farthest-corner, #1D99CF 0%, #336799 100%);
 /* Opera */
-background-image: -o-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+background-image: -o-radial-gradient(center, circle farthest-corner, #1D99CF 0%, #336799 100%);
 /* Webkit (Safari/Chrome 10) */
-background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #22B4F2), color-stop(1, #336799));
+background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #1D99CF), color-stop(1, #336799));
+/* webkit example */
 /* Webkit (Chrome 11+) */
-background-image: -webkit-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+background-image: -webkit-radial-gradient(center, circle farthest-corner, #1D99CF 0%, #336799 100%);
 /* W3C Markup, IE10 Release Preview */
-background-image: radial-gradient(circle farthest-corner at center, #22B4F2 0%, #336799 100%);
+background-image: radial-gradient(circle farthest-corner at center, #1D99CF 0%, #336799 100%);
+
 
 /*font for body*/
   font-family: Helvetica;
@@ -53,6 +55,11 @@ h1, h2, h3 {
 
 }
 
+.error {
+  color: black;
+  font-size: 15px;
+}
+
 /*.wellsecondary {
   background-color: white;
   display: inline-block;
@@ -62,23 +69,14 @@ h1, h2, h3 {
   height: 100%;
 }*/
 
-table, td, tr, th, tbody, thead {
-  border: 1px solid gray !important;
-  font-family: Helvetica;
+.form-control {
   font-size: 25px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 300 !important;
-  font-color: #474747;
+  line-height: none !important;
 }
 
-th {
-  font-family: Helvetica;
-  font-size: 25px;
-  font-style: bold;
-  font-weight: 400 !important;
-  font-color: #474747;
-
+label {
+  margin-bottom: 15px;
+  margin-top: 10px;
 }
 
 
@@ -87,7 +85,7 @@ a {
 }
 
 a:hover {
-  color: #22B4F2;
+  color: #1D99CF;
   text-decoration: none;
 }
 
@@ -105,15 +103,17 @@ a:hover {
   padding: 5px 25px;
 
 }
+
 .btn.btn-primary {
-  border: 2px solid #22B4F2;
+  border: 2px solid #1D99CF;
   background: none;
-  color: #22B4F2;
+  color: #1D99CF;
 }
 .btn.btn-primary:hover {
   color: #ffffff;
-  background-color: #22B4F2;
+  background-color: #1D99CF;
 }
+
 .btn.btn-default {
   border: none;
   background: #ffffff;
@@ -145,6 +145,33 @@ a:hover {
 }
 
 
+/*Class index page*/
+
+#tableandtext {
+  margin: 50px;
+}
+
+
+table.mytable, .mytable td, .mytable tr, .mytable th, .mytable tbody, .mytable thead {
+  border: 1px solid gray !important;
+  font-family: Helvetica;
+  font-size: 25px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 300 !important;
+  font-color: #474747;
+}
+
+.mytable th {
+  font-family: Helvetica;
+  font-size: 25px;
+  font-style: bold;
+  font-weight: 400 !important;
+  font-color: #474747;
+
+}
+
+
 /*class show page*/
 
 #classshow {
@@ -170,17 +197,47 @@ a:hover {
   font-style: normal;
   font-weight: 300;
   font-color: #474747;
+  margin: 0;
+
+
 
 }
 
 #classshowwellclass {
   align-self: stretch;
   min-height: 350px;
+  margin: 0;
+  border-left: 10px solid #1D99CF;
+
+}
+
+@media all and (max-width: 480px) {
+  #classshowwellclass {
+  margin: 0;
+  border: 0px !important;
+
+}
+
+}
+
+#classshow {
+  margin: 0px;
 
 }
 
 .glyphicon.glyphicon-eye-open {
-    font-size: 1.0em;
+  font-size: 0.9em;
+  border: 2px solid #1D99CF;
+  background: none;
+  color: #1D99CF;
+
+}
+
+.glyphicon.glyphicon-eye-open:hover {
+  font-size: 0.9em;
+  color: #ffffff;
+  background-color: #1D99CF;
+
 }
 
 .glyphicon.glyphicon-trash {
@@ -201,29 +258,58 @@ a:hover {
 
 .glyphicon.glyphicon-pencil{
   font-size: 0.5em;
-  border: 2px solid #22B4F2;
+  border: 2px solid #1D99CF;
   background: none;
-  color: #22B4F2;
+  color: #1D99CF;
   margin: 5px;
 }
 
 .glyphicon.glyphicon-pencil:hover{
   font-size: 0.5em;
-  background-color: #22B4F2;
+  background-color: #1D99CF;
   color: #ffffff;
 }
 
 .glyphicon.glyphicon-calendar{
   font-size: 0.5em;
-  border: 2px solid #22B4F2;
+  border: 2px solid #1D99CF;
   background: none;
-  color: #22B4F2;
+  color: #1D99CF;
   margin: 5px;
 }
 
 .glyphicon.glyphicon-calendar:hover{
   font-size: 0.5em;
-  background-color: #22B4F2;
+  background-color: #1D99CF;
+  color: #ffffff;
+}
+
+.glyphicon.glyphicon-plus{
+  font-size: 0.5em;
+  border: 2px solid #1D99CF;
+  background: none;
+  color: #1D99CF;
+  margin: 10px;
+  margin-right: 15px;
+}
+
+.glyphicon.glyphicon-plus:hover{
+  font-size: 0.5em;
+  background-color: #1D99CF;
+  color: #ffffff;
+}
+
+.glyphicon.glyphicon-edit{
+  font-size: 0.5em;
+  border: 2px solid #1D99CF;
+  background: none;
+  color: #1D99CF;
+  margin: 5px;
+}
+
+.glyphicon.glyphicon-edit:hover{
+  font-size: 0.5em;
+  background-color: #1D99CF;
   color: #ffffff;
 }
 
@@ -238,8 +324,8 @@ a:hover {
 
 #classshowheader{
   max-width: 100%;
-  padding: 25px;
-  padding-bottom: 0px !important;
+
+  padding-bottom: 0 !important;
 
 }
 
@@ -248,5 +334,99 @@ a:hover {
 }
 
 #classshowpage {
-  padding-bottom: 60px;
+  margin: 20px;
+  margin-top: 20px !important;
+}
+
+/*Student Add/Remove Page Classes*/
+
+#studentaddpage {
+  margin: 20px;
+}
+
+#classsaddwellstudents {
+  font-family: Helvetica;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 300;
+  font-color: #474747;
+  margin: 0;
+}
+
+#classnewwellclass {
+border-right: 10px solid #1D99CF;
+margin: 0;
+padding-right: 50px;
+}
+
+.checkbox label, .radio label {
+  margin: 10px;
+}
+
+/*Events Index */
+
+#eventindexpage {
+  min-height: 100%;
+}
+
+#calendar {
+  min-height: 100%;
+}
+
+.btn.btn-google {
+  font-size: 0.5em;
+  border: 2px solid #E61616;
+  background: none;
+  color: #E61616;
+  margin: 10px;
+  margin-right: 15px;
+
+}
+
+.btn.btn-google:hover {
+  font-size: 0.5em;
+  margin: 10px;
+  margin-right: 15px;
+  background-color: #E61616;
+  color: #ffffff;
+
+}
+
+/*Event Show*/
+
+.event.list-group {
+  border: 3px solid #ddd;
+}
+
+.event.list-group-item {
+  line-height: 1.3;
+  border: none;
+}
+
+input[type=submit] {
+  border: 2px solid #1D99CF;
+  background: none;
+  color: #1D99CF;
+  font-size: 0.9em;
+  -webkit-border-radius: 3em;
+  -moz-border-radius: 3em;
+  -ms-border-radius: 3em;
+  -o-border-radius: 3em;
+  border-radius: 3em;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 10px 25px;
+}
+
+input[type=submit]:hover {
+  font-size: 0.9em;
+  background-color: #1D99CF;
+  color: #ffffff;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  padding: 10px 25px;
 }
