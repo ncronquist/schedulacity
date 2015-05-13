@@ -16,7 +16,11 @@ class UsersController < ApplicationController
 
   def create
 
-    @user = User.find_or_create_by(email: user_params[:email])
+    @user = User.find_or_create_by(email: user_params[:email]) do |user|
+      user.name = user_params[:name]
+      user.password = user_params[:password]
+      user.phone_number = user_params[:phone_number]
+    end
     @user = User.authenticate(params[:new_user][:email], params[:new_user][:password])
     if @user
       session[:user_id] = @user.id
