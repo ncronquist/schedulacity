@@ -276,7 +276,7 @@ class EventsController < ApplicationController
     events = []
     @current_user.classgroups.each do |c|
       c.events.each do |event|
-        events << {:id => event.id, :title => Classgroup.find(event.classgroup_id).name, :start => event.start, :end => event.end, :url => "#{request.base_url}/classgroups/#{event.classgroup_id}"}
+        events << {:id => event.id, :title => Classgroup.find(event.classgroup_id).name, :start => event.start, :end => event.end, :url => "#{request.base_url}/events/#{event.id}"}
 
       end
     end
