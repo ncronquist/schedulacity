@@ -35,16 +35,16 @@
 
 
   <div class='well'>
-    <div class='col-sm-12'>
+    <div class='col-md-10 col-md-offset-1'>
       <h2 class="text-center">Students</h2>
 
 <div class="table-responsive">
-      <table class="table table-bordered">
+      <table class="attendancetable table table-bordered">
         <thead>
-          <th>&nbsp</th>
-          <th>Present</th>
-          <th>Tardy</th>
-          <th>Absent</th>
+          <th class="text-center">&nbsp</th>
+          <th class="text-center">Present</th>
+          <th class="text-center">Tardy</th>
+          <th class="text-center">Absent</th>
         </thead>
 
         <tbody>
@@ -52,21 +52,21 @@
 <form class="form-group" action="/events/<%= @event.id %>/attendances" method="post" id="attendancesubmit">
           <tr>
           <div class="checkbox">
-            <td style="white-space:normal;"><%= link_to student.name, student_path(student.id) %></td>
+            <td style="white-space:normal;"><b><%= link_to student.name, student_path(student.id) %></b></td>
 
             <% attendance = student.attendances.find_by_event_id(@event.id) %>
             <% if attendance.blank? || attendance.attendance_type == 1 %>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio1" value="1"></label></td>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio2" value="2"></label></td>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio3" value="3"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio1" value="1"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio2" value="2"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio3" value="3"></label></td>
             <% elsif attendance.attendance_type == 2 %>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio1" value="1"></label></td>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio2" value="2"></label></td>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio3" value="3"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio1" value="1"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio2" value="2"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio3" value="3"></label></td>
             <% else attendance.attendance_type == 3 %>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio1" value="1"></label></td>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio2" value="2"></label></td>
-              <td style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio3" value="3"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio1" value="1"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio2" value="2"></label></td>
+              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio3" value="3"></label></td>
             <% end %>
           </div>
         <% end %>
@@ -76,6 +76,16 @@
             <%= button_to 'Submit', {:class => 'btn btn-primary btn-lg'} %>
 
 </form>
+    </div>
+
+
+  </div>
+  <br>
+  <br>
+  <div class='row'>
+    <div class='col-xs-10' id="backeventshow">
+      <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
+
     </div>
   </div>
   </div>

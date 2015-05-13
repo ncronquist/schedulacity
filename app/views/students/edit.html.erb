@@ -1,21 +1,28 @@
-<div class='row'>
-  <div class='col-xs-10 col-xs-offset-6 col-sm-6 col-sm-offset-3'>
-    <h1><%= @student.name %> (edit)</h1>
+<div class='container'>
+  <div class='well'>
+    <h1> Edit Information For: <b><%= @student.name %></b> </h1>
+
+<div class='well'>
+  <div class='col-xs-10 col-xs-offset-1'>
+    <%= bootstrap_form_for @student do |f| %>
+      <%= f.text_field :name, :hide_label => true, placeholder: 'Name', :class => "input-lg" %>
+      <%= f.text_area :note, :hide_label => true, placeholder: 'Notes', :class => "input-lg" %>
+      <%= f.text_field :email, :hide_label => true, placeholder: "Email", :class => "input-lg" %>
+      <%= f.text_field :dob, :hide_label => true, :label => 'Birthday', placeholder: 'Birthday', :class => "input-lg" %>
+      <%= f.text_field :phone_number, :hide_label => true, placeholder: "Phone Number", :class => "input-lg" %>
+      <%= f.text_field :street, :hide_label => true, placeholder: "Address", :class => "input-lg" %>
+      <%= f.text_field :city, :hide_label => true, placeholder: "City", :class => "input-lg" %>
+      <%= f.select(:state, options_for_select(us_states, "CA"), :hide_label => true)%>
+      <%= f.text_field :zip, :hide_label => true, placeholder: "Zip", :class => "input-lg" %>
+      <%= f.submit 'Submit', :class => 'btn btn-primary btn-lg', :class => "input-lg" %>
+    <% end %>
+  </div>
+    <div class='row'>
+    <div class='col-xs-10'>
+      <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
+
+    </div>
   </div>
 </div>
-<div class='row'>
-  <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
-    <%= bootstrap_form_for @student do |f| %>
-      <%= f.text_field :name, placeholder: 'Name' %>
-      <%= f.text_area :note, placeholder: 'Notes' %>
-      <%= f.text_field :email, placeholder: "Email" %>
-      <%= f.text_field :dob, :label => 'Birthday', placeholder: 'Birthday' %>
-      <%= f.text_field :phone_number, placeholder: "Phone Number" %>
-      <%= f.text_field :street, placeholder: "Address" %>
-      <%= f.text_field :city, placeholder: "City" %>
-      <%= f.select(:state, options_for_select(us_states, "CA"))%>
-      <%= f.text_field :zip, placeholder: "Zip" %>
-      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
-    <% end %>
   </div>
 </div>

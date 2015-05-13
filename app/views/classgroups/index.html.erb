@@ -8,14 +8,14 @@
       <br>
       <br>
     </h1>
-    <select class='class-state'>
+    <select class='form-control class'>
       <option value='open'>Active Classes</option>
       <option value='closed'>Inactive Classes</option>
     </select>
 
 
 
-  <div class='col-xs-10' id="tableandtext">
+  <div class='col-xs-12' id="tableandtext">
   <% if @classes.count < 1 %>
     <p class="text-center">Click on the green add button to create a new class!</p>
   <% else %>
@@ -90,7 +90,9 @@
 </div>
 </div>
 
-
+<script>
+$('#classlink').addClass('active')
+</script>
 
 
 
