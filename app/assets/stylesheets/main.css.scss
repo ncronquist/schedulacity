@@ -430,3 +430,13 @@ input[type=submit]:hover {
   transition: all 0.25s ease-in-out;
   padding: 10px 25px;
 }
+
+/* New Event Form */
+.eventnew input, .eventnew select, .eventnew .input-group.date {
+  margin-bottom: 10px;
+}
+
+/* Make the disabled fields background a bit darker */
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: #BEBEBE;
+}

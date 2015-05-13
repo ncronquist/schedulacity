@@ -41,6 +41,14 @@
       // This message will be visible when input is unchecked
       unchecked_label: "Unchecked",
 
+      // Default Checked Icon
+      // This will be the icon when input is checked
+      checked_icon: "labelauty-checked-image",
+
+      // Default UnChecked Icon
+      // This will be the icon with input is unchecked
+      unchecked_icon: "labelauty-unchecked-image",
+
       // Force random ID's
       // Replace original ID's with random ID's,
       force_random_id: false,
@@ -48,6 +56,10 @@
       // Minimum Label Width
       // This value will be used to apply a minimum width to the text labels
       minimum_width: false,
+
+      // Padding Left Label
+      // This value will be used to pad the left side of the label to allow for better placement
+      padding_left: false,
 
       // Use the greatest width between two text labels ?
       // If this has a true value, then label width will be the greatest between labels
@@ -116,6 +128,49 @@
         }
       }
 
+      // Get the value of "icon-labelauty" attribute
+      // Then, we have the glyphicons for each case (or not, as we will see)
+      icons = $object.attr( "icon-labelauty" );
+
+      // It's time to check if it's going the right way
+      // Null values, more icons than expected or no icons will be handled here
+      if( icons == null || icons.length === 0 )
+      {
+        // If attribute has no icon, set the icons_object to null
+        // We'll set it to the default icons later
+        icons_object = null;
+      }
+      else if( icons.toLowerCase() == 'none')
+      {
+        icons_object = ['none']
+      }
+      else
+      {
+        // Ok, ok, it's time to split Checked and Unchecked icons
+        // We split, by the "settings.seperator" option
+        icons_object = icons.split( settings.separator );
+
+        // Now, let's check if exist _only_ two icons
+        // If there's more than two, then fall back to default images
+        // Using no image might make it more obvious to the developer that
+        // something is wrong, but for now we'll go with this
+        // Else, do some additional tests
+        if( icons_object.length > 2 )
+        {
+          // Set the icons_object to null for now
+          // It will get set to the default icons later
+          icons_object = null;
+          debug ( settings.development, "There's more than two icons. LABELAUTY will use the default images." );
+        }
+        else
+        {
+          // If there's just one icon (no split by "settings.separator"), it will
+          // be used for both cases
+          if( icons_object.length === 1 )
+            debug( settings.development, "There's just one icon. LABELAUTY will use this one for both cases." );
+        }
+      }
+
       /*
        * Let's begin the beauty
        */
@@ -127,6 +182,9 @@
       // We don't need more data-labelauty attributes!
       // Ok, ok, it's just for beauty improvement
       $object.removeAttr( "data-labelauty" );
+
+      // We can also get rid of the icon-labelauty attribute I guess...
+      $object.removeAttr( "icon-labelauty" );
 
       // Now, grab checkbox ID Attribute for "label" tag use
       // If there's no ID Attribute, then generate a new one
@@ -151,12 +209,16 @@
 
       // Now, add necessary tags to make this work
       // Here, we're going to test some control variables and act properly
-      $object.after( create( input_id, labels_object, use_labels ) );
+      $object.after( create( input_id, labels_object, use_labels, icons_object ) );
 
       // Now, add "min-width" to label
       // Let's say the truth, a fixed width is more beautiful than a variable width
       if( settings.minimum_width !== false )
         $object.next( "label[for=" + input_id + "]" ).css({ "min-width": settings.minimum_width });
+
+      // If necessary, add a "padding-left" to label
+      if( settings.padding_left !== false )
+        $object.next( "label[for=" + input_id + "]" ).css({ "padding-left": settings.padding_left });
 
       // Now, add "min-width" to label
       // Let's say the truth, a fixed width is more beautiful than a variable width
@@ -198,11 +260,13 @@
       window.console.log( "jQuery-LABELAUTY: " + message );
   };
 
-  function create( input_id, messages_object, label )
+  function create( input_id, messages_object, label, icons_object )
   {
     var block;
     var unchecked_message;
     var checked_message;
+    var unchecked_icon;
+    var checked_icon;
 
     if( messages_object == null )
       unchecked_message = checked_message = "";
@@ -217,21 +281,52 @@
         checked_message = messages_object[1];
     }
 
+    if( icons_object == null )
+    {
+      unchecked_icon = "labelauty-unchecked-image";
+      checked_icon = "labelauty-checked-image";
+    }
+    else if( icons_object[0] == 'none')
+    {
+      unchecked_icon = "";
+      checked_icon = "";
+    }
+    else
+    {
+      unchecked_icon = "unchecked glyphicon glyphicon-" + icons_object[0];
+
+      // If checked icon is null, hten put the same unchecked icon
+      if( icons_object[1] == null )
+        checked_icon = "checked glyphicon glyphicon-" + icons_object[0];
+      else
+        checked_icon = "checked glyphicon glyphicon-" + icons_object[1];
+    }
+
     if( label == true )
     {
       block = '<label for="' + input_id + '">' +
-            '<span class="labelauty-unchecked-image"></span>' +
+            '<span class="' + unchecked_icon + '"></span>' +
             '<span class="labelauty-unchecked">' + unchecked_message + '</span>' +
-            '<span class="labelauty-checked-image"></span>' +
+            '<span class="' + checked_icon + '"></span>' +
             '<span class="labelauty-checked">' + checked_message + '</span>' +
           '</label>';
+      // block = '<label for="' + input_id + '">' +
+      //       '<span class="labelauty-unchecked-image"></span>' +
+      //       '<span class="labelauty-unchecked">' + unchecked_message + '</span>' +
+      //       '<span class="labelauty-checked-image"></span>' +
+      //       '<span class="labelauty-checked">' + checked_message + '</span>' +
+      //     '</label>';
     }
     else
     {
       block = '<label for="' + input_id + '">' +
-            '<span class="labelauty-unchecked-image"></span>' +
-            '<span class="labelauty-checked-image"></span>' +
+            '<span class="' + unchecked_icon + '"></span>' +
+            '<span class="' + checked_icon + '"></span>' +
           '</label>';
+      // block = '<label for="' + input_id + '">' +
+      //       '<span class="labelauty-unchecked-image"></span>' +
+      //       '<span class="labelauty-checked-image"></span>' +
+      //     '</label>';
     }
 
     return block;
