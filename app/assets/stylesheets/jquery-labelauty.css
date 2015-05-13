@@ -88,6 +88,10 @@ input.labelauty:not(:checked) + label > span.labelauty-checked-image
 {
   display: none;
 }
+input.labelauty:not(:checked) + label > span.checked
+{
+  display: none;
+}
 
 input.labelauty:not(:checked) + label > span.labelauty-checked
 {
@@ -109,7 +113,10 @@ input.labelauty:checked + label > span.labelauty-unchecked-image
 {
   display: none;
 }
-
+input.labelauty:checked + label > span.unchecked
+{
+  display: none;
+}
 input.labelauty:checked + label > span.labelauty-unchecked
 {
   display: none;
@@ -137,9 +144,26 @@ input.labelauty + label > span.labelauty-unchecked-image
   background-image: url( labelauty_images/input-unchecked.png );
   background-position: center;
 }
+/* Add a background to (un)checked images */
+input.labelauty + label > span.unchecked
+{
+  /*background-image: url( labelauty_images/input-unchecked.png );*/
+  /*background-position: center;*/
+  display: inline;
+  padding-right: 5px;
+  padding-left: 5px;
+}
 
 input.labelauty + label > span.labelauty-checked-image
 {
   background-image: url( labelauty_images/input-checked.png );
   background-position: center;
+}
+input.labelauty + label > span.checked
+{
+  /*background-image: url( labelauty_images/input-checked.png );*/
+  /*background-position: center;*/
+  display: inline;
+  padding-right: 5px;
+  padding-left: 5px;
 }
