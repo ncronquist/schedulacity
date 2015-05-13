@@ -17,6 +17,7 @@
         <select name="event[classgroup_id]" class="form-control input-lg" disabled>
           <option value="<%=@classgroup.id%>"><%=@classgroup.name%></option>
         </select>
+        <input type="hidden" name="event[classgroup_id]" value="<%=@classgroup.id%>">
       <% end %>
       <input type="hidden" name="UTC" id="UTC" value="0">
       <input type="text" name="event[street]" placeholder="Street Address" class="form-control input-lg">

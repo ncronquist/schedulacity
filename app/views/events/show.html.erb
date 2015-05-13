@@ -6,7 +6,7 @@
       <h1>Event Information for Class: <b><%= @class.name %></b>
 
       <%= link_to '', event_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
-      <%= link_to '', edit_event_path(@class.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+      <%= link_to '', edit_event_path(@event.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
       <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
     </h1>
     <br>
@@ -28,7 +28,7 @@
     <div class='col-md-6 col-xs-12'>
       <%= bootstrap_form_for @event do |f| %>
       <%= f.text_area :note,:hide_label => true, :placeholder => 'Event notes...', :class => "input-lg" %>
-      <%= f.submit 'Submit', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
+      <%= f.submit 'Save', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
       <% end %>
 </div>
   </div>

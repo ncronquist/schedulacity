@@ -89,11 +89,11 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user %>
-        <li id="calendarlink"><%= link_to 'Calendar', events_path %> </li>
-        <li id="studentlink"><%= link_to 'Students', students_path %> </li>
-        <li id="classlink"><%= link_to 'Class', classgroups_path %> </li>
-        <li id="accountlink"><%= link_to 'Account', user_path(@current_user) %> </li>
-        <li id="logoutlink"><%= link_to 'Logout', logout_path %></li>
+          <li id="calendarlink"><%= link_to 'Calendar', events_path %> </li>
+          <li id="studentlink"><%= link_to 'Students', students_path %> </li>
+          <li id="classlink"><%= link_to 'Class', classgroups_path %> </li>
+          <li id="accountlink"><%= link_to 'Account', user_path(@current_user) %> </li>
+          <li id="logoutlink"><%= link_to 'Logout', logout_path %></li>
         <% else %>
           <li><a href="#" id="openLogin" class="loginnav" data-toggle="modal" data-target="#loginmodal">Login</a></li>
           <li><a href="#" id="openSignup" class="signupnav" data-toggle="modal" data-target="#signupmodal">Signup</a></li>
