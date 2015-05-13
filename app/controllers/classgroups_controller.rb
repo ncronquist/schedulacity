@@ -5,7 +5,7 @@ class ClassgroupsController < ApplicationController
   def index
     @current_user = current_user
     @classes = @current_user.classgroups
-    # render :json => @classes
+    # render :json => @classes.where(:active => true).count
   end
 
   def new

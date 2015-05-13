@@ -1,42 +1,42 @@
-<div class="container">
+<div class="container-fluid">
+<div id="eventshowpage">
 
-  <div class='row'>
-    <div class='col-sm-6'>
-      <h1><b>Event Information for Class: </b><%= @class.name %></h1>
-    </div>
-    <div class='col-sm-6'>
-      <%= link_to 'Calendar', '/events', :class => 'btn btn-success pull-right' %>
-      <%= link_to 'Edit Event', edit_event_path(@class.id), :class => 'btn btn-primary pull-right' %>
-      <%= link_to 'Remove', event_path(params[:id]), :class => 'btn btn-danger pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
-    </div>
-  </div>
+<div class="well">
+  <div class='col-sm-12' id="eventshowheader">
+      <h1>Event Information for Class: <b><%= @class.name %></b>
 
-  <div class='row'>
-    <div class='col-xs-6'>
-      <ul class="list-group">
+      <%= link_to '', event_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
+      <%= link_to '', edit_event_path(@class.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+      <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
+    </h1>
+    <br>
+    <br>
+    </div>
+
+
+
+    <div class='col-md-6 col-xs-12'>
+      <div class="event list-group">
         <%# @events.each do |eventlist| %>
-        <li class="list-group-item"><b>Start Time: </b><%= local_time(@event.start) %></li>
-        <li class="list-group-item"><b>End Time: </b><%= local_time(@event.end) %></li>
-        <li class="list-group-item"><b>Street Address: </b><% if(@event.street_address.blank?) %> None Entered <% else %> <%= @event.street_address %> <% end %></li>
-        <li class="list-group-item"><b>City: </b><% if(@event.city.blank?) %> None Entered <% else %> <%= @event.city %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(@event.state.blank?) %> None Entered <% else %> <%= @event.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(@event.zip.blank?) %> None Entered <% else %> <%= @event.zip %> <% end %> </li>
+        <P class="event list-group-item"><b>Start Time: </b><%= local_time(@event.start) %></p>
+        <P class="event list-group-item"><b>End Time: </b><%= local_time(@event.end) %></p>
+        <P class="event list-group-item"><b>Street Address: </b><% if(@event.street_address.blank?) %> None Entered <% else %> <%= @event.street_address %> <% end %></p>
+        <P class="event list-group-item"><b>City: </b><% if(@event.city.blank?) %> None Entered <% else %> <%= @event.city %> <% end %> &nbsp &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(@event.state.blank?) %> None Entered <% else %> <%= @event.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(@event.zip.blank?) %> None Entered <% else %> <%= @event.zip %> <% end %> </p>
         <%# end %>
-      </ul>
+      </div>
     </div>
-    <div class='col-xs-6'>
+    <div class='col-md-6 col-xs-12'>
       <%= bootstrap_form_for @event do |f| %>
-      <%= f.text_area :note,:hide_label => true, :placeholder => 'Event notes...' %>
-      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+      <%= f.text_area :note,:hide_label => true, :placeholder => 'Event notes...', :class => "input-lg" %>
+      <%= f.submit 'Submit', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
       <% end %>
-    <div>
+</div>
   </div>
 
 
-  <div class='row'>
+  <div class='well'>
     <div class='col-sm-12'>
       <h2 class="text-center">Students</h2>
-
-
-
 
 <div class="table-responsive">
       <table class="table table-bordered">
@@ -49,7 +49,7 @@
 
         <tbody>
         <% @students.each do |student| %>
-<form class="form-group" action="/events/<%= @event.id %>/attendances" method="post">
+<form class="form-group" action="/events/<%= @event.id %>/attendances" method="post" id="attendancesubmit">
           <tr>
           <div class="checkbox">
             <td style="white-space:normal;"><%= link_to student.name, student_path(student.id) %></td>
@@ -71,14 +71,15 @@
           </div>
         <% end %>
         </tr>
-            <tr><%= button_to 'Submit', :class => 'btn btn-primary' %></tr>
-
-</form>
         </tbody>
       </table>
+            <%= button_to 'Submit', {:class => 'btn btn-primary btn-lg'} %>
+
+</form>
     </div>
   </div>
   </div>
+</div>
 </div>
 
 
