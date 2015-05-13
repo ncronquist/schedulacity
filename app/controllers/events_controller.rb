@@ -61,10 +61,6 @@ class EventsController < ApplicationController
       event.classgroup_id = classgroup.id
       event.save
 
-      # Associate event to classgroup
-      # classgroup = Classgroup.find(classgroup_id)
-      # classgroup.events << event
-
     end
 
     def create_google_event(start_dtm,
@@ -253,11 +249,37 @@ class EventsController < ApplicationController
   end # end def create
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
+    # render :json => params
+
     @event = Event.find(params[:id])
-    @event.update(:note => params[:event][:note])
+
+    if params[:event].length == 1 && params[:event][:note]
+      # This path is for when a user is just editing the events note from
+      # the event show page
+      @event.update(:note => params[:event][:note])
+      flash[:info] = "Note saved"
+    else
+      # This path is for when a user is editing the event on the event
+      # edit page
+      start_dtm = DateTime.strptime(params[:event][:start] + ' ' + params[:UTC],
+                                  '%m/%d/%Y %H:%M %p %z')
+      end_dtm = DateTime.strptime(params[:event][:end] + ' ' + params[:UTC],
+                                '%m/%d/%Y %H:%M %p %z')
+      @event.update(:note => params[:event][:note],
+                    :street_address => params[:event][:street_address],
+                    :city => params[:event][:city],
+                    :state => params[:event][:state],
+                    :zip => params[:event][:zip],
+                    :start => start_dtm,
+                    :end => end_dtm
+                    )
+      flash[:info] = "Event updated"
+    end
+
     redirect_to event_path(params[:id])
   end
 
@@ -285,33 +307,3 @@ class EventsController < ApplicationController
   end
 
 end
-
-###########################################################################
-###########################################################################
-# {
-#   utf8: "✓",
-#   authenticity_token: "BjAAtDHZ2yZ4WrA/baDuy45cPI5f6LEnlrkajrTS98S+hu1qfRwelhR8iLbze3WsvUSap1VNVtwQFmBlCOJVjw==",
-#   event: {
-#     classgroup_id: "1",
-#     street: "225 32nd Ave E",
-#     state: "WA",
-#     zip: "98112",
-#     start: "05/18/2015 7:52 PM",
-#     end: "05/18/2015 8:52 PM",
-#     repeat: {
-#       repeat: "true",
-#       reoccurrence_type: "week",
-#       reoccurrence_period: "1",
-#       days: {
-#         mon: "1",
-#         tue: "2"
-#       },
-#       end_mode: "end_date",
-#       end_date: "06/29/2015"
-#     }
-#   },
-#   UTC: "-07:00",
-#   commit: "Save Event",
-#   controller: "events",
-#   action: "create"
-# }
