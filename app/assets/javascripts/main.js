@@ -17,28 +17,65 @@ $(function(){
 
   //user signup validation
   $('#new_user').validate({
-    debug: true,
+    // debug: true,
     rules: {
-      "user[name]": {
+      "new_user[name]": {
         required: true,
         maxlength: 25
       },
-      "user[email]": {
+      "new_user[email]": {
         required: true,
         email: true
       },
-      "user[password]": {
+      "new_user[password]": {
         required: true,
         minlength: 6
       },
-      "user[password_confirmation]": {
+      "new_user[password_confirmation]": {
         required: true,
-        equalTo: "#user_password"
+        equalTo: "#new_user_password"
       }
     }
   });
+
+  //new student validation
+  $('#new_student').validate({
+    debug: true,
+    rules: {
+      "student[name]": {
+        required: true,
+        minlength: 5
+      },
+      "student[email]": {
+        email: true
+      },
+      "student[dob]": {
+        date: true
+      },
+      "student[phone_number]": {
+        digits: true
+      },
+      "student[zip]": {
+        digits: true
+      }
+    }
+  });
+
+
   //fullCalendar method
   $('#calendar').fullCalendar({
+    header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+    views: {
+        agendaFourDay: {
+            type: 'agenda',
+            duration: { days: 4 },
+            buttonText: '4 day'
+        }
+    },
     height: 600,
     events: "/events/get_events",
     timezone: 'local'

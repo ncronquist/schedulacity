@@ -2,24 +2,29 @@ class UsersController < ApplicationController
 
   before_action :is_authenticated?, except: [:create, :new]
 
-  def check_email
-    render :json => params
-    # @user = User.find_by_email(params)
-  end
 
   def new
-    @user = User.new
+    @new_user = User.new
   end
 
+  # def check_email
+  #   @user = User.find_by_email(params[:new_user][:email])
+  #   respond_to do |format|
+  #     format.json {render :json => !@user}
+  #   end
+  # end
+
   def create
-    @user = User.create(user_params)
-    @user = User.authenticate(params[:user][:email], params[:user][:password])
+
+    @user = User.find_or_create_by(email: user_params[:email])
+    @user = User.authenticate(params[:new_user][:email], params[:new_user][:password])
     if @user
       session[:user_id] = @user.id
       redirect_to classgroups_path
     else
-      flash[:danger] = "Credentials Invalid"
-      render :new
+      flash[:danger] = "An account already exists with that email"
+      # render :new
+      redirect_to '/'
     end
 
   end
@@ -43,7 +48,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name,:email,:password,:phone_number)
+    params.require(:new_user).permit(:name,:email,:password,:phone_number)
   end
 
 end
