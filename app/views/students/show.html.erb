@@ -1,28 +1,31 @@
-<div class='row'>
-  <div class='col-sm-6 col-sm-offset-3'>
-    <h1>Student Profile</h1>
-  </div>
-</div>
-<div class='row'>
-  <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
-    <ul class="list-group">
-      <li class="list-group-item"><b>Name</b>: <%= @student.name %></li>
-      <li class="list-group-item"><b>Classes</b>: <ul><% @student_classes.each do |session| %> <li><%= link_to session.name, classgroup_path(session.id) %></li> <% end %></ul></li>
-      <li class="list-group-item"><b>Notes</b>: <%= @student.note %></li>
-      <li class="list-group-item"><b>Email</b>: <%= @student.email %></li>
-      <li class="list-group-item"><b>Birthday</b>: <%= @student.dob %></li>
-      <li class="list-group-item"><b>Phone</b>: <%= @student.phone_number %></li>
-      <li class="list-group-item"><b>Street</b>: <%= @student.street %></li>
-      <li class="list-group-item"><b>City</b>: <%= @student.city %></li>
-      <li class="list-group-item"><b>State</b>: <%= @student.state %></li>
-      <li class="list-group-item"><b>Zip</b>: <%= @student.zip %></li>
+<div class='container'>
+  <div class='well'>
+    <h1>Student Profile
+    <%= link_to '', student_path(@student.id), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: "Are you sure you want to remove #{@student.name} from the database?"} %>
+    <%= link_to '', edit_student_path(@student.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+    </h1>
+
+<div class='well'>
+  <div class='col-xs-10 col-xs-offset-1'>
+    <ul class="student list-group">
+      <li class="student list-group-item"><b>Name</b>: <%= @student.name %></li>
+      <li class="student list-group-item"><b>Classes</b>: <ul><% @student_classes.each do |session| %> <li><%= link_to session.name, classgroup_path(session.id) %></li> <% end %></ul></li>
+      <li class="student list-group-item"><b>Notes</b>: <%= @student.note %></li>
+      <li class="student list-group-item"><b>Email</b>: <%= @student.email %></li>
+      <li class="student list-group-item"><b>Birthday</b>: <%= @student.dob %></li>
+      <li class="student list-group-item"><b>Phone</b>: <%= @student.phone_number %></li>
+      <li class="student list-group-item"><b>Street</b>: <%= @student.street %></li>
+      <li class="student list-group-item"><b>City</b>: <%= @student.city %></li>
+      <li class="student list-group-item"><b>State</b>: <%= @student.state %></li>
+      <li class="student list-group-item"><b>Zip</b>: <%= @student.zip %></li>
     </ul>
-    <%= link_to 'Edit Student', edit_student_path(@student.id), :class => 'btn btn-primary' %>
-    <%= link_to 'Remove Student', student_path(@student.id), :class => 'btn btn-danger', method: :delete, data: {confirm: "Are you sure you want to remove #{@student.name} from the database?"} %>
+
   </div>
   <div class='row'>
-    <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
+    <div class='col-xs-10'>
       <%= link_to "&larr; Back".html_safe, students_path %>
     </div>
+  </div>
+</div>
   </div>
 </div>

@@ -28,7 +28,7 @@
 
 
       <div class='col-md-6 col-xs-12'>
-    <div class='well' id="classshowwellstudents">
+    <div class='well' id="classshowwellstudents" >
         <h2>Students
           <%= link_to '', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary glyphicon glyphicon-edit pull-right' %>
         </h2>
@@ -39,17 +39,22 @@
             <p class="text-center">No students currently enrolled</p>
           <% else %>
           <% @students.each do |student| %>
-            <li class="list-group-item"><%= link_to student.name, student_path(student.id) %></li>
+            <li class="list-group-item" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"><%= link_to student.name, student_path(student.id) %></li>
           <% end %>
           <% end %>
         </ul>
 
       </div>
+  <div class='row'>
+    <div class='col-xs-10' id="backeventshow">
+      <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
 
+    </div>
+  </div>
   </div>
 
   <div class='col-md-6 col-xs-12'>
-    <div class="well" id="classshowwellclass">
+    <div class="well" id="classshowwellclass" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';">
       <h2>Class Events
 
         <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %>
@@ -86,4 +91,5 @@
 </div>
 </div>
 </div>
+
 

@@ -40,7 +40,7 @@ $(function(){
 
   //new student validation
   $('#new_student').validate({
-    debug: true,
+    // debug: true,
     rules: {
       "student[name]": {
         required: true,
@@ -76,7 +76,7 @@ $(function(){
             buttonText: '4 day'
         }
     },
-    height: 600,
+    height: 800,
     events: "/events/get_events",
     timezone: 'local'
   })
@@ -98,7 +98,7 @@ $(function(){
 $(document).ready(function(){
     $(":radio").labelauty(({ label: false }));
     $(".to-labelauty").labelauty({ minimum_width: "100px" });
-    $(".to-labelauty-xs").labelauty({ minimum_width: "30px", padding_left: "11px" });
+    $(".to-labelauty-xs").labelauty({ minimum_width: "60px", maximum_height: "50px", padding_left: "25px" });
     $(".to-labelauty-icon").labelauty({ label: false });
 });
 

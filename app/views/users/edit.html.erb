@@ -1,25 +1,33 @@
-<div class="container">
-  <h1 class="text-center">Edit Account Information</h1>
+<div class='container'>
+  <div class='well'>
+  <h1>Edit Account Information</h1>
 
 <br>
-<br>
 
-  <div class ="well col-md-6 col-md-offset-3">
 
-    <div class="form-group">
+<div class='well'>
+  <div class='col-xs-10 col-xs-offset-1' id="showtext">
+
       <%= bootstrap_form_for @user do |f| %>
 
-      <%= f.text_field :name, :placeholder => "User Name", :class => "form-control"%>
-      <%= f.text_field :email, :placeholder => "User Email", :class => "form-control text-area" %>
-      <%= f.text_field :phone_number, :placeholder => "User Phone Number", :class => "form-control text-area" %>
-      <%= f.submit :class => "btn btn-primary"%>
+      <%= f.text_field :name, :placeholder => "User Name", :class => "form-control input-lg"%>
+      <%= f.text_field :email, :placeholder => "User Email", :class => "form-control text-area input-lg" %>
+      <%= f.text_field :phone_number, :placeholder => "User Phone Number", :class => "form-control text-area input-lg" %>
+      <%= f.submit "Submit", :class => "btn btn-primary"%>
 
       <% end %>
 
     </div>
 
-    <div><%= link_to "&larr; Back".html_safe, user_path %></div>
 
   </div>
+    <div class='row'>
+    <div class='col-xs-10'>
 
+      <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
+
+    </div>
+  </div>
+</div>
+</div>
 </div>

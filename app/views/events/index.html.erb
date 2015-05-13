@@ -8,9 +8,10 @@
     <% if @current_user.provider %>
       <%= link_to "Disconnect from Google Calendar", auth_logout_path, class: "btn btn-google pull-right" %>
     <% else %>
-    <%= link_to "Connect to Google Calendar", "/auth/google_oauth2", class: "btn btn-google pull-right" %>
+    <%= link_to "Connect to Google Calendar", "/auth/google_oauth2", class: "btn btn-google pull-right", id: "googleconnect" %>
     <% end %>
 </h1>
+<br>
 <br>
 <br>
 
@@ -24,3 +25,7 @@
 </div>
 </div>
 </div>
+
+<script>
+$('#calendarlink').addClass('active')
+</script>

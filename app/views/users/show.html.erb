@@ -1,19 +1,31 @@
-<div class="container">
-  <h1 class="text-center">Account Information</h1>
+<div class='container'>
+  <div class='well'>
+  <h1>Account Information
+
+ <%= link_to '', edit_user_path, :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+
+  </h1>
 
 
   <br>
-  <br>
 
-  <div class="col-md-10 col-md-offset-1 col-xs-10" id="showtext">
-    <p><strong>User Name: </strong> <%= @user.name %></p>
-    <p><strong>Email: </strong> <%= @user.email %></p>
-    <p><strong>Phone Number: </strong> <% if(@user.phone_number.blank? ) %> None Listed <% else %> <%= @user.phone_number %> <% end %> </p>
+
+<div class='well'>
+  <div class='col-xs-10 col-xs-offset-1' id="showtext">
+
+<ul class="student list-group">
+      <li class="student list-group-item"><b>Name: </b>: <%= @user.name %></li>
+      <li class="student list-group-item"><b>Email: </b>: <%= @user.email %></li>
+      <li class="student list-group-item"><b>Phone Number: </b>: <% if(@user.phone_number.blank? ) %> None Listed <% else %> <%= @user.phone_number %> <% end %> </li>
+</ul>
 
   </div>
 
-
-  <div class="text-center" id="edituserinfo"><%= button_to 'Edit Informaton', edit_user_path, method: :get, :class => "btn btn-primary" %></div>
-
-
 </div>
+</div>
+</div>
+
+
+<script>
+$('#accountlink').addClass('active')
+</script>
