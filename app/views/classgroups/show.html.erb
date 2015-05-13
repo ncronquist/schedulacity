@@ -1,28 +1,34 @@
-<div class="container">
+<div class="container-fluid" id="classshowpage">
 
-<div class='row'>
-  <div class='col-sm-3 col-sm-offset-3'>
-    <h1><%= @class.name %></h1>
-  </div>
-  <div class='col-sm-3'>
-    <%= link_to 'Calendar', '/events', :class => 'btn btn-success pull-right' %>
-    <%= link_to 'Edit Class', edit_classgroup_path(@class.id), :class => 'btn btn-primary pull-right' %>
-    <%= link_to 'Remove', classgroup_path(params[:id]), :class => 'btn btn-danger pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
-  </div>
-</div>
-<div class='row'>
-  <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
-    <ul class="list-group">
-      <li class="list-group-item"><b>Description</b>: <%= @class.description %></li>
+  <div class='col-sm-12' id="classshowheader">
+<div class='well'>
+    <h1 id="classheader"><%= @class.name %>
+    <%= link_to '', classgroup_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
+    <%= link_to '', edit_classgroup_path(@class.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+    <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
+
+    </h1>
+    <br>
+    <br>
+<div class='container pull-left' id="classshowdescription">
+  <div class="col-sm-12">
+    <ul class="list-group" id="listclassshow">
+      <li class="list-group-item"><b>Description:</b> <%= @class.description %></li>
     </ul>
   </div>
+
+</div>
+  </div>
 </div>
 
-<div class='row'>
-  <div class='col-md-6'>
-    <div class='row'>
-      <div class='col-sm-9'>
+<div class='container' id="classshow">
+<div class="row-eq-height">
+
+      <div class='col-sm-6 col-md-6'>
+    <div class='well' id="classshowwellstudents">
         <h2>Students</h2>
+        <br>
+        <br>
         <ul class="list-group">
           <% if @students.count < 1 %>
             <li>No students currently enrolled</li>
@@ -32,42 +38,47 @@
           <% end %>
           <% end %>
         </ul>
-      </div>
-      <div class='col-sm-3'>
+
         <%= link_to 'Add/Remove Students', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary pull-right' %>
+
       </div>
-    </div>
+
   </div>
 
-
-  <div class='col-md-6'>
-    <h2>Class Events</h2>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <th>Start Time</th>
-          <th>End Time</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>&nbsp</th>
-        </thead>
-
-        <% @events.each do |eventlist| %>
-        <tbody>
-          <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
-          <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
-          <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
-          <td style="white-space:normal;"><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %></td>
-          <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>
-        </tbody>
-        <% end %>
-
-      </table>
-    </div>
+  <div class='col-sm-6 col-md-6'>
+    <div class="well" id="classshowwellclass">
+      <h2>Class Events</h2>
+      <div class='col-md-6'>
+        <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-success glyphicon glyphicon-plus pull-right' %>
+      </div>
+      <br>
+      <br>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>&nbsp</th>
+          </thead>
+          <tbody>
+          <% if @events.count >= 1 %>
+          <% @events.each do |eventlist| %>
+            <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
+            <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
+            <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
+            <td style="white-space:normal;"><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %></td>
+            <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>
+          </tbody>
+          <% end %>
+          <% else %>
+        </table>
+          <p>Click on the add button above to create new events for this class!</p>
+      </div>
+          <% end %>
   </div>
-
-
-
 </div>
 
+</div>
 </div>

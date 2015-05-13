@@ -13,7 +13,7 @@
       <%= f.text_field :phone_number, :hide_label => true, placeholder: "Phone Number" %>
       <%= f.text_field :street, :hide_label => true, placeholder: "Address" %>
       <%= f.text_field :city, :hide_label => true, placeholder: "City" %>
-      <%= f.text_field :state, :hide_label => true, placeholder: "State" %>
+      <%= f.select(:state, options_for_select(us_states, "CA"), :hide_label => true)%>
       <%= f.text_field :zip, :hide_label => true, placeholder: "Zip" %>
       <%= f.hidden_field :notifications, :value => true %>
       <%= f.hidden_field :user_id, :value => @current_user.id %>

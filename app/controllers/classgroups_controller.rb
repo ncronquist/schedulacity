@@ -99,7 +99,7 @@ class ClassgroupsController < ApplicationController
   private
 
   def classgroup_params
-    params.require(:classgroup).permit(:name,:description,:user_id)
+    params.require(:classgroup).permit(:name,:description,:user_id,:active)
   end
 
   def student_params

@@ -20,4 +20,9 @@
     <%= link_to 'Edit Student', edit_student_path(@student.id), :class => 'btn btn-primary' %>
     <%= link_to 'Remove Student', student_path(@student.id), :class => 'btn btn-danger', method: :delete, data: {confirm: "Are you sure you want to remove #{@student.name} from the database?"} %>
   </div>
+  <div class='row'>
+    <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
+      <%= link_to "&larr; Back".html_safe, students_path %>
+    </div>
+  </div>
 </div>

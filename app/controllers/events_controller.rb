@@ -255,6 +255,9 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event = Event.find(params[:id])
+    @event.update(:note => params[:event][:note])
+    redirect_to event_path(params[:id])
   end
 
   def destroy
