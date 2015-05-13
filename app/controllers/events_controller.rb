@@ -29,7 +29,11 @@ class EventsController < ApplicationController
     # Make sure the users google token is active if they have one
     @current_user.refresh_token_if_expired
     @event = Event.new
-    @classgroups = @current_user.classgroups
+    if params[:id]
+      @classgroups = @current_user.classgroups.find(params[:id])
+    else
+      @classgroups = @current_user.classgroups
+    end
   end
 
   def create
