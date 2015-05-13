@@ -6,142 +6,112 @@
 
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-    <%= bootstrap_form_for :event, url: events_path do |f| %>
-
-      <%# f.select :classgroup_id, Classgroup.all.collect {|c| [ c.name, c.id ] }, { include_blank: true }, label: { text: "Class" } %>
-      <label>Class</label>
-      <div class="form-group">
-        <select name="event[classgroup_id]" class="form-control">
-          <% @classgroups.each do |c| %>
-            <option value="<%=c.id%>"><%=c.name%></option>
-          <% end %>
-        </select>
-      </div>
+    <form action="/events" method="POST" role="form" class="eventnew">
+    <%# bootstrap_form_for :event, url: events_path, class: "eventnew" do |f| %>
+      <select name="event[classgroup_id]" class="form-control">
+        <% @classgroups.each do |c| %>
+          <option value="<%=c.id%>"><%=c.name%></option>
+        <% end %>
+      </select>
       <input type="hidden" name="UTC" id="UTC" value="0">
-      <label>Address</label>
-      <div class="form-group">
-        <input type="text" name="event[street]" placeholder="Street Address" class="form-control">
-      </div>
-      <div class="form-group">
-        <div class="form-inline">
-          <div class="form-group">
-            <input type="text" name="event[city]" placeholder="City", class="form-control">
-            <input type="text" name="event[state]" placeholder="State", class="form-control">
-            <input type="text" name="event[zip]" placeholder="Zip", class="form-control">
-          </div>
-        </div>
+      <input type="text" name="event[street]" placeholder="Street Address" class="form-control">
+      <input type="text" name="event[city]" placeholder="City", class="form-control">
+      <input type="text" name="event[state]" placeholder="State", class="form-control">
+      <input type="text" name="event[zip]" placeholder="Zip", class="form-control">
+
+      <div class='input-group date' id='event_start'>
+        <input type='text' name="event[start]" class="form-control" placeholder="Start"/>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
       </div>
 
-      <label>When</label>
-      <div class="form-inline">
-        <div class="form-group">
-          <!-- <label>Start</label> -->
-          <div class='input-group date' id='event_start'>
-            <input type='text' name="event[start]" class="form-control" placeholder="Start"/>
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group pull-right">
-          <!-- <label>End</label> -->
-          <div class='input-group date' id='event_end'>
-            <input type='text' name="event[end]" class="form-control" placeholder="End"/>
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-        </div>
+      <div class='input-group date' id='event_end'>
+        <input type='text' name="event[end]" class="form-control" placeholder="End"/>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
       </div>
 
-      <div class="form-group">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" id="repeat" name="event[repeat][repeat]" value="true"> Repeat
-          </label>
-        </div>
-      </div>
+      <input type="checkbox" id="repeat" name="event[repeat][repeat]" value="true" class="to-labelauty" icon-labeleauty="repeat" data-labelauty="Repeat">
+
+<!--       <div class="checkbox">
+        <label>
+          <input type="checkbox" id="repeat" name="event[repeat][repeat]" value="true"> Repeat
+        </label>
+      </div> -->
 
       <div id="repeat_info" style="display: none;">
 
-        <div class="form-group">
-          <label>Repeats</label>
-          <select class="form-control" name="event[repeat][reoccurrence_type]">
-            <option value="week">Weekly</option>
-            <!-- <option value="day">Daily</option> -->
-            <!-- <option>3</option> -->
-            <!-- <option>4</option> -->
-            <!-- <option>5</option> -->
-          </select>
-        </div>
+        <select class="form-control" name="event[repeat][reoccurrence_type]">
+          <option value="week">Weekly</option>
+          <!-- <option value="day">Daily</option> -->
+        </select>
 
-        <div class="form-group">
-          <label>Repeats Every</label>
-          <select class="form-control" name="event[repeat][reoccurrence_period]">
-            <% (1..30).each do |n| %>
-              <option value="<%=n%>"><%=n%> weeks</option>
-            <% end %>
-          </select>
-        </div>
+        <select class="form-control" name="event[repeat][reoccurrence_period]">
+          <% (1..30).each do |n| %>
+            <option value="<%=n%>"><%=n%> weeks</option>
+          <% end %>
+        </select>
 
-        <div class="form-group">
-          <label>Repeat On: </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="event[repeat][days][sun]" id="cb-sun" value="0"> S
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="event[repeat][days][mon]" id="cb-mon" value="1"> M
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="event[repeat][days][tue]" id="cb-tue" value="2"> T
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="event[repeat][days][wed]" id="cb-wed" value="3"> W
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="event[repeat][days][thu]" id="cb-thu" value="4"> T
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="event[repeat][days][fri]" id="cb-fri" value="5"> F
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="event[repeat][days][sat]" id="cb-sat" value="6"> S
-          </label>
-        </div>
+        <input type="checkbox" name="event[repeat][days][sun]" id="cb-sun" value="0" class="to-labelauty" data-labelauty="S">
+        <input type="checkbox" name="event[repeat][days][mon]" id="cb-mon" value="1">
+        <input type="checkbox" name="event[repeat][days][tue]" id="cb-tue" value="2">
+        <input type="checkbox" name="event[repeat][days][wed]" id="cb-wed" value="3">
+        <input type="checkbox" name="event[repeat][days][thu]" id="cb-thu" value="4">
+        <input type="checkbox" name="event[repeat][days][fri]" id="cb-fri" value="5">
+        <input type="checkbox" name="event[repeat][days][sat]" id="cb-sat" value="6">
+        <!-- <label>Repeat On: </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="event[repeat][days][sun]" id="cb-sun" value="0"> S
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="event[repeat][days][mon]" id="cb-mon" value="1"> M
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="event[repeat][days][tue]" id="cb-tue" value="2"> T
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="event[repeat][days][wed]" id="cb-wed" value="3"> W
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="event[repeat][days][thu]" id="cb-thu" value="4"> T
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="event[repeat][days][fri]" id="cb-fri" value="5"> F
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="event[repeat][days][sat]" id="cb-sat" value="6"> S
+        </label> -->
 
-        <div class="form-group">
-          <div class="form-group">
-          <div class="form-inline">
-            <label>Ends:</label>
-            <div class="radio">
-              <label>
-                <input type="radio" name="event[repeat][end_mode]" id="options_occurrences" value="occurrences" checked>
-                After <input type="text" name="event[repeat][occurrences]" id="occurrences"> occurances
-              </label>
-            </div>
-          </div>
+        <input type="radio" name="event[repeat][end_mode]" id="options_occurrences" value="occurrences" checked>
+        <!-- Ends after <input type="text" name="event[repeat][occurrences]" id="occurrences"> occurances -->
+
+        <input type="radio" name="event[repeat][end_mode]" id="options_end_date" value="end_date">
+        <!-- Ends on <input type='text' name="event[repeat][end_date]" id="end_date" disabled> -->
+
+        <!-- <div class="radio">
+          <label>
+            <input type="radio" name="event[repeat][end_mode]" id="options_occurrences" value="occurrences" checked>
+            Ends after <input type="text" name="event[repeat][occurrences]" id="occurrences"> occurances
+          </label>
         </div>
-        <div class="form-group">
-          <div class="form-inline">
-            <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-            <div class="radio">
-              <label>
-                <input type="radio" name="event[repeat][end_mode]" id="options_end_date" value="end_date">
-                On <input type='text' name="event[repeat][end_date]" id="end_date" disabled>
-              </label>
-            </div>
-          </div>
-        </div>
-        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="event[repeat][end_mode]" id="options_end_date" value="end_date">
+            Ends on <input type='text' name="event[repeat][end_date]" id="end_date" disabled>
+          </label>
+        </div> -->
 
       </div> <!-- End repeat_info -->
 
-      <div class="text-center">
-        <%= f.submit %>
-      </div>
+      <!-- <div class="text-center">
+        <%# f.submit %>
+      </div> -->
 
-    <% end %>
+    <%# end %>
+     <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
 </div>
 

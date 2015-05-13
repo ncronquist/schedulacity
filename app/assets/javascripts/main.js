@@ -28,6 +28,8 @@ $(function(){
 //radio boxes label plugin
 $(document).ready(function(){
     $(":radio").labelauty(({ label: false }));
+    $(".to-labelauty").labelauty({ minimum_width: "100px" });
+    $(".to-labelauty-icon").labelauty({ label: false });
 });
 
 
