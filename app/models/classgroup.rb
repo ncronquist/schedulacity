@@ -4,7 +4,7 @@ class Classgroup < ActiveRecord::Base
   has_and_belongs_to_many :students
   has_many :events
 
-  validates :name,
-    presence: true
+  # validates :name,
+  #   presence: true
 
 end

@@ -40,7 +40,7 @@ $(function(){
 
   //new student validation
   $('#new_student').validate({
-    debug: true,
+    // debug: true,
     rules: {
       "student[name]": {
         required: true,
@@ -60,7 +60,14 @@ $(function(){
       }
     }
   });
-
+  //new classgroup validation
+  $('#new_classgroup').validate({
+    rules: {
+      "classgroup[name]": {
+        required: true
+      }
+    }
+  });
 
   //fullCalendar method
   $('#calendar').fullCalendar({
