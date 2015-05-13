@@ -11,14 +11,14 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to classgroups_path
     else
-      flash[:danger] = "Credentials Invalid"
+      flash[:danger] = "Credentials Invalid. Please check your email and password and try again."
       redirect_to :root
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:info] = "You have logged out."
+    flash[:info] = "You are now logged out."
     redirect_to :root
   end
 

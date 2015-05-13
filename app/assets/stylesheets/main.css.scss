@@ -1,0 +1,252 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: white;
+  background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat:no-repeat;
+ /* IE10 Consumer Preview */
+background-image: -ms-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+/* Mozilla Firefox */
+background-image: -moz-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+/* Opera */
+background-image: -o-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+/* Webkit (Safari/Chrome 10) */
+background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #22B4F2), color-stop(1, #336799));
+/* Webkit (Chrome 11+) */
+background-image: -webkit-radial-gradient(center, circle farthest-corner, #22B4F2 0%, #336799 100%);
+/* W3C Markup, IE10 Release Preview */
+background-image: radial-gradient(circle farthest-corner at center, #22B4F2 0%, #336799 100%);
+
+/*font for body*/
+  font-family: Helvetica;
+  font-size: 25px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 300 !important;
+  line-height: 20px;
+  font-color: #474747;
+
+
+}
+
+h1, h2, h3 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 45px;
+  font-color: #333333;
+}
+
+.well {
+  background-color: white;
+  display: inline-block;
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin-top: 40px;
+  z-index: 2
+
+}
+
+/*.wellsecondary {
+  background-color: white;
+  display: inline-block;
+  padding: 20px;
+  border: none;
+  width: 100%;
+  height: 100%;
+}*/
+
+table, td, tr, th, tbody, thead {
+  border: 1px solid gray !important;
+  font-family: Helvetica;
+  font-size: 25px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 300 !important;
+  font-color: #474747;
+}
+
+th {
+  font-family: Helvetica;
+  font-size: 25px;
+  font-style: bold;
+  font-weight: 400 !important;
+  font-color: #474747;
+
+}
+
+
+a {
+  color: #474747;
+}
+
+a:hover {
+  color: #22B4F2;
+  text-decoration: none;
+}
+
+
+
+.btn {
+  -webkit-border-radius: 3em;
+  -moz-border-radius: 3em;
+  -ms-border-radius: 3em;
+  -o-border-radius: 3em;
+  border-radius: 3em;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 5px 25px;
+
+}
+.btn.btn-primary {
+  border: 2px solid #22B4F2;
+  background: none;
+  color: #22B4F2;
+}
+.btn.btn-primary:hover {
+  color: #ffffff;
+  background-color: #22B4F2;
+}
+.btn.btn-default {
+  border: none;
+  background: #ffffff;
+  /* Old browsers */
+  background: -moz-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #cccccc));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* IE10+ */
+  background: linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#cccccc, GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+.btn.btn-lg {
+  padding: 10px 25px;
+}
+.btn:hover {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+
+/*class show page*/
+
+#classshow {
+   align-self: stretch;
+   width: 100%;
+
+}
+
+#classheader {
+  font-family: Helvetica;
+  font-size: 50px;
+  font-style: bold;
+  font-weight: 400;
+  font-color: #474747;
+  padding-right: 25px;
+}
+
+#classshowwellstudents {
+  align-self: stretch;
+  min-height: 350px;
+  font-family: Helvetica;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 300;
+  font-color: #474747;
+
+}
+
+#classshowwellclass {
+  align-self: stretch;
+  min-height: 350px;
+
+}
+
+.glyphicon.glyphicon-eye-open {
+    font-size: 1.0em;
+}
+
+.glyphicon.glyphicon-trash {
+  font-size: 0.5em;
+  border: 2px solid #E61616;
+  background: none;
+  color: #E61616;
+  margin: 5px;
+
+}
+
+.glyphicon.glyphicon-trash:hover {
+  font-size: 0.5em;
+  color: #ffffff;
+  background-color: #E61616;
+
+}
+
+.glyphicon.glyphicon-pencil{
+  font-size: 0.5em;
+  border: 2px solid #22B4F2;
+  background: none;
+  color: #22B4F2;
+  margin: 5px;
+}
+
+.glyphicon.glyphicon-pencil:hover{
+  font-size: 0.5em;
+  background-color: #22B4F2;
+  color: #ffffff;
+}
+
+.glyphicon.glyphicon-calendar{
+  font-size: 0.5em;
+  border: 2px solid #22B4F2;
+  background: none;
+  color: #22B4F2;
+  margin: 5px;
+}
+
+.glyphicon.glyphicon-calendar:hover{
+  font-size: 0.5em;
+  background-color: #22B4F2;
+  color: #ffffff;
+}
+
+
+#classshowdescription {
+  width: 100%;
+  margin: 10px;
+  line-height: 110%;
+  height: 150%;
+
+}
+
+#classshowheader{
+  max-width: 100%;
+  padding: 25px;
+  padding-bottom: 0px !important;
+
+}
+
+#listclassshow {
+  margin-left: -35px;
+}
+
+#classshowpage {
+  padding-bottom: 60px;
+}
