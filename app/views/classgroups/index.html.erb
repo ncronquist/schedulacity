@@ -1,9 +1,54 @@
 <div class='row'>
-  <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
+  <div class='col-sm-5 col-sm-offset-3'>
     <h1>Class List</h1>
+    <select class='class-state'>
+      <option value='open'>Open Classes</option>
+      <option value='closed'>Closed Classes</option>
+    </select>
+  </div>
+  <div class='col-sm-1'>
+    <%= link_to "", new_classgroup_path, :class => 'btn btn-success glyphicon glyphicon-plus' %>
   </div>
 </div>
+<% if @classes.count < 1 %>
 <div class='row'>
+  <div class='col-sm-6 col-sm-offset-3'>
+    <p>Click on the green add button to create a new class!</p>
+  </div>
+</div>
+<% else %>
+<div class='row open-classes'>
+  <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @classes.count < 1 %>
+          <tr>
+            <td>Click on the green add button about to create a new class</td>
+            <td>None</td>
+          </tr>
+          <% else %>
+          <% @classes.each do |group| %>
+              <% if group.active %>
+          <tr>
+            <td><%= link_to group.name, classgroup_path(group.id) %></td>
+            <td><%= group.description.first(50) %></td>
+          </tr>
+          <% end %>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class='row closed-classes hidden'>
   <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3'>
     <div class="table-responsive">
       <table class="table table-hover">
@@ -21,17 +66,21 @@
           </tr>
           <% else %>
           <% @classes.each do |group| %>
+              <% if !group.active %>
           <tr>
             <td><%= link_to group.name, classgroup_path(group.id) %></td>
-            <td><%= group.description %></td>
+            <td><%= group.description.first(50) %></td>
           </tr>
+          <% end %>
           <% end %>
           <% end %>
         </tbody>
       </table>
     </div>
-    <%= link_to 'Add Class', new_classgroup_path, :class => 'btn btn-primary' %>
   </div>
+  <% end %>
 </div>
+
+
 
 

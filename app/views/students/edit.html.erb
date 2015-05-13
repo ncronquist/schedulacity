@@ -9,11 +9,11 @@
       <%= f.text_field :name, placeholder: 'Name' %>
       <%= f.text_area :note, placeholder: 'Notes' %>
       <%= f.text_field :email, placeholder: "Email" %>
-      <%= f.text_field :dob, placeholder: 'Birthday' %>
+      <%= f.text_field :dob, :label => 'Birthday', placeholder: 'Birthday' %>
       <%= f.text_field :phone_number, placeholder: "Phone Number" %>
       <%= f.text_field :street, placeholder: "Address" %>
       <%= f.text_field :city, placeholder: "City" %>
-      <%= f.text_field :state, placeholder: "State" %>
+      <%= f.select(:state, options_for_select(us_states, "CA"))%>
       <%= f.text_field :zip, placeholder: "Zip" %>
       <%= f.submit 'Submit', :class => 'btn btn-primary' %>
     <% end %>

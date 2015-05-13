@@ -41,7 +41,14 @@
 
 
   <div class='col-md-6'>
-    <h2>Class Events</h2>
+    <div class='row'>
+      <div class='col-md-6'>
+        <h2>Class Events</h2>
+      </div>
+      <div class='col-md-6'>
+        <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-success glyphicon glyphicon-plus pull-right' %>
+      </div>
+    </div>
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -51,9 +58,9 @@
           <th>City</th>
           <th>&nbsp</th>
         </thead>
-
-        <% @events.each do |eventlist| %>
         <tbody>
+        <% if @events.count >= 1 %>
+        <% @events.each do |eventlist| %>
           <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
           <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
           <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
@@ -61,9 +68,11 @@
           <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>
         </tbody>
         <% end %>
-
+        <% else %>
       </table>
+        <p>Click on the add button above to create new events for this class!</p>
     </div>
+        <% end %>
   </div>
 
 
