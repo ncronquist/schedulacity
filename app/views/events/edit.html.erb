@@ -1,11 +1,10 @@
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+<div class="container">
+<div class='well'>
     <h1>Edit Event</h1>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+
+<div class='well'>
+  <div class='col-xs-10 col-xs-offset-1'>
     <%= bootstrap_form_for @event, html: {class: "eventedit"} do |f| %>
       <input type="hidden" name="UTC" id="UTC" value="0">
       <%= f.hidden_field :note %>
@@ -38,9 +37,17 @@
         <input type="hidden" id="event_end_original" value="<%=@event.end%>">
       </div>
 
-      <%= f.submit %>
+      <%= f.submit "Submit", :class => "btn btn-primary btn-lg" %>
 
     <% end %>
+  </div>
+</div>
+    <div class='row'>
+    <div class='col-xs-10' id="backeventshow">
+      <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
+
+    </div>
+  </div>
   </div>
 </div>
 

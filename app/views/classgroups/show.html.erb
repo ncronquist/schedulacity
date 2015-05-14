@@ -5,29 +5,31 @@
   <div class='col-sm-12' id="classshowheader">
 
     <h1 id="classheader"><%= @class.name %>
+<br id="classshowbr" style="display: none;">
+    <%= link_to '', classgroup_path(params[:id]), :class => 'linkbuttonstrash btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
+    <%= link_to '', edit_classgroup_path(@class.id), :class => 'linkbuttons btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+    <%= link_to '', '/events', :class => 'linkbuttons btn btn-primary glyphicon glyphicon-calendar pull-right' %>
+    <a class="linkbuttons btn btn-primary glyphicon glyphicon-phone pull-right" data-toggle="modal" href='#modal-id'></a>
 
-    <%= link_to '', classgroup_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
-    <%= link_to '', edit_classgroup_path(@class.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
-    <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
-    <a class="btn btn-primary glyphicon glyphicon-phone pull-right" data-toggle="modal" href='#modal-id'></a>
+<!-- Texting Modal -->
     <div class="modal fade" id="modal-id">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Send a Text to the Class:</h4>
+            <h3 class="">Send a Text to the Class:</h3>
           </div>
           <div class="modal-body">
             <%= form_for :twilio, url: '/twilio/send_text_message', method: :post do |f| %>
-              <%=f.text_field "Hey" %>
+              <%=f.text_area "Hey", :style => "width: 100%; font-size: 30px; padding: 10px; resize: none;" %>
               <input name='class' type='hidden' value="<%=@class.id %>" >
-              <%=f.submit "Send Text", :id => 'text-submit' %>
+              <%=f.submit "Send Text", :id => 'text-submit', :class => "btn btn-primary" %>
             <% end %>
           </div>
-          <div class="modal-footer">
+          <!-- <div class="modal-footer"> -->
 <!--             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary">Save changes</button> -->
-          </div>
+         <!--  </div> -->
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -68,7 +70,7 @@
 
       </div>
   <div class='row'>
-    <div class='col-xs-10' id="backeventshow">
+    <div class='col-xs-10 backbutton' id="backeventshow">
       <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
 
     </div>
@@ -83,13 +85,13 @@
 </h2>
       <br>
       <br>
-      <div class="table-responsive">
-        <table class="mytable table">
+      <div>
+        <table class="footable table mytable table">
           <thead>
             <th>Start Time</th>
-            <th>End Time</th>
-            <th>Address</th>
-            <th>City</th>
+            <th data-hide="phone">End Time</th>
+            <th data-hide="phone">Address</th>
+            <th data-hide="phone">City</th>
             <th>&nbsp</th>
           </thead>
           <tbody>

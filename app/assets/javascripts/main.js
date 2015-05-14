@@ -116,3 +116,10 @@ $(document).ready(function(){
     $('#flash').remove();
   }, 5000);
  })
+
+
+  $(function () {
+    $('.footable').footable();
+  });
+
+
