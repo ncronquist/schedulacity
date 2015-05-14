@@ -134,15 +134,73 @@
         format: 'MM/DD/YYYY'
       });
 
-      // If the event_start date changes; set the minimum date to that date
-      // for the event end date
-      $("#event_start").on("dp.change", function (e) {
-        $('#event_end').data("DateTimePicker").minDate(e.date);
-      });
-      // $("#event_end").on("dp.change", function (e) {
-      //   $('#event_start').data("DateTimePicker").maxDate(e.date);
-      // });
+      // Only allow events to start and end on the same day
+      // #############
+      // EDIT
+      // Turns out this doesn't really matter as long as the first day of the
+      // event is getting chosen on the repeat day chooser, so I'm
+      // commenting this out for now.
+      // #############
+      // $("#event_start").on("dp.hide", function(e) {
+      //   event_start = $('#event_start').data("DateTimePicker").date()
+      //   max_date = event_start.hour(23).minute(59)
+      //   $('#event_end').data("DateTimePicker").maxDate(max_date);
+      // })
 
+      $("#event_start").on("dp.change", function (e) {
+        // If the event_start date changes; set the minimum date to that date
+        // for the event end date
+        $('#event_end').data("DateTimePicker").minDate(e.date);
+
+
+        // When the event_start gets set, set the event_end to 1 hour later
+        event_start = $('#event_start').data("DateTimePicker").date()
+        $('#event_end').data("DateTimePicker").date(event_start.add(1, 'h'))
+
+        // When the event_start gets set, check the repeat day at the same time
+        if( event_start.day() == 0 ) {
+          $('#cb-sun').prop('checked', true)
+        } else {
+          $('#cb-sun').prop('checked', false)
+        }
+
+        if( event_start.day() == 1 ) {
+          $('#cb-mon').prop('checked', true)
+        } else {
+          $('#cb-mon').prop('checked', false)
+        }
+
+        if( event_start.day() == 2 ) {
+          $('#cb-tue').prop('checked', true)
+        } else {
+          $('#cb-tue').prop('checked', false)
+        }
+
+        if( event_start.day() == 3 ) {
+          $('#cb-wed').prop('checked', true)
+        } else {
+          $('#cb-wed').prop('checked', false)
+        }
+
+        if( event_start.day() == 4 ) {
+          $('#cb-thu').prop('checked', true)
+        } else {
+          $('#cb-thu').prop('checked', false)
+        }
+
+        if( event_start.day() == 5 ) {
+          $('#cb-fri').prop('checked', true)
+        } else {
+          $('#cb-fri').prop('checked', false)
+        }
+
+        if( event_start.day() == 6 ) {
+          $('#cb-sat').prop('checked', true)
+        } else {
+          $('#cb-sat').prop('checked', false)
+        }
+
+      });
 
       // Show/hide repeat event fields
       $('#repeat').click(function() {
