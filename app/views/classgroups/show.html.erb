@@ -5,10 +5,32 @@
   <div class='col-sm-12' id="classshowheader">
 
     <h1 id="classheader"><%= @class.name %>
+
     <%= link_to '', classgroup_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
     <%= link_to '', edit_classgroup_path(@class.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
     <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
-
+    <a class="btn btn-primary glyphicon glyphicon-phone pull-right" data-toggle="modal" href='#modal-id'></a>
+    <div class="modal fade" id="modal-id">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Send a Text to the Class:</h4>
+          </div>
+          <div class="modal-body">
+            <%= form_for :twilio, url: '/twilio/send_text_message', method: :post do |f| %>
+              <%=f.text_field "Hey" %>
+              <input name='class' type='hidden' value="<%=@class.id %>" >
+              <%=f.submit "Send Text", :id => 'text-submit' %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+<!--             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     </h1>
     <br>
     <br>
