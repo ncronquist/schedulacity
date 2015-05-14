@@ -70,7 +70,7 @@ label.control-label {
   line-height: none !important;
 }
 
-.form-control.class {
+.form-control.class-state {
   height: 40px;
   width: 25%;
   margin-left: 15px;
@@ -195,11 +195,66 @@ ul.nav.navbar-nav.navbar-right .active {
 
 /*Class index page*/
 
+@media screen and (max-width: 400px) {
+/*  #tableandtext {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-size: 15px !important;
+
+  }*/
+  .mytable {
+  margin:0px !important;
+  font-size: 15px !important;
+
+
+}
+.mytable td {
+  padding-bottom: 0px !important;
+  font-size: 15px !important;
+
+}
+.mytable th {
+  padding-bottom: 0px !important;
+  border: all;
+  font-size: 15px !important;
+
+}
+
+.form-control.class-state {
+  width: 60% !important;
+
+}
+
+
+
+}
+
+@media screen and (max-width: 400px) {
+  #classindex {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+
+  }
+}
+
+
+
 #tableandtext {
   margin-top: 50px;
 
 }
 
+/*.mytable {
+  margin:0px !important;
+  table-layout:fixed;
+}
+
+.mytable td {
+  padding-bottom: 0px !important;
+  overflow:hidden;
+}*/
 
 table.mytable, .mytable td, .mytable tr, .mytable th, .mytable tbody, .mytable thead {
   border: 1px solid gray !important;

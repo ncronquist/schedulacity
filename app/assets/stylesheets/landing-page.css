@@ -92,6 +92,18 @@ img {
     .intro-divider {
         width: 100%;
     }
+
+    #landing2 {
+        font-size: 200%;
+    }
+
+    #landing1 {
+        font-size: 200%;
+    }
+
+    #landing3 {
+        font-size: 100%;
+    }
 }
 
 .network-name {

@@ -33,8 +33,8 @@
             <div class="modal-body">
 
    <%= bootstrap_form_for :user, url: login_path  do |f| %>
-     <%= f.text_field :email, hide_label: true, placeholder: "Enter Your Email", icon: "user", class: "input-lg" %>
-     <%= f.password_field :password, hide_label: true, placeholder: "Enter Your Password", icon: "lock", class: "input-lg"%>
+     <%= f.text_field :email, hide_label: true, placeholder: "Enter Your Email", icon: "user", :class => "input-lg" %>
+     <%= f.password_field :password, hide_label: true, placeholder: "Enter Your Password", icon: "lock", :class => "input-lg"%>
 
      <%= f.submit "Login", class: "btn btn-primary btn-lg btn-block" %>
    <% end %>
