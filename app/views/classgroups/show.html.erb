@@ -24,23 +24,12 @@
                 <h3 class="">Send a Text to the Class:</h3>
               </div>
               <div class="modal-body">
-    <!-- <<<<<<< HEAD
-                <%# form_for :twilio, url: '/twilio/send_text_message', method: :post, :html => {:id => 'text-form'} do |f| %>
-                  <%#f.text_field "Hey" %>
-                  <input name='class' type='hidden' value="<%#@class.id %>" >
-                  <%#f.submit "Send Text", :id => 'text-submit', :required => true %>
-    ======= -->
                 <%= bootstrap_form_for :twilio, url: '/twilio/send_text_message', method: :post do |f| %>
                   <%=f.text_field "Hey" %>
                   <input name='class' type='hidden' value="<%=@class.id %>" >
                   <%=f.submit "Send Text", :id => 'text-submit', :class => 'btn btn-primary' %>
-    <!-- >>>>>>> Update layout of classgroup show page (mostly the modal) -->
                 <% end %>
               </div>
-              <!-- <div class="modal-footer"> -->
-    <!--             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button> -->
-             <!--  </div> -->
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -108,11 +97,13 @@
               <% if @events.count >= 1 %>
                 <tbody>
                   <% @events.each do |eventlist| %>
-                    <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
-                    <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
-                    <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
-                    <td style="white-space:normal;"><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %></td>
-                    <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>
+                    <tr>
+                      <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
+                      <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
+                      <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
+                      <td style="white-space:normal;"><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %></td>
+                      <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>
+                    </tr>
                   <% end %>
                 </tbody>
               <% end %>
