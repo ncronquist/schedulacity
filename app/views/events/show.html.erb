@@ -3,7 +3,7 @@
 
 <div class="well">
   <div class='col-sm-12' id="eventshowheader">
-      <h1>Event Information for Class: <b><%= @class.name %></b>
+      <h1>Event Information for Class: <b><%= link_to @class.name, classgroup_path(@class.id) %></b>
 
       <%= link_to '', event_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
       <%= link_to '', edit_event_path(@event.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
