@@ -138,7 +138,6 @@ img {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(../img/sunset.jpg) no-repeat center center;
     background-size: cover;
 }
 
