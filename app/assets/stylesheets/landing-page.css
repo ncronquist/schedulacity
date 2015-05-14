@@ -71,6 +71,7 @@ img {
 }
 
 @media(max-width:767px) {
+
     .intro-message {
         padding-bottom: 15%;
     }

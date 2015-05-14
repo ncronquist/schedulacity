@@ -278,6 +278,20 @@ table.mytable, .mytable td, .mytable tr, .mytable th, .mytable tbody, .mytable t
 
 }
 
+.glyphicon.glyphicon-phone {
+  font-size: 0.5em;
+  border: 2px solid #1D99CF;
+  background: none;
+  color: #1D99CF;
+  margin: 5px;
+}
+
+.glyphicon.glyphicon-phone:hover {
+  font-size: 0.5em;
+  background-color: #1D99CF;
+  color: #ffffff;
+}
+
 .glyphicon.glyphicon-eye-open {
   font-size: 0.9em;
   border: 2px solid #1D99CF;
