@@ -40,7 +40,7 @@ before_action :is_authenticated?
   def update
     @student = Student.find(params[:id])
     if @student.update(student_params)
-      redirect_to students_path
+      redirect_to student_path(params[:id])
     else
       render 'edit'
     end
