@@ -1,96 +1,90 @@
 <div class="container-fluid">
-<div id="eventshowpage">
+  <div id="eventshowpage">
+    <div class="well">
+      <div class='col-sm-12' id="eventshowheader">
+        <h1>
+          Event Information for Class: <b><%= link_to @class.name, classgroup_path(@class.id) %></b>
 
-<div class="well">
-  <div class='col-sm-12' id="eventshowheader">
-      <h1>Event Information for Class: <b><%= link_to @class.name, classgroup_path(@class.id) %></b>
+          <%= link_to '', event_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
+          <%= link_to '', edit_event_path(@event.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+          <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
+        </h1>
 
-      <%= link_to '', event_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
-      <%= link_to '', edit_event_path(@event.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
-      <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
-    </h1>
-    <br>
-    <br>
-    </div>
+        <br>
+        <br>
+      </div>
 
+      <div class='col-md-6 col-xs-12'>
+        <div class="event list-group">
+          <P class="event list-group-item"><b>Start Time: </b><%= local_time(@event.start) %></p>
+          <P class="event list-group-item"><b>End Time: </b><%= local_time(@event.end) %></p>
+          <P class="event list-group-item"><b>Street Address: </b><% if(@event.street_address.blank?) %> None Entered <% else %> <%= @event.street_address %> <% end %></p>
+          <P class="event list-group-item"><b>City: </b><% if(@event.city.blank?) %> None Entered <% else %> <%= @event.city %> <% end %> &nbsp &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(@event.state.blank?) %> None Entered <% else %> <%= @event.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(@event.zip.blank?) %> None Entered <% else %> <%= @event.zip %> <% end %> </p>
+        </div>
+      </div>
 
-
-    <div class='col-md-6 col-xs-12'>
-      <div class="event list-group">
-        <%# @events.each do |eventlist| %>
-        <P class="event list-group-item"><b>Start Time: </b><%= local_time(@event.start) %></p>
-        <P class="event list-group-item"><b>End Time: </b><%= local_time(@event.end) %></p>
-        <P class="event list-group-item"><b>Street Address: </b><% if(@event.street_address.blank?) %> None Entered <% else %> <%= @event.street_address %> <% end %></p>
-        <P class="event list-group-item"><b>City: </b><% if(@event.city.blank?) %> None Entered <% else %> <%= @event.city %> <% end %> &nbsp &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(@event.state.blank?) %> None Entered <% else %> <%= @event.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(@event.zip.blank?) %> None Entered <% else %> <%= @event.zip %> <% end %> </p>
-        <%# end %>
+      <div class='col-md-6 col-xs-12'>
+        <%= bootstrap_form_for @event do |f| %>
+          <%= f.text_area :note,:hide_label => true, :placeholder => 'Event notes...', :class => "input-lg" %>
+          <%= f.submit 'Save', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
+        <% end %>
       </div>
     </div>
-    <div class='col-md-6 col-xs-12'>
-      <%= bootstrap_form_for @event do |f| %>
-      <%= f.text_area :note,:hide_label => true, :placeholder => 'Event notes...', :class => "input-lg" %>
-      <%= f.submit 'Save', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
-      <% end %>
-</div>
-  </div>
 
+    <div class='well'>
+      <div class='col-md-10 col-md-offset-1'>
+        <h2 class="text-center">Students</h2>
+        <form class="form-group" action="/events/<%= @event.id %>/attendances" method="post" id="attendancesubmit">
+          <div>
+            <table class="footable table attendancetable table table-bordered">
+              <thead>
+                <th class="text-center">&nbsp</th>
+                <th data-hide="phone" class="text-center">Present</th>
+                <th data-hide="phone" class="text-center">Tardy</th>
+                <th data-hide="phone" class="text-center">Absent</th>
+              </thead>
 
-  <div class='well'>
-    <div class='col-md-10 col-md-offset-1'>
-      <h2 class="text-center">Students</h2>
+              <tbody>
+                <% @students.each do |student| %>
+                  <tr>
+                    <div class="checkbox">
+                      <td style="white-space:normal;"><b><%= link_to student.name, student_path(student.id) %></b></td>
 
-<div>
-      <table class="footable table attendancetable table table-bordered">
-        <thead>
-          <th class="text-center">&nbsp</th>
-          <th data-hide="phone" class="text-center">Present</th>
-          <th data-hide="phone" class="text-center">Tardy</th>
-          <th data-hide="phone" class="text-center">Absent</th>
-        </thead>
-
-        <tbody>
-        <% @students.each do |student| %>
-<form class="form-group" action="/events/<%= @event.id %>/attendances" method="post" id="attendancesubmit">
-          <tr>
-          <div class="checkbox">
-            <td style="white-space:normal;"><b><%= link_to student.name, student_path(student.id) %></b></td>
-
-            <% attendance = student.attendances.find_by_event_id(@event.id) %>
-            <% if attendance.blank? || attendance.attendance_type == 1 %>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio1" value="1"></label></td>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio2" value="2"></label></td>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio3" value="3"></label></td>
-            <% elsif attendance.attendance_type == 2 %>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio1" value="1"></label></td>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio2" value="2"></label></td>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio3" value="3"></label></td>
-            <% else attendance.attendance_type == 3 %>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio1" value="1"></label></td>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" id="inlineRadio2" value="2"></label></td>
-              <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" id="inlineRadio3" value="3"></label></td>
-            <% end %>
+                      <% attendance = student.attendances.find_by_event_id(@event.id) %>
+                      <% if attendance.blank? || attendance.attendance_type == 1 %>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" value="1"></label></td>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" value="2"></label></td>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" value="3"></label></td>
+                      <% elsif attendance.attendance_type == 2 %>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" value="1"></label></td>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" value="2"></label></td>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" value="3"></label></td>
+                      <% else attendance.attendance_type == 3 %>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" value="1"></label></td>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" value="2"></label></td>
+                        <td class="text-center" style="white-space:normal;"><label class="radio-inline"><input type="radio" name="student[<%= student.id %>]" checked="checked" value="3"></label></td>
+                      <% end %>
+                    </div>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
           </div>
-        <% end %>
-        </tr>
-        </tbody>
-      </table>
-            <%= button_to 'Submit', {:class => 'btn btn-primary btn-lg'} %>
+          <%= button_to 'Submit', {:class => 'btn btn-primary btn-lg'} %>
+        </form>
+      </div>
 
-</form>
-    </div>
+      <br>
+      <br>
 
-
-  </div>
-  <br>
-  <br>
-  <div class='row'>
-    <div class='col-xs-10' id="backeventshow">
-      <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
-
-    </div>
-  </div>
-  </div>
-</div>
-</div>
+      <div class='row'>
+        <div class='col-xs-10' id="backeventshow">
+          <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
+        </div>
+      </div>
+    </div> <!-- End well -->
+  </div> <!-- End eventshowpage -->
+</div> <!-- End container-fluid -->
 
 
 
