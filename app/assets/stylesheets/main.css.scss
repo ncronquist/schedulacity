@@ -806,5 +806,15 @@ div.fc-content {
   font-size: 15px;
 }
 
+/*calendar buttons for iphone5 and smaller*/
+@media (max-width: 321px) {
+  button.fc-today-button {
+    margin-left: -.1em !important;
+  }
+  button.fc-prev-button {
+    margin-left: -10px !important;
+  }
+}
+
 
 

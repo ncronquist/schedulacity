@@ -18,14 +18,14 @@
         <div class="event list-group">
           <P class="event list-group-item"><b>Start Time: </b><%= local_time(@event.start) %></p>
           <P class="event list-group-item"><b>End Time: </b><%= local_time(@event.end) %></p>
-          <P class="event list-group-item"><b>Street Address: </b><% if(@event.street_address.blank?) %> None Entered <% else %> <%= @event.street_address %> <% end %></p>
-          <P class="event list-group-item"><b>City: </b><% if(@event.city.blank?) %> None Entered <% else %> <%= @event.city %> <% end %> &nbsp &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(@event.state.blank?) %> None Entered <% else %> <%= @event.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(@event.zip.blank?) %> None Entered <% else %> <%= @event.zip %> <% end %> </p>
+          <P class="event list-group-item"><b>Street Address: </b><% if(@event.street_address.blank?) %>  <% else %> <%= @event.street_address %> <% end %></p>
+          <P class="event list-group-item"><b>City: </b><% if(@event.city.blank?) %>  <% else %> <%= @event.city %> <% end %> &nbsp &nbsp &nbsp &nbsp &nbsp <b>State: </b><% if(@event.state.blank?) %>  <% else %> <%= @event.state %> <% end %> &nbsp &nbsp &nbsp &nbsp <b>Zip: </b><% if(@event.zip.blank?) %>  <% else %> <%= @event.zip %> <% end %> </p>
         </div>
       </div>
 
       <div class='col-md-6 col-xs-12'>
         <%= bootstrap_form_for @event do |f| %>
-          <%= f.text_area :note,:hide_label => true, :placeholder => 'Event notes...', :class => "input-lg" %>
+          <%= f.text_area :note,:hide_label => true, :placeholder => 'Event NoteTaker...', :class => "input-lg" %>
           <%= f.submit 'Save', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
         <% end %>
       </div>
@@ -33,7 +33,7 @@
 
     <div class='well'>
       <div class='col-md-10 col-md-offset-1'>
-        <h2 class="text-center">Students</h2>
+        <h2 class="text-center">Attendance Tracker</h2>
         <form class="form-group" action="/events/<%= @event.id %>/attendances" method="post" id="attendancesubmit">
           <div>
             <table class="footable table attendancetable table table-bordered">
