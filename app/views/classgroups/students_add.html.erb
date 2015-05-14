@@ -32,7 +32,7 @@
     <br>
     <br>
     <%= bootstrap_form_for @class, :url => "/classgroups/#{params['id']}/students" do |f| %>
-      <%= f.collection_check_boxes :student_ids, @all_students, :id, :name, :hide_label => true, :stlye => "margin: 10px;" %>
+      <%= f.collection_check_boxes :student_ids, @all_students, :id, :name, :hide_label => true %>
       <%= f.submit 'Submit', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
     <% end %>
   </div>

@@ -15,7 +15,8 @@
             <a class="btn btn-primary glyphicon glyphicon-phone pull-right" data-toggle="modal" href='#modal-id'></a>
           </div>
         </h1>
-
+<br>
+<br>
         <div class="modal fade" id="modal-id">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -57,12 +58,12 @@
           <br>
           <br>
 
-          <ul class="list-group">
+          <ul class="list-group" id="studentlist">
             <% if @students.count < 1 %>
               <p class="text-center">No students currently enrolled</p>
             <% else %>
               <% @students.each do |student| %>
-                <li class="list-group-item" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"><%= link_to student.name, student_path(student.id) %></li>
+                <li class="list-group-item" onmouseover="document.body.style.overflow='auto';" onmouseout="document.body.style.overflow='auto';"><%= link_to student.name, student_path(student.id) %></li>
               <% end %>
             <% end %>
           </ul>
@@ -77,7 +78,7 @@
       </div>
 
       <div class='col-md-6 col-xs-12'>
-        <div class="well" id="classshowwellclass" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';">
+        <div class="well" id="classshowwellclass" onmouseover="document.body.style.overflow='auto';" onmouseout="document.body.style.overflow='auto';">
           <h2>Class Events
             <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %>
           </h2>

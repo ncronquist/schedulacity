@@ -4,7 +4,7 @@ before_action :is_authenticated?
 
   def index
     @current_user = current_user
-    @students = Student.where(user_id: @current_user.id)
+    @students = Student.where(user_id: @current_user.id).order('name ASC')
     # render :json => @students
   end
 
