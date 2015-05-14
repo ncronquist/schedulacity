@@ -10,7 +10,7 @@
 
 
 <div class='well'>
-  <div class='col-xs-12'>
+  <div class='col-md-10 col-md-offset-1'>
     <div id="studentindex">
       <table class="footable table mytable table table-border table-hover">
         <thead>
@@ -31,7 +31,7 @@
           <% @students.each do |student| %>
           <tr>
             <td><%= link_to student.name, student_path(student.id) %></td>
-            <td><% if student.note? %><%= student.note.first(30) %><% else %>(empty)<% end %>
+            <td><% if student.note? %><%= student.note.first(30) %><% else %> N/A <% end %>
             </td>
             <td><% if student.classgroups.count < 1 %>Not currently enrolled in classes<% else %><% student_classes = student.classgroups %> <ul><% student_classes.each do |session| %> <li><%= link_to session.name, classgroup_path(session.id) %></li> <% end %><% end %><% end %></ul></td>
           </tr>

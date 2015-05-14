@@ -36,12 +36,6 @@ background-image: radial-gradient(circle farthest-corner at center, #1D99CF 0%, 
   margin-top: 100px;
 }
 
-.logo {
-  float: left;
-  width: 35%;
-  margin-top: -18px;
-  margin-left: -10px;
-}
 
 h1, h2, h3 {
   font-family: 'Lato', sans-serif;
@@ -161,13 +155,18 @@ a:hover {
 
 /*Navbar*/
 
+.logo {
+  float: left;
+  width: 100%;
+  margin-left: -10px;
+}
+
 .navbar {
   border-bottom: 5px solid #1D99CF;
      -webkit-box-shadow: 0 8px 8px -6px #24486B;
        -moz-box-shadow: 0 8px 8px -6px #24486B;
             box-shadow: 0 8px 8px -6px #24486B;
-
-  max-height: 340px;
+/*  max-height: 340px;*/
   min-height: 70px;
   background-color: white;
     font-family: 'Lato', sans-serif;
@@ -196,8 +195,12 @@ ul.nav.navbar-nav.navbar-right .active {
 
 .navbar a.navbar.brand {
   padding: 30px;
+
 }
 
+.navbar-header {
+  max-width: 250px;
+}
 
 
 /*Class index page*/
@@ -213,10 +216,28 @@ ul.nav.navbar-nav.navbar-right .active {
   .mytable {
   border-bottom: 1px solid gray;
   margin-bottom: 35px;
+  table-layout: fixed;
 
 }
 
+th, td {
+    border: 1px solid black;
+    overflow: hidden;
+    width: 90px;
+    word-wrap: break-word;
+    font-size: 20px !important;
+}
 
+.student.list-group-item {
+  word-wrap: break-word;
+}
+
+
+.footable-row-detail-row {
+  font-size: 15px !important;
+  padding: 0;
+  list-style-type: none !important;
+}
 
 body {
    overflow: auto !important;
@@ -230,6 +251,11 @@ body {
 
 ul.nav.navbar-nav.navbar-right a {
   padding: 10px;
+}
+
+.logo {
+  width: 75%;
+  margin-left: 5px;
 }
 
 
@@ -250,6 +276,11 @@ ul.nav.navbar-nav.navbar-right a {
 
 /*Class Pages*/
 
+
+#studentlist {
+margin-top: 20px;
+margin-left: 10px;
+}
 
 #occurrences.input-lg {
   width: 200px;
@@ -315,6 +346,57 @@ ul.nav.navbar-nav.navbar-right a {
 
 
 }
+
+
+@media (max-width: 1200px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+   .navbar-nav .open .dropdown-menu {
+       position: static;
+       float: none;
+       width: auto;
+       margin-top: 0;
+       background-color: transparent;
+       border: 0;
+       -webkit-box-shadow: none;
+       box-shadow: none;
+    }
+}
+
 
 @media screen and (max-width: 768px) {
 
