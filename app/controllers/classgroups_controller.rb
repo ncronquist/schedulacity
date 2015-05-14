@@ -26,13 +26,7 @@ class ClassgroupsController < ApplicationController
   def show
     @class = Classgroup.find(params[:id])
     @students = @class.students
-
-    @current_user = current_user
-    @events = Event.where(classgroup_id: @class.id)
-    # @event = @events.first.id
-    # render :json => @events
-
-
+    @events = Event.where(classgroup_id: @class.id).order("start ASC")
   end
 
   def edit
