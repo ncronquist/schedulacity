@@ -17,21 +17,3 @@
  *= require jquery-labelauty
  *= require font-awesome
  */
-
-#text-submit {
-  font-size: 15px;
-}
-
-li {
-  list-style-type: circle;
-}
-@media (max-width: 625px) {
-  .fc-month-button,
-  .fc-agendaWeek-button,
-  .fc-agendaDay-button {
-    display: none;
-  }
-}
-
-
-

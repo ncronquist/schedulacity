@@ -89,6 +89,9 @@ label {
   margin-top: 10px;
 }
 
+li {
+  list-style-type: circle;
+}
 
 a {
   color: #474747;
@@ -203,160 +206,162 @@ ul.nav.navbar-nav.navbar-right .active {
 /*Class index page*/
 
 @media screen and (max-width: 400px) {
-/*  #tableandtext {
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
+  /*  #tableandtext {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-size: 15px !important;
+
+    }*/
+    .mytable {
+    border-bottom: 1px solid gray;
+    margin-bottom: 35px;
+
+  }
+
+
+
+  body {
+     overflow: auto !important;
+  }
+
+  #classshowbr {
+    display: inline !important;
+  }
+
+  /*Navbar*/
+
+  ul.nav.navbar-nav.navbar-right a {
+    padding: 10px;
+  }
+
+
+  /*Event Pages*/
+
+  .attendancetable {
+    padding-top: 20px !important;
+    border-right: 1px solid gray !important;
+  }
+
+  #studentindex {
+    width: 100%;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+
+  /*Class Pages*/
+
+
+  #occurrences.input-lg {
+    width: 200px;
+  }
+
+  #end_date.input-lg {
+    width: 200px;
+  }
+
+  #classshowwellclass {
+    padding: 0px !important;
+    overflow: auto !important;
+    border-left: none;
+  }
+
+
+  #classnewwellclass {
+    margin: 0px !important;
+    padding: 0px !important;
+    border-right: none !important;
+  }
+
+  #classshowpage {
+    width: 100%;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+
+  #classsaddwellstudents {
+      padding: 0px !important;
+      margin-top: 30px !important;
+  }
+
+  #studentaddpage {
+    width: 100%;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+
+  #classshow {
+    padding-left: 0px;
+    margin-left: 0px !important;
+  }
+
+
+  /*.mytable td {
+    padding-bottom: 0px !important;
+    font-size: 15px !important;
+
+  }
+  .mytable th {
+    padding-bottom: 0px !important;
+    border: all;
     font-size: 15px !important;
 
   }*/
-  .mytable {
-  border-bottom: 1px solid gray;
-  margin-bottom: 35px;
 
+  .form-control.class-state {
+    width: 60% !important;
+
+  }
 }
 
-
-
-body {
-   overflow: auto !important;
-}
-
-#classshowbr {
-  display: inline !important;
-}
-
-/*Navbar*/
-
-ul.nav.navbar-nav.navbar-right a {
-  padding: 10px;
-}
-
-
-/*Event Pages*/
-
-.attendancetable {
-  padding-top: 20px !important;
-  border-right: 1px solid gray !important;
-}
-
-#studentindex {
-  width: 100%;
-  margin: 0px !important;
-  padding: 0px !important;
-}
-
-
-
-/*Class Pages*/
-
-
-#occurrences.input-lg {
-  width: 200px;
-}
-
-#end_date.input-lg {
-  width: 200px;
-}
-
-#classshowwellclass {
-  padding: 0px !important;
-  overflow: auto !important;
-  border-left: none;
-}
-
-
-#classnewwellclass {
-  margin: 0px !important;
-  padding: 0px !important;
-  border-right: none !important;
-}
-
-#classshowpage {
-  width: 100%;
-  margin: 0px !important;
-  padding: 0px !important;
-}
-
-#classsaddwellstudents {
-    padding: 0px !important;
-    margin-top: 30px !important;
-}
-
-#studentaddpage {
-  width: 100%;
-  margin: 0px !important;
-  padding: 0px !important;
-}
-
-#classshow {
-  padding-left: 0px;
-  margin-left: 0px !important;
-}
-
-
-/*.mytable td {
-  padding-bottom: 0px !important;
-  font-size: 15px !important;
-
-}
-.mytable th {
-  padding-bottom: 0px !important;
-  border: all;
-  font-size: 15px !important;
-
-}*/
-
-.form-control.class-state {
-  width: 60% !important;
-
-}
-
-
-
+@media (max-width: 625px) {
+  .fc-month-button,
+  .fc-agendaWeek-button,
+  .fc-agendaDay-button {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
 
-
   .mytable {
   border-bottom: 1px solid gray;
   margin-bottom: 35px;
 
-}
+  }
 
-body {
-   overflow: auto !important;
-}
+  body {
+     overflow: auto !important;
+  }
 
-.backbutton {
-  display: none;
-}
+  .backbutton {
+    display: none;
+  }
 
-/*Class Pages*/
+  /*Class Pages*/
 
-#classshowwellclass {
-  padding: 0px !important;
-  overflow: auto !important;
-  border-left: none !important;
-  margin: 10px;
-}
+  #classshowwellclass {
+    padding: 0px !important;
+    overflow: auto !important;
+    border-left: none !important;
+    margin: 10px;
+  }
 
-#classnewwellclass {
-  margin: 0px !important;
-  border-right: none !important;
-}
+  #classnewwellclass {
+    margin: 0px !important;
+    border-right: none !important;
+  }
 
-#classshowpage {
-  width: 100%;
-  margin: 0px !important;
-  padding: 0px !important;
-}
+  #classshowpage {
+    width: 100%;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
 
-#classshow {
-  padding-left: 0px;
-  margin-left: 0px !important;
-}
+  #classshow {
+    padding-left: 0px;
+    margin-left: 0px !important;
+  }
 
   #classindex {
     overflow-x: hidden;
@@ -431,9 +436,6 @@ table.mytable, .mytable td, .mytable tr, .mytable th, .mytable tbody, .mytable t
   font-color: #474747;
   margin: 0;
   overflow: auto;
-
-
-
 }
 
 #classshowwellclass {
@@ -450,9 +452,7 @@ table.mytable, .mytable td, .mytable tr, .mytable th, .mytable tbody, .mytable t
   #classshowwellclass {
   margin: 0;
   border: 0px !important;
-
-}
-
+  }
 }
 
 #classshow {
@@ -708,6 +708,11 @@ input[type=submit]:hover {
   background-color: #BEBEBE;
 }
 
+/* Update the size of the text in the labelauty checkboxes */
+input.labelauty + label {
+  font-size: 18px;
+}
+
 /*Student Directory*/
 
 .student.list-group {
@@ -723,6 +728,5 @@ input[type=submit]:hover {
 div.fc-content {
   font-size: 15px;
 }
-
 
 
