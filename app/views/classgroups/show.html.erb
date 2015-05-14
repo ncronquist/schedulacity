@@ -1,119 +1,130 @@
 <div class="container-fluid">
-<div id="classshowpage">
+  <div id="classshowpage">
 
-<div class="well">
-  <div class='col-sm-12' id="classshowheader">
+    <div class="well">
+      <div class='col-sm-12' id="classshowheader">
 
-    <h1 id="classheader"><%= @class.name %>
-<br id="classshowbr" style="display: none;">
-    <%= link_to '', classgroup_path(params[:id]), :class => 'linkbuttonstrash btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
-    <%= link_to '', edit_classgroup_path(@class.id), :class => 'linkbuttons btn btn-primary glyphicon glyphicon-pencil pull-right' %>
-    <%= link_to '', '/events', :class => 'linkbuttons btn btn-primary glyphicon glyphicon-calendar pull-right' %>
-    <a class="linkbuttons btn btn-primary glyphicon glyphicon-phone pull-right" data-toggle="modal" href='#modal-id'></a>
-
-<!-- Texting Modal -->
-    <div class="modal fade" id="modal-id">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 class="">Send a Text to the Class:</h3>
+        <h1 id="classheader">
+          <div class="col-sm-8">
+            <%= @class.name %>
           </div>
-          <div class="modal-body">
-            <%= form_for :twilio, url: '/twilio/send_text_message', method: :post, :html => {:id => 'text-form'} do |f| %>
-              <%=f.text_field "Hey" %>
-              <input name='class' type='hidden' value="<%=@class.id %>" >
-              <%=f.submit "Send Text", :id => 'text-submit', :required => true %>
-            <% end %>
+          <div class="col-sm-4">
+            <%= link_to '', classgroup_path(params[:id]), :class => 'btn btn-danger glyphicon glyphicon-trash pull-right', method: :delete, data: {confirm: 'Are you sure?'}  %>
+            <%= link_to '', edit_classgroup_path(@class.id), :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+            <%= link_to '', '/events', :class => 'btn btn-primary glyphicon glyphicon-calendar pull-right' %>
+            <a class="btn btn-primary glyphicon glyphicon-phone pull-right" data-toggle="modal" href='#modal-id'></a>
           </div>
-          <!-- <div class="modal-footer"> -->
-<!--             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button> -->
-         <!--  </div> -->
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    </h1>
-    <br>
-    <br>
-<div class='container pull-left' id="classshowdescription">
-  <div class="col-sm-12">
-    <div class="list-group" id="listclassshow">
-      <b>Description:</b> <%= @class.description %>
+        </h1>
+
+        <div class="modal fade" id="modal-id">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="">Send a Text to the Class:</h3>
+              </div>
+              <div class="modal-body">
+    <!-- <<<<<<< HEAD
+                <%# form_for :twilio, url: '/twilio/send_text_message', method: :post, :html => {:id => 'text-form'} do |f| %>
+                  <%#f.text_field "Hey" %>
+                  <input name='class' type='hidden' value="<%#@class.id %>" >
+                  <%#f.submit "Send Text", :id => 'text-submit', :required => true %>
+    ======= -->
+                <%= bootstrap_form_for :twilio, url: '/twilio/send_text_message', method: :post do |f| %>
+                  <%=f.text_field "Hey" %>
+                  <input name='class' type='hidden' value="<%=@class.id %>" >
+                  <%=f.submit "Send Text", :id => 'text-submit', :class => 'btn btn-primary' %>
+    <!-- >>>>>>> Update layout of classgroup show page (mostly the modal) -->
+                <% end %>
+              </div>
+              <!-- <div class="modal-footer"> -->
+    <!--             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button> -->
+             <!--  </div> -->
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <br>
+        <br>
+
+        <div class='container pull-left' id="classshowdescription">
+          <div class="col-sm-12">
+            <div class="list-group" id="listclassshow">
+              <b>Description:</b> <%= @class.description %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-</div>
+    <div class="well" id="classshow">
+      <div class='col-md-6 col-xs-12'>
+        <div class='well' id="classshowwellstudents" >
+          <h2>Students
+            <%= link_to '', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary glyphicon glyphicon-edit pull-right' %>
+          </h2>
 
-</div>
-</div>
+          <br>
+          <br>
 
-<div class="well" id="classshow">
+          <ul class="list-group">
+            <% if @students.count < 1 %>
+              <p class="text-center">No students currently enrolled</p>
+            <% else %>
+              <% @students.each do |student| %>
+                <li class="list-group-item" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"><%= link_to student.name, student_path(student.id) %></li>
+              <% end %>
+            <% end %>
+          </ul>
 
+        </div>
+
+        <div class='row'>
+          <div class='col-xs-10 backbutton' id="backeventshow">
+            <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
+          </div>
+        </div>
+      </div>
 
       <div class='col-md-6 col-xs-12'>
-    <div class='well' id="classshowwellstudents" >
-        <h2>Students
-          <%= link_to '', "/classgroups/#{@class.id}/students", :class => 'btn btn-primary glyphicon glyphicon-edit pull-right' %>
-        </h2>
-        <br>
-        <br>
-        <ul class="list-group">
-          <% if @students.count < 1 %>
-            <p class="text-center">No students currently enrolled</p>
-          <% else %>
-          <% @students.each do |student| %>
-            <li class="list-group-item" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"><%= link_to student.name, student_path(student.id) %></li>
-          <% end %>
-          <% end %>
-        </ul>
+        <div class="well" id="classshowwellclass" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';">
+          <h2>Class Events
+            <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %>
+          </h2>
 
+          <br>
+          <br>
+
+          <div>
+            <table class="footable table mytable table">
+              <thead>
+                <th>Start Time</th>
+                <th data-hide="phone">End Time</th>
+                <th data-hide="phone">Address</th>
+                <th data-hide="phone">City</th>
+                <th>&nbsp</th>
+              </thead>
+              <% if @events.count >= 1 %>
+                <tbody>
+                  <% @events.each do |eventlist| %>
+                    <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
+                    <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
+                    <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
+                    <td style="white-space:normal;"><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %></td>
+                    <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>
+                  <% end %>
+                </tbody>
+              <% end %>
+            </table>
+            <% if @events.count < 1 %>
+              <p class="text-center">Click on the add button above to create new events for this class!</p>
+            <% end %>
+          </div>
+        </div>
       </div>
-  <div class='row'>
-    <div class='col-xs-10 backbutton' id="backeventshow">
-      <%= link_to "&larr; Back".html_safe, "javascript:history.go(-1)" %>
-
-    </div>
-  </div>
-  </div>
-
-  <div class='col-md-6 col-xs-12'>
-    <div class="well" id="classshowwellclass" onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';">
-      <h2>Class Events
-
-        <%= link_to "",new_classgroup_event_path(params[:id]),:class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %>
-</h2>
-      <br>
-      <br>
-      <div>
-        <table class="footable table mytable table">
-          <thead>
-            <th>Start Time</th>
-            <th data-hide="phone">End Time</th>
-            <th data-hide="phone">Address</th>
-            <th data-hide="phone">City</th>
-            <th>&nbsp</th>
-          </thead>
-          <tbody>
-          <% if @events.count >= 1 %>
-          <% @events.each do |eventlist| %>
-            <td style="white-space:normal;"><time><%= local_time(eventlist.start) %></time></td>
-            <td style="white-space:normal;"><%= local_time(eventlist.end) %></td>
-            <td style="white-space:normal;"><% if(eventlist.street_address.blank?) %> None Entered <% else %> <%= eventlist.street_address %> <% end %></td>
-            <td style="white-space:normal;"><% if(eventlist.city.blank?) %> None Entered <% else %> <%= eventlist.city %> <% end %></td>
-            <td style="white-space:normal;"><%= link_to "", event_path(eventlist.id), :class => "btn btn-primary glyphicon glyphicon-eye-open" %></td>
-          </tbody>
-          <% end %>
-          <% else %>
-        </table>
-          <p class="text-center">Click on the add button above to create new events for this class!</p>
-      </div>
-          <% end %>
-  </div>
-</div>
-
-</div>
-</div>
-</div>
+    </div> <!-- End well classshow -->
+  </div> <!-- End ID classshowpage -->
+</div> <!-- End container-fluid -->
 
 

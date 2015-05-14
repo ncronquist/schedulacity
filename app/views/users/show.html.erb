@@ -1,28 +1,21 @@
 <div class='container'>
   <div class='well'>
-  <h1>Account Information
+    <h1>Account Information
+      <%= link_to '', edit_user_path, :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+    </h1>
 
- <%= link_to '', edit_user_path, :class => 'btn btn-primary glyphicon glyphicon-pencil pull-right' %>
+    <br>
 
-  </h1>
-
-
-  <br>
-
-
-<div class='well'>
-  <div class='col-md-10 col-md-offset-1 col-xs-12' id="showtext">
-
-<ul class="student list-group" style="word-wrap: break-word;">
-      <li class="student list-group-item"><b>Name: </b> <%= @user.name %></li>
-      <li class="student list-group-item"><b>Email: </b> <%= @user.email %></li>
-      <li class="student list-group-item"><b>Phone Number: </b> <% if(@user.phone_number.blank? ) %> None Listed <% else %> <%= @user.phone_number %> <% end %> </li>
-</ul>
-
+    <div class='well'>
+      <div class='col-md-10 col-md-offset-1 col-xs-12' id="showtext">
+        <ul class="student list-group" style="word-wrap: break-word;">
+              <li class="student list-group-item"><b>Name: </b> <%= @user.name %></li>
+              <li class="student list-group-item"><b>Email: </b> <%= @user.email %></li>
+              <li class="student list-group-item"><b>Phone Number: </b> <% if(@user.phone_number.blank? ) %> None Listed <% else %> <%= @user.phone_number %> <% end %> </li>
+        </ul>
+      </div>
+    </div>
   </div>
-
-</div>
-</div>
 </div>
 
 

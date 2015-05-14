@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   has_many :students, through: :attendances
 
   before_destroy do |record|
-    if record.google_event_id
+    if record.google_event_id != ''
       user = record.classgroup.user
       client = Google::APIClient.new(:application_name => 'Schedulacity',
                                       :application_version => '1.0')
