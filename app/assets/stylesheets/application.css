@@ -33,5 +33,14 @@ li {
   }
 }
 
+@media (max-width: 325px) {
+  button.fc-today-button {
+    margin-left: -.1em !important;
+  }
+  button.fc-prev-button {
+    margin-left: -10px !important;
+  }
+}
+
 
 

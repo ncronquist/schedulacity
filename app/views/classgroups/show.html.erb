@@ -21,7 +21,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="">Send a Text to the Class:</h3>
+                <h3 class="">Send the Class a Text:</h3>
               </div>
               <div class="modal-body">
                 <%= bootstrap_form_for :twilio, url: '/twilio/send_text_message', method: :post do |f| %>
@@ -109,7 +109,7 @@
               <% end %>
             </table>
             <% if @events.count < 1 %>
-              <p class="text-center">Click on the add button above to create new events for this class!</p>
+              <p class="text-center">Click on the 'add' button above to create new events for this class!</p>
             <% end %>
           </div>
         </div>

@@ -9,15 +9,15 @@
       <br>
     </h1>
     <select class='form-control class-state'>
-      <option value='open'>Active Classes</option>
-      <option value='closed'>Inactive Classes</option>
+      <option value='open'>Active</option>
+      <option value='closed'>Inactive</option>
     </select>
 
 
 
   <div class='col-xs-12' id="tableandtext">
   <% if @classes.count < 1 %>
-    <p class="text-center">Click on the green add button to create a new class!</p>
+    <p class="text-center">Click on the 'add' button to create a new class!</p>
   <% else %>
   <div class='row open-classes'>
     <div class='col-xs-12'>
