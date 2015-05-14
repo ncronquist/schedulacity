@@ -4,15 +4,15 @@
   <title>Schedulacity</title>
   <meta name="viewport" content="initial-scale=1">
   <!-- Boostrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
   <!-- Boostrap JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <!-- Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
 
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -90,7 +90,7 @@
         <% if @current_user %>
           <li id="calendarlink"><%= link_to 'Calendar', events_path %> </li>
           <li id="studentlink"><%= link_to 'Students', students_path %> </li>
-          <li id="classlink"><%= link_to 'Class', classgroups_path %> </li>
+          <li id="classlink"><%= link_to 'Classes', classgroups_path %> </li>
           <li id="accountlink"><%= link_to "#{if @current_user.name.index(' ')
                                                 @current_user.name.slice(0..@current_user.name.index(' '))
                                               else

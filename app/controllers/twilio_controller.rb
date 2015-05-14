@@ -13,19 +13,19 @@ class TwilioController < ApplicationController
     end
 
 
-    number_to_send_to = '2069402064'
+    # number_to_send_to = '2069402064'
 
     twilio_sid = ENV["TWILIO_SID"]
     twilio_token = ENV["TWILIO_TOKEN"]
-    twilio_phone_number = "+1 425-629-0770"
-
+    twilio_phone_number = "+14252767254"
+    # render :json => nums
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
     nums.each do |num|
-      @twilio_client.account.sms.messages.create(
+      @twilio_client.account.messages.create({
         :from => "#{twilio_phone_number}",
         :to => num,
         :body => params['twilio']['Hey']
-      )
+      })
     end
 
     flash[:info] = "Message sent."

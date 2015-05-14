@@ -99,6 +99,14 @@ $(function(){
       $('.open-classes').removeClass('hidden');
     }
   })
+  //google button resize
+  function googleBtn(){
+    if($(window).width() < 415) {
+      $('.btn-google').text('Google Calendar');
+    }
+  }
+
+  googleBtn();
 })
 
 

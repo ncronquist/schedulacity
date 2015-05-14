@@ -36,7 +36,7 @@ class ClassgroupsController < ApplicationController
   def update
     @class = Classgroup.find(params[:id])
     if @class.update(classgroup_params)
-      redirect_to classgroups_path
+      redirect_to classgroup_path(params[:id])
     else
     render 'edit'
     end

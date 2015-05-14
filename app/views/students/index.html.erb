@@ -33,7 +33,7 @@
             <td><%= link_to student.name, student_path(student.id) %></td>
             <td><% if student.note? %><%= student.note.first(30) %><% else %> N/A <% end %>
             </td>
-            <td><% if student.classgroups.count < 1 %>Not currently enrolled in classes<% else %><% student_classes = student.classgroups %> <ul><% student_classes.each do |session| %> <li><%= link_to session.name, classgroup_path(session.id) %></li> <% end %><% end %><% end %></ul></td>
+            <td><% if student.classgroups.where(active: true).count < 1 %>Not currently enrolled in an active class<% else %><% student_classes = student.classgroups %> <ul><% student_classes.each do |session| %> <li><%= link_to session.name, classgroup_path(session.id) %></li> <% end %><% end %><% end %></ul></td>
           </tr>
           <% end %>
         </tbody>
