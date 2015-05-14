@@ -214,6 +214,11 @@ ul.nav.navbar-nav.navbar-right .active {
   border-bottom: 1px solid gray;
   margin-bottom: 35px;
   table-layout: fixed;
+  }
+
+  .well {
+    padding: 0 !important;
+  }
 
   th, td {
       border: 1px solid black;
@@ -807,7 +812,7 @@ div.fc-content {
     margin-left: -.1em !important;
   }
   button.fc-prev-button {
-    margin-left: -10px !important;
+    margin-left: 20px !important;
   }
 }
 

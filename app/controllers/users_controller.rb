@@ -42,8 +42,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    # render :json => edit_user_params
     @user = User.find(@current_user)
-    User.update(@user, user_params)
+    User.update(@user, edit_user_params)
     @user.save
     redirect_to user_path
   end
@@ -54,6 +55,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:new_user).permit(:name,:email,:password,:phone_number)
   end
+
+  def edit_user_params
+    params.require(:user).permit(:name,:email,:password,:phone_number)
+  end
+
 
 end
 
