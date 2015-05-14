@@ -20,10 +20,10 @@
             <h3 class="">Send a Text to the Class:</h3>
           </div>
           <div class="modal-body">
-            <%= form_for :twilio, url: '/twilio/send_text_message', method: :post do |f| %>
-              <%=f.text_area "Hey", :style => "width: 100%; font-size: 30px; padding: 10px; resize: none;" %>
+            <%= form_for :twilio, url: '/twilio/send_text_message', method: :post, :html => {:id => 'text-form'} do |f| %>
+              <%=f.text_field "Hey" %>
               <input name='class' type='hidden' value="<%=@class.id %>" >
-              <%=f.submit "Send Text", :id => 'text-submit', :class => "btn btn-primary" %>
+              <%=f.submit "Send Text", :id => 'text-submit', :required => true %>
             <% end %>
           </div>
           <!-- <div class="modal-footer"> -->

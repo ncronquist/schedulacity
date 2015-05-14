@@ -47,6 +47,7 @@ $(function(){
         minlength: 5
       },
       "student[email]": {
+        required: true,
         email: true
       },
       "student[dob]": {
@@ -68,7 +69,14 @@ $(function(){
       }
     }
   });
-
+  //twilio text form
+  $('#text-form').validate({
+    rules: {
+      "twilio[Hey]": {
+        required: true
+      }
+    }
+  })
   //fullCalendar method
   $('#calendar').fullCalendar({
     header: {
@@ -76,13 +84,7 @@ $(function(){
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
     },
-    views: {
-        agendaFourDay: {
-            type: 'agenda',
-            duration: { days: 4 },
-            buttonText: '4 day'
-        }
-    },
+    defaultView: $(window).width() < 514 ? 'agendaDay' : 'month',
     height: 800,
     events: "/events/get_events",
     timezone: 'local'
@@ -97,7 +99,6 @@ $(function(){
       $('.open-classes').removeClass('hidden');
     }
   })
-
 })
 
 
