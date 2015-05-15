@@ -40,7 +40,7 @@
                 <% if group.active %>
             <tr>
               <td><%= link_to group.name, classgroup_path(group.id) %></td>
-              <td><%= group.description.first(50) %></td>
+              <td><%= group.description %></td>
             </tr>
             <% end %>
             <% end %>

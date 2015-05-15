@@ -25,7 +25,7 @@ class ClassgroupsController < ApplicationController
 
   def show
     @class = Classgroup.find(params[:id])
-    @students = @class.students
+    @students = @class.students.order('name ASC')
     @events = Event.where(classgroup_id: @class.id).order("start ASC")
   end
 

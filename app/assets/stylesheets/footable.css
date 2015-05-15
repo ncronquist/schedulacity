@@ -50,64 +50,64 @@
   content: "\e000";
 }
 .footable.breakpoint.toggle-circle > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e005";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-circle > tbody > tr > td > span.footable-toggle:before {
-  content: "\e004";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-circle-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e003";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-circle-filled > tbody > tr > td > span.footable-toggle:before {
-  content: "\e002";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-square > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e007";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-square > tbody > tr > td > span.footable-toggle:before {
-  content: "\e006";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-square-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e009";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-square-filled > tbody > tr > td > span.footable-toggle:before {
-  content: "\e008";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e00f";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow > tbody > tr > td > span.footable-toggle:before {
-  content: "\e011";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-small > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e013";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-small > tbody > tr > td > span.footable-toggle:before {
-  content: "\e015";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-circle > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e01b";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-circle > tbody > tr > td > span.footable-toggle:before {
-  content: "\e01d";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-circle-filled > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e00b";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-circle-filled > tbody > tr > td > span.footable-toggle:before {
-  content: "\e00d";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-tiny > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e01f";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-tiny > tbody > tr > td > span.footable-toggle:before {
-  content: "\e021";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-alt > tbody > tr.footable-detail-show > td > span.footable-toggle:before {
-  content: "\e017";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-arrow-alt > tbody > tr > td > span.footable-toggle:before {
-  content: "\e019";
+  content: "\e001";
 }
 .footable.breakpoint.toggle-medium > tbody > tr > td > span.footable-toggle {
   font-size: 18px;
@@ -127,10 +127,10 @@
   cursor: pointer;
 }
 .footable > thead > tr > th.footable-sorted > span.footable-sort-indicator:before {
-  content: "\e013";
+  content: "\e001";
 }
 .footable > thead > tr > th.footable-sorted-desc > span.footable-sort-indicator:before {
-  content: "\e012";
+  content: "\e001";
 }
 .footable > thead > tr > th > span.footable-sort-indicator {
   display: inline-block;
@@ -144,7 +144,7 @@
   padding-left: 5px;
 }
 .footable > thead > tr > th > span.footable-sort-indicator:before {
-  content: "\e022";
+  content: "\e001";
 }
 .footable > tfoot .pagination {
   margin: 0;
