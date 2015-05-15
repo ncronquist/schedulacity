@@ -220,6 +220,8 @@ ul.nav.navbar-nav.navbar-right .active {
     padding: 0 !important;
   }
 
+
+
   th, td {
       border: 1px solid black;
       overflow: hidden;
@@ -473,6 +475,9 @@ table.mytable, .mytable td, .mytable tr, .mytable th, .mytable tbody, .mytable t
   font-variant: normal;
   font-weight: 300 !important;
   font-color: #474747;
+  word-wrap: break-word;
+  table-layout:fixed
+
 }
 
 .mytable th {
