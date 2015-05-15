@@ -50,7 +50,7 @@
 
         <select class="form-control input-lg" name="event[repeat][reoccurrence_period]">
           <% (1..30).each do |n| %>
-            <option value="<%=n%>"><%=n%> weeks</option>
+            <option value="<%=n%>">Every <%=n%> <%="week".pluralize(n)%></option>
           <% end %>
         </select>
 
