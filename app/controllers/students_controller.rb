@@ -5,7 +5,6 @@ before_action :is_authenticated?
   def index
     @current_user = current_user
     @students = Student.where(user_id: @current_user.id).order('name ASC')
-    # render :json => @students
   end
 
   def new
@@ -14,8 +13,7 @@ before_action :is_authenticated?
   end
 
   def create
-    # render :json => student_params
-    # @student = Student.where(email:student_params['email'], user_id: student_params['user_id']).first_or_create(student_params)
+    @student = Student.where(email:student_params['email'], user_id: student_params['user_id']).first_or_create(student_params)
     if Student.where(email:student_params['email'], user_id: student_params['user_id']).count > 0
       flash[:danger] = 'Student email already exists'
       redirect_to new_student_path
@@ -29,15 +27,14 @@ before_action :is_authenticated?
   def show
     @student = Student.find(params[:id])
     @student_classes = @student.classgroups
-    # render :json => @student_classes
   end
 
   def edit
     @student = Student.find(params[:id])
-    # render :json => @student
   end
 
   def update
+    # render :json => student_params
     @student = Student.find(params[:id])
     if @student.update(student_params)
       redirect_to student_path(params[:id])

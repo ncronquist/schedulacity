@@ -25,7 +25,7 @@ class ClassgroupsController < ApplicationController
 
   def show
     @class = Classgroup.find(params[:id])
-    @students = @class.students
+    @students = @class.students.order('name ASC')
     @events = Event.where(classgroup_id: @class.id).order("start ASC")
   end
 
@@ -64,7 +64,7 @@ class ClassgroupsController < ApplicationController
     @enrolled_students = @class.students
     @student = Student.new
     @current_user = current_user
-    @all_students = Student.where(user_id: @current_user.id)
+    @all_students = Student.where(user_id: @current_user.id).order('name ASC')
     # render :json => @enrolled_students
   end
 

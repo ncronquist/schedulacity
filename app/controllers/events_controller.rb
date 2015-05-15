@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @class = Classgroup.find(@event.classgroup_id)
-    @students = @class.students
+    @students = @class.students.order('name ASC')
     @attendance = Attendance.where(params[:event_id])
   end
 
@@ -287,10 +287,9 @@ class EventsController < ApplicationController
   def get_events
     @current_user = current_user
     events = []
-    @current_user.classgroups.each do |c|
+    @current_user.classgroups.where(active: true).each do |c|
       c.events.each do |event|
         events << {:id => event.id, :title => Classgroup.find(event.classgroup_id).name, :start => event.start, :end => event.end, :url => "#{request.base_url}/events/#{event.id}"}
-
       end
     end
     render :text => events.to_json

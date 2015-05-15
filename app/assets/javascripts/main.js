@@ -44,7 +44,6 @@ $(function(){
     rules: {
       "student[name]": {
         required: true,
-        minlength: 5
       },
       "student[email]": {
         required: true,
