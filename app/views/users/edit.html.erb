@@ -10,8 +10,8 @@
 
       <%= bootstrap_form_for @user do |f| %>
 
-      <%= f.text_field :name, :placeholder => "User Name", :class => "form-control input-lg"%>
-      <%= f.text_field :email, :placeholder => "User Email", :class => "form-control text-area input-lg" %>
+      <%= f.text_field :name, :placeholder => "User Name", :class => "form-control input-lg required"%>
+      <%= f.text_field :email, :placeholder => "User Email", :class => "form-control text-area input-lg required" %>
       <%= f.text_field :phone_number, :placeholder => "User Phone Number", :class => "form-control text-area input-lg" %>
       <%= f.submit "Submit", :class => "btn btn-primary"%>
 

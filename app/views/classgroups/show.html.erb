@@ -62,8 +62,19 @@
             <% if @students.count < 1 %>
               <p class="text-center">No students currently enrolled</p>
             <% else %>
-              <% @students.each do |student| %>
-                <li class="list-group-item" onmouseover="document.body.style.overflow='auto';" onmouseout="document.body.style.overflow='auto';"><%= link_to student.name, student_path(student.id) %></li>
+              <li class="list-group-item">
+                Student Name
+                <span class="pull-right">
+                  Attendance
+                </span>
+              </li>
+              <% @student_info.each do |student| %>
+                <li class="list-group-item" onmouseover="document.body.style.overflow='auto';" onmouseout="document.body.style.overflow='auto';">
+                  <%= link_to student[:name], student_path(student[:id]) %>
+                  <span class="pull-right">
+                    <%=student[:events_attended]%> / <%=student[:events_scheduled]%>
+                  </span>
+                </li>
               <% end %>
             <% end %>
           </ul>

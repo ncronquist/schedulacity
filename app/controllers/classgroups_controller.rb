@@ -27,6 +27,27 @@ class ClassgroupsController < ApplicationController
     @class = Classgroup.find(params[:id])
     @students = @class.students.order('name ASC')
     @events = Event.where(classgroup_id: @class.id).order("start ASC")
+
+    # Get the attendance record for each student
+    @student_info = []
+    @students.each do |student|
+
+    attendance = Attendance.connection.select_all("SELECT  a.attendance_type
+                                                  FROM  attendances a,
+                                                        events e
+                                                  WHERE a.event_id = e.id
+                                                  AND a.student_id = #{student.id}
+                                                  AND e.classgroup_id = #{@class.id}")
+
+      attended = 0
+      attendances = 0
+      attendance.each do |a|
+        attended += 1 if a['attendance_type'] == '1' || a['attendance_type'] == '2'
+        attendances += 1
+      end
+
+      @student_info << {id: student.id, name: student.name, events_attended: attended, events_scheduled: attendances}
+    end
   end
 
   def edit
