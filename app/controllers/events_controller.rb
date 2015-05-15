@@ -277,6 +277,12 @@ class EventsController < ApplicationController
     # render :json => params
     event = Event.find(params[:id])
     classgroup = Classgroup.find(event.classgroup_id)
+    attendances = Attendance.where(event_id: event.id)
+
+    attendances.each do |attendance|
+      attendance.destroy
+    end
+
     Event.destroy(params[:id])
 
     redirect_to classgroup_path(classgroup)
