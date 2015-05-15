@@ -112,7 +112,8 @@ $(function(){
 //radio boxes label plugin
 $(document).ready(function(){
     $(":radio").labelauty(({ label: false }));
-    $(".to-labelauty").labelauty({ minimum_width: "100px" });
+    $(".to-labelauty-pad").labelauty({ same_width: true, padding_left: "10px" });
+    $(".to-labelauty-no-pad").labelauty({ same_width: true });
     $(".to-labelauty-xs").labelauty({ minimum_width: "60px", maximum_height: "50px", padding_left: "25px" });
     $(".to-labelauty-icon").labelauty({ label: false });
 });

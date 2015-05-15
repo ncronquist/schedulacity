@@ -827,3 +827,11 @@ div.fc-content {
    background-position: left center;
    background-repeat: no-repeat;
 }
+
+input.labelauty + label > span.labelauty-checked {
+  padding-right: 15px;
+}
+
+input.labelauty + label > span.labelauty-unchecked {
+  padding-right: 15px;
+}

@@ -32,7 +32,15 @@
     <br>
     <br>
     <%= bootstrap_form_for @class, :url => "/classgroups/#{params['id']}/students" do |f| %>
-      <%= f.collection_check_boxes :student_ids, @all_students.order('name ASC'), :id, :name, :hide_label => true, :html => {:class=>'to-labelauty-xs'}, :stlye => "margin: 10px;" %>
+      <% @all_students.each do |student| %>
+        <input type="checkbox" name="classgroup[student_ids][]" id="classgroup_student_ids_<%=student.id%>"
+                value="<%=student.id%>" class="to-labelauty-no-pad" icon-labelauty="" data-labelauty="<%=student.name%>"
+                <% @enrolled_students.each do |es| %>
+                  <% if es.id == student.id %>
+                    checked=true
+                  <% end %>
+                <% end %>>
+      <% end %>
       <%= f.submit 'Submit', :class => 'btn btn-primary btn-lg', :style => "margin-top: 10px" %>
     <% end %>
   </div>
