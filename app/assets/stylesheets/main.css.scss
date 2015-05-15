@@ -214,6 +214,7 @@ ul.nav.navbar-nav.navbar-right .active {
   border-bottom: 1px solid gray;
   margin-bottom: 35px;
   table-layout: fixed;
+}
 
   th, td {
       border: 1px solid black;
@@ -468,6 +469,9 @@ table.mytable, .mytable td, .mytable tr, .mytable th, .mytable tbody, .mytable t
   font-variant: normal;
   font-weight: 300 !important;
   font-color: #474747;
+  word-wrap: break-word;
+  table-layout:fixed
+
 }
 
 .mytable th {
