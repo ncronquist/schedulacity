@@ -2,7 +2,7 @@
 <div id="studentaddpage">
   <div class='well'>
   <div class="col-xs-12">
-    <h1>Add Student to <b><%= @class.name %></b></h1>
+    <h1>Add Student to <b><%= link_to @class.name, classgroup_path(@class.id) %></b></h1>
 
 <div class="well">
   <div class='col-md-6 col-xs-12'>
