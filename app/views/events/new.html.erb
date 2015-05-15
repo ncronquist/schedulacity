@@ -8,7 +8,7 @@
   <div class="col-xs-10 col-xs-offset-1">
     <%= bootstrap_form_for @event, html: {class: "eventnew"} do |f| %>
       <% if @classgroups %>
-        <select name="event[classgroup_id]" class="form-control input-lg">
+        <select name="event[classgroup_id]" class="form-control input-lg required">
           <% @classgroups.each do |c| %>
             <option value="<%=c.id%>"><%=c.name%></option>
           <% end %>
@@ -26,14 +26,14 @@
       <input type="text" name="event[zip]" placeholder="Zip", class="form-control input-lg">
 
       <div class='input-group date' id='event_start'>
-        <input type='text' name="event[start]" class="form-control input-lg" placeholder="Start"/>
+        <input type='text' name="event[start]" class="form-control input-lg required" placeholder="Start"/>
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>
       </div>
 
       <div class='input-group date' id='event_end'>
-        <input type='text' name="event[end]" class="form-control input-lg" placeholder="End"/>
+        <input type='text' name="event[end]" class="form-control input-lg required" placeholder="End"/>
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>
