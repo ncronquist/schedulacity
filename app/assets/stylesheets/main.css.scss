@@ -830,8 +830,10 @@ div.fc-content {
 
 input.labelauty + label > span.labelauty-checked {
   padding-right: 15px;
+  min-width: 200px;
 }
 
 input.labelauty + label > span.labelauty-unchecked {
   padding-right: 15px;
+  min-width: 200px;
 }
