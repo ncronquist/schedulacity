@@ -141,7 +141,8 @@ input.labelauty[disabled] + label
 /* Add a background to (un)checked images */
 input.labelauty + label > span.labelauty-unchecked-image
 {
-  background-image: url( labelauty_images/input-unchecked.png );
+  /*background-image: url( labelauty_images/input-unchecked.png );*/
+  background-image: image-url("labelauty_images/input-unchecked.png");
   background-position: center;
 }
 /* Add a background to (un)checked images */
@@ -156,7 +157,8 @@ input.labelauty + label > span.unchecked
 
 input.labelauty + label > span.labelauty-checked-image
 {
-  background-image: url( labelauty_images/input-checked.png );
+  /*background-image: url( labelauty_images/input-checked.png );*/
+  background-image: image-url("labelauty_images/input-checked.png");
   background-position: center;
 }
 input.labelauty + label > span.checked
