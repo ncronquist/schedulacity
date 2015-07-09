@@ -13,7 +13,7 @@ before_action :is_authenticated?
   end
 
   def create
-    @student = Student.where(email:student_params['email'], user_id: student_params['user_id']).first_or_create(student_params)
+    @student = Student.where(email:student_params['email'], user_id: student_params['user_id'])
     if Student.where(email:student_params['email'], user_id: student_params['user_id']).count > 0
       flash[:danger] = 'Student email already exists'
       redirect_to new_student_path
